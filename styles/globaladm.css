@@ -1,0 +1,388 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'arial';
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    min-height: 100vh;
+}
+
+body.loaded {
+    opacity: 1;
+}
+
+
+
+/* Header */
+.container-inner {
+    max-width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.navbar {
+    background-color: #2c2c2c;
+    padding: 0.5rem;
+    position: static;
+    top: 0;
+    box-shadow: 10px 0 10px;
+    z-index: 99;
+}
+
+ul {
+    display: flex;
+    list-style-type: none;
+}
+
+ul h3 {
+    color: #fff;
+    cursor: pointer;
+    margin-right: 1.5rem;
+    font-size: 1.1rem;
+    font-family: "Merriweather", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+    font-weight: 300;
+}
+
+#user-nav {
+    cursor: pointer;
+    margin-right: 1.5rem;
+    font-size: 1.1rem;
+    font-family: "Merriweather", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+    font-weight: 300;
+}
+
+#user-nav a {
+    color: #fff;
+}
+
+#user-nav span {
+    color: #fff;
+}
+
+ul a {
+    text-decoration: none;
+
+}
+
+.hover-sair:hover {
+    transform: translateY(-3px);
+    transition: all 0.2s;
+    display: inline-block;
+}
+
+nav ul li:hover:not(#user-nav) {
+    transform: translateY(-3px);
+    transition: all 0.2s;
+    font-weight: bold;
+}
+
+.nav-icon-container {
+    display: flex;
+    align-items: center;
+}
+
+.nav-icon-container img {
+    width: 75px;
+    margin: 0;
+    cursor: pointer;
+    /* Quando o usuário passar o cursor sobre a imagem ele vira uma mãozinha */
+}
+
+.nav-icon-container img:first-child {
+    margin-right: 1rem;
+}
+
+.navbar > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.logo-header {
+    line-height: 1.5rem;
+    color: #926c15;
+    font-weight: 450;
+    text-align: center;
+    padding-left: 1.5rem;
+    font-family: "Merriweather", serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+    font-size: 1.6rem;
+}
+
+.logo-header span {
+    color: #fff;
+    font-weight: 200;
+    font-size: 1.1rem;
+}
+
+.menu-button {
+    display: none;
+}
+
+header {
+    background-image: radial-gradient(#fff, #c7c7c7);
+    min-height: 80vh;
+    height: auto;
+    /* ocupa a tela toda */
+    display: flex;
+    justify-content: center;
+    /* centraliza horizontalmente o conteúdo */
+    align-items: center;
+    /* centraliza verticalmente o conteúdo */
+}
+
+.container-principal {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #2c2c2c;
+    border-radius: 10px;
+    padding: 2rem;
+    margin: 4rem;
+}
+
+.pedido {
+    margin-top: 3rem;
+}
+
+.pedido-itens {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.btn-enviado {
+    font-size: 15px;
+    width: 200px;
+    padding: 0.6rem;
+    background-color: #2b69db;
+    color: #fff;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.2s;
+}
+
+.btn-enviado.enviado {
+    background: #aaa;
+    cursor: not-allowed;
+}
+
+footer {
+    background-color: #2c2c2c;
+    min-height: 220px;
+    margin-top: auto;
+    text-align: center;
+}
+
+footer p {
+    font-size: 0.9rem;
+    padding-top: 1rem;
+    color: #fff;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+html {
+    scroll-behavior: smooth;
+    /* Ao clicar no compre já a rolagem é lenta */
+}
+
+@media (max-width:900px) {
+    * {
+        box-sizing: border-box;
+    }
+
+    .header-inner-content {
+        max-width: 100%;
+        padding: 0 1rem;
+    }
+
+    .menu-button {
+        display: block;
+    }
+
+    .show-menu nav {
+        display: block;
+    }
+
+    .logo-header {
+        padding-left: 0.5rem;
+    }
+
+
+    header {
+        min-height: auto;
+    }
+    
+    .navbar {
+        position: fixed;
+        width: 100%;
+    }
+
+    nav {
+        display: none;
+        position: fixed;
+        text-align: center;
+        top: 84px;
+        left: 0;
+        right: 0;
+        width: 100%;
+        /* ✅ nunca use 100vw */
+        background: #2c2c2c;
+        z-index: 9999;
+        animation: slideDown .3s ease;
+        overflow-x: hidden;
+        border-radius: 9px;
+    }
+
+    nav ul {
+        display: flex;
+        list-style-type: none;
+        align-items: center; /* Alinha verticalmente os textos */
+        margin: 0;
+        padding: 0;
+    }
+
+    nav ul li {
+        width: 100%;
+        text-align: center;
+    }
+
+
+    nav ul li a {
+        display: block;
+        width: 100%;
+    }
+
+    nav ul li a h3 {
+        margin: 0;
+        padding: 1.2rem 2rem;
+    }
+
+    #user-nav {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        white-space: nowrap;
+    }
+
+    #user-nav p,
+    #user-nav span,
+    #user-nav a {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    body {
+        overflow-x: hidden;
+        /* segurança extra */
+    }
+
+    .container-principal {
+        margin-top: 10rem;
+        padding: 2rem;
+    }
+
+    .cols-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+@media (max-width:600px) {
+    .navbar {
+        position: fixed;
+    }
+
+    nav {
+        display: none;
+        position: fixed;
+        top: 84px;
+        left: 0;
+        width: 100%; /* ✅ em vez de right: 0 */
+        max-width: 100%; /* 🔥 segurança extra */
+        background: #2c2c2c;
+        z-index: 9999;
+        overflow-x: hidden;
+    }
+
+    nav ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* 🔥 centraliza todos os itens */
+        width: 100%;
+    }
+
+    #user-nav a, 
+    #user-nav span {
+        width: auto !important;   /* Impede que ele tente ocupar a tela toda */
+        display: inline-block !important; 
+        padding: 0 5px !important; /* Remove aquele padding gigante de 2rem */
+        margin: 0;
+    }
+
+    #user-nav {
+        gap: 0; /* Ajuste o espaço entre o Olá e o Sair aqui se precisar */
+        display: flex;
+        justify-content: center;
+        margin: 1rem;
+    }
+
+    nav ul li {
+        width: 100%;
+    }
+
+    nav ul li a {
+        display: block;
+        width: 100%;
+    }
+
+    nav ul li a h3 {
+        margin: 0;
+        padding: 1.2rem 2rem;
+    }
+
+    .container-principal {
+        margin-top: 10rem;
+        border: none;
+        padding: 0rem;
+    }
+
+    footer p {
+        font-size: 0.9rem;
+        padding-top: 0.9rem;
+        color: #fff;
+    }
+}

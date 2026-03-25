@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <title>Prática Indústria & Comércio | Soluções em Qualidade e Praticidade</title>
+    <link rel="stylesheet" href="./styles/globalpagamento.css" />
+
+    <!-- Fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="header-inner-content">
+            <h1 class="logo-header">PRÁTICA<span><br>Indústria & Comércio</span></h1>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <h3>Home</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href='index.html#produtos'>
+                            <h3>Produtos</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="sobrenos.html">
+                            <h3>Sobre</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#contato">
+                            <h3>Contato</h3>
+                        </a>
+                    </li>
+                    </li>
+                    <li id="user-nav">
+                    </li>
+                </ul>
+            </nav>
+            <div class="nav-icon-container">
+                <img src="./img/bolsa.png" class="shop" id="cart-btn">
+                <img src="./img/menu.png" class="menu-button">
+            </div>
+        </div>
+    </div>
+
+    <!-- Carrinho -->
+    <div class="cart-container">
+        <div class="cart-header">
+            <h3>Seu Carrinho</h3>
+            <span class="close-cart">&times;</span>
+        </div>
+        <div class="cart-items">
+            <!-- Os produtos serão adicionados aqui via JS -->
+        </div>
+        <div class="cart-footer">
+            <p>Total: R$ <span id="cart-total">0.00</span></p>
+            <button id="checkout-btn">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <main>
+        <div class="container">
+            <div class="container-title">
+                <h2>Seu pedido foi finalizado com sucesso!</h2>
+                <p>Use o QR Code ou copie o código abaixo.</p>
+            </div>
+
+            <div class="container-copy-qrcode">
+                <div class="container-qrcode">
+                    <p>QR Code PIX</p>
+                    <img id="qrCode" width="300">
+                </div>
+
+                <div class="container-copy">
+                    <p>Valor total:</p>
+                    <h2 id="valorTotal"></h2>
+                    <h3>Código PIX (copia e cola)</h3>
+                    <textarea id="pixCode" rows="5" readonly></textarea>
+
+                    <button onclick="copiarPix()">📋 Copiar Código PIX</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div id='contato'>
+            <p>© 2025 Smart Engie Serviços LTDA | CNPJ: 08.787.487/0001-06</p>
+            <p>Telefone / WhatsApp: <a href="https://wa.me/5524998112244" target="_blank">(24) 99811-2244</a> | <a
+                    href="mailto:ch.paiva@gmail.com">Email: ch.paiva@gmail.com</a></p>
+            <p>Horário de atendimento: Seg à Sex, das 8h às 18h</p>
+            <p>Siga-nos: <a href="https://www.instagram.com/pratica_ind_com/" target="_blank">[Instagram]</a></p>
+        </div>
+
+        <div>
+            <p></p>
+            <p>Desenvolvido por Pedro Paiva</p>
+            <p>Política de Privacidade | Termos de Uso</p>
+        </div>
+    </footer>
+
+    <div id="modal-sucesso" class="modal-overlay" style="display:none">
+        <div class="modal-box-sucesso">
+            <h2>Pagamento aprovado!</h2>
+            <p>Seu pedido foi confirmado com sucesso.</p>
+            <button id="btn-ir-pedidos">Ver meus pedidos</button>
+        </div>
+    </div>
+
+    <div id="modal-erro" class="modal-overlay" style="display:none;">
+        <div class="modal-box">
+            <h2>Atenção</h2>
+            <p id="modal-mensagem"></p>
+            <button id="modal-ok-erro" class="btn-ok">OK</button>
+        </div>
+    </div>
+
+    <script>
+        // 1. Pegamos os dados crus do LocalStorage toda vez que a página carrega
+        const pixPedidoInfo = JSON.parse(localStorage.getItem("pixPedido"));
+        const novoPedidoId = localStorage.getItem("pedidoId");
+
+        // 2. Determinamos qual ID vamos usar agora
+        // Se veio da tela de pedidos, o ID está dentro de pixPedidoInfo.
+        // Se veio do carrinho, o ID está em novoPedidoId.
+        let idParaVerificar = novoPedidoId || pixPedidoInfo?.pedidoId;
+        let valorFinal = 0;
+
+        // 3. Lógica de atualização de valor
+        if (pixPedidoInfo && !novoPedidoId) {
+            // Caso: Veio da tela de pedidos (clicou em Pagar Pedido)
+            valorFinal = pixPedidoInfo.valor;
+        } else {
+            // Caso: Veio do carrinho
+            valorFinal = localStorage.getItem('cartTotal') || 0;
+        }
+
+        // Exibe o valor correto na tela imediatamente
+        document.getElementById("valorTotal").textContent = "R$ " + parseFloat(valorFinal).toFixed(2);
+
+        // Variável para controle de uma única requisição por carga de página
+        let jaSolicitouPix = false;
+
+        async function gerarPix() {
+            if (jaSolicitouPix) return;
+            jaSolicitouPix = true;
+
+            if (!idParaVerificar) {
+                alert("Pedido não encontrado");
+                window.location.href = "telapedidos.html";
+                return;
+            }
+
+            try {
+                // Sempre buscamos um PIX novo do servidor para garantir que os dados batam com o ID atual
+                const resp = await fetch(`http://localhost:3000/pedido/${idParaVerificar}/pix`, { method: "POST" });
+                const data = await resp.json();
+
+                if (data.qrCode && data.qrBase64) {
+                    document.getElementById("pixCode").value = data.qrCode;
+                    document.getElementById("qrCode").src = "data:image/png;base64," + data.qrBase64;
+
+                    // Se o servidor retornar o valor exato do banco, atualizamos a tela
+                    if (data.valor) {
+                        document.getElementById("valorTotal").textContent = "R$ " + parseFloat(data.valor).toFixed(2);
+                    }
+
+                    // Atualizamos o cache com o novo pedido que acabamos de carregar
+                    localStorage.setItem("pixPedido", JSON.stringify({
+                        pedidoId: idParaVerificar,
+                        valor: data.valor || valorFinal,
+                        qrCode: data.qrCode,
+                        qrBase64: data.qrBase64
+                    }));
+                } else {
+                    mostrarErro(data.msg || "Erro ao carregar PIX");
+                }
+            } catch (err) {
+                console.error("Erro ao gerar PIX:", err);
+            }
+        }
+
+        // Funções de apoio
+        function limparDadosPagamento() {
+            localStorage.removeItem("pixPedido");
+            localStorage.removeItem("pedidoId");
+        }
+
+        document.getElementById("btn-ir-pedidos").addEventListener("click", () => {
+            limparDadosPagamento();
+            window.location.href = "telapedidos.html";
+        });
+
+        // Monitoramento do pagamento
+        if (idParaVerificar) {
+            const intervalo = setInterval(async () => {
+                try {
+                    const resp = await fetch(`http://localhost:3000/pedido/${idParaVerificar}/status`);
+                    const data = await resp.json();
+                    if (data.sucesso && data.status === "pago") {
+                        clearInterval(intervalo);
+                        document.getElementById("modal-sucesso").style.display = "flex";
+                        limparDadosPagamento();
+                    }
+                } catch (err) { }
+            }, 5000);
+        }
+
+        function copiarPix() {
+            const campo = document.getElementById("pixCode");
+            campo.select();
+            document.execCommand("copy");
+            mostrarErro("Código PIX copiado!");
+        }
+
+        // Inicia o processo
+        gerarPix();
+
+        const modalErro = document.getElementById('modal-erro');
+        const modalMensagem = document.getElementById('modal-mensagem');
+        const btnModalOkErro = document.getElementById('modal-ok-erro');
+
+        function mostrarErro(msg) {
+            modalMensagem.textContent = msg;
+            modalErro.style.display = 'flex';
+        }
+
+        btnModalOkErro.addEventListener('click', () => {
+            modalErro.style.display = 'none';
+        });
+    </script>
+
+    <script>
+        const navbar = document.querySelector(".navbar");
+        const menuButton = document.querySelector(".menu-button")
+
+        menuButton.addEventListener('click', () => {
+            navbar.classList.toggle('show-menu');
+        });
+    </script>
+
+    <script src="js/cart.js"></script>
+
+    <script>
+        window.addEventListener("load", () => {
+            document.body.classList.add("loaded");
+        });
+    </script>
+</body>
+
+</html>

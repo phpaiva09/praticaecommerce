@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <title>Prática Indústria & Comércio | Soluções em Qualidade e Praticidade</title>
+    <link rel="stylesheet" href="./styles/globaltelalogin.css" />
+
+    <!-- Fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="header-inner-content">
+            <h1 class="logo-header">PRÁTICA<span><br>Indústria & Comércio</span></h1>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="index.html"><h3>Home</h3></a>
+                    </li>
+                    <li>
+                        <a href='index.html#produtos'><h3>Produtos</h3></a>
+                    </li>
+                    <li>
+                        <a href="sobrenos.html"><h3>Sobre</h3></a>
+                    </li>
+                    <li>
+                        <a href="#contato"><h3>Contato</h3></a>
+                </ul>
+            </nav>
+            <div class="nav-icon-container">
+                <img src="./img/bolsa.png" class="shop" id="cart-btn">
+                <img src="./img/menu.png" class="menu-button">
+            </div>
+        </div>
+    </div>
+
+    <!-- Carrinho -->
+    <div class="cart-container">
+        <div class="cart-header">
+            <h3>Seu Carrinho</h3>
+            <span class="close-cart">&times;</span>
+        </div>
+        <div class="cart-items">
+            <!-- Os produtos serão adicionados aqui via JS -->
+        </div>
+        <div class="cart-footer">
+            <p>Total: R$ <span id="cart-total">0.00</span></p>
+            <button id="checkout-btn">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <main>
+    <div class="conteiner-principal">
+        <h2>Bem-vindo à Prática Indústria & Comércio</h2>
+        <div class="container-login">
+            <h3>Login</h3>
+            <div class="input">
+                <input type="text" placeholder="email" id="email">
+                <input type="password" placeholder="Senha" id="senha">
+            </div>
+            <span id="erro-login" class="mensagem-erro">
+                Não conseguimos acessar sua conta.<br>Confira seu usuário e senha e tente novamente.
+            </span>
+        </div>
+        <div class="conteiner-criar-enviar">
+            <button type="submit" onclick="logar(); return false">Enviar</button>
+
+            <div class="text-a">
+                <a href="cadastro.html">Crie sua conta sua conta já</a>
+                <a href="esqueci-senha.html">Esqueceu sua senha?</a>
+            </div>
+        </div>
+    </div>
+    </main>
+
+
+    <footer>
+        <div id='contato'>
+            <p>© 2025 Smart Engie Serviços LTDA | CNPJ: 08.787.487/0001-06</p>
+            <p>Telefone / WhatsApp: (24) 99811-2244 | <a href="mailto:ch.paiva@gmail.com">Email: ch.paiva@gmail.com</a></p>
+            <p>Horário de atendimento: Seg à Sex, das 8h às 18h</p>
+            <p>Siga-nos: <a href="https://www.instagram.com/pratica_ind_com/" target="_blank">[Instagram]</a></p>
+        </div>
+
+        <div>
+            <p></p>
+            <p>Desenvolvido por Pedro Paiva</p>
+            <p>Política de Privacidade | Termos de Uso</p>
+        </div>
+    </footer>
+
+    <script>
+        function logar() {
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('senha').value;
+            const erro = document.getElementById('erro-login');
+
+            // sempre esconde o erro antes de tentar logar
+            erro.style.display = 'none';
+
+            // envia para o backend
+            fetch('http://localhost:3000/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, senha })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.sucesso) {
+                        // login OK
+                        localStorage.setItem('isLoggedIn', 'true');
+
+                        // ✅ salvar dados do usuário
+                        localStorage.setItem('usuarioId', data.usuario.id);
+                        localStorage.setItem('usuarioLogin', data.usuario.login);
+                        localStorage.setItem('usuarioNome', data.usuario.nome);
+                        localStorage.setItem('usuarioEmail', data.usuario.email);
+                        localStorage.setItem('usuarioTelefone', data.usuario.telefone);
+                        localStorage.setItem('usuarioCPF', data.usuario.cpf);
+
+                        window.location.href = 'index.html';
+                    } else {
+                        erro.style.display = 'block';
+                    }
+                })
+                .catch(() => {
+                    erro.innerText = 'Erro ao conectar com o servidor.';
+                    erro.style.display = 'block';
+                });
+        }
+    </script>
+
+    <script>
+        window.addEventListener("load", () => {
+            document.body.classList.add("loaded");
+        });
+    </script>
+
+    <script>
+        const navbar = document.querySelector(".navbar");
+        const menuButton = document.querySelector(".menu-button")
+
+        menuButton.addEventListener('click', () => {
+            navbar.classList.toggle('show-menu');
+        });
+    </script>
+
+    <script src="js/cart.js"></script>
+
+</body>
+
+</html>

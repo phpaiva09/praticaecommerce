@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <title>Prática Indústria & Comércio | Soluções em Qualidade e Praticidade</title>
+    <link rel="stylesheet" href="./styles/esquecisenha.css" />
+
+    <!-- Fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="header-inner-content">
+            <h1 class="logo-header">PRÁTICA<span><br>Indústria & Comércio</span></h1>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <h3>Home</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href='index.html#produtos'>
+                            <h3>Produtos</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="sobrenos.html">
+                            <h3>Sobre</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#contato">
+                            <h3>Contato</h3>
+                        </a>
+                </ul>
+            </nav>
+            <div class="nav-icon-container">
+                <img src="./img/bolsa.png" class="shop" id="cart-btn">
+                <img src="./img/menu.png" class="menu-button">
+            </div>
+        </div>
+    </div>
+
+    <!-- Carrinho -->
+    <div class="cart-container">
+        <div class="cart-header">
+            <h3>Seu Carrinho</h3>
+            <span class="close-cart">&times;</span>
+        </div>
+        <div class="cart-items">
+            <!-- Os produtos serão adicionados aqui via JS -->
+        </div>
+        <div class="cart-footer">
+            <p>Total: R$ <span id="cart-total">0.00</span></p>
+            <button id="checkout-btn">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <main class="esqueci-container">
+        <div class="esqueci-box">
+            <h2>Recuperar Senha</h2>
+            <p>Informe o e-mail cadastrado e enviaremos um link para você criar uma nova senha.</p>
+
+            <form id="form-esqueci">
+                <div class="input-group">
+                    <input type="email" id="email" placeholder="Digite o email cadastrado">
+                </div>
+
+                <button type="submit" id="btn-enviar">Enviar Link de Recuperação</button>
+            </form>
+
+            <div class="voltar-login">
+                <a href="telalogin.html">Voltar para o Login</a>
+            </div>
+        </div>
+    </main>
+
+    <div id="modal-alteracao" class="modal-overlay" style="display:none;">
+        <div class="modal-box">
+            <h2>Atenção</h2> 
+            <p id="mensagem-retorno"></p>
+            <button id="modal-ok" class="btn-ok">OK</button>
+        </div>
+    </div>
+
+    <div id="modal-alteracao" class="modal-overlay" style="display:none;">
+        <div class="modal-box">
+            <h2>Atenção</h2>
+            <p id="modal-mensagem"></p>
+            <button id="modal-ok-erro" class="btn-ok">OK</button>
+        </div>
+    </div>
+
+    <footer>
+        <div id='contato'>
+            <p>© 2025 Smart Engie Serviços LTDA | CNPJ: 08.787.487/0001-06</p>
+            <p>Telefone / WhatsApp: (24) 99811-2244 | <a href="mailto:ch.paiva@gmail.com">Email: ch.paiva@gmail.com</a>
+            </p>
+            <p>Horário de atendimento: Seg à Sex, das 8h às 18h</p>
+            <p>Siga-nos: <a href="https://www.instagram.com/pratica_ind_com/" target="_blank">[Instagram]</a></p>
+        </div>
+
+        <div>
+            <p></p>
+            <p>Desenvolvido por Pedro Paiva</p>
+            <p>Política de Privacidade | Termos de Uso</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('form-esqueci').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const btn = document.getElementById('btn-enviar');
+
+            if (!email) {
+                mostrarModal("Preencha o campo de e-mail."); // Chama a função corretamente
+                return; // Para a execução aqui e não tenta o fetch
+            }
+
+            // Feedback visual de carregamento
+            btn.disabled = true;
+            btn.innerText = "Enviando...";
+
+            try {
+                const response = await fetch('http://localhost:3000/esqueci-senha', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+
+                const data = await response.json();
+
+                if (data.sucesso) {
+                    mostrarModal(data.msg);
+                    // Opcional: limpar o campo
+                    document.getElementById('email').value = "";
+                } else {
+                    mostrarModal("Erro ao solicitar recuperação.");
+                }
+            } catch (error) {
+                console.error(error);
+                mostrarModal("Erro ao conectar com o servidor.");
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "Enviar Link de Recuperação";
+            }
+        });
+
+        const modalAlteracao = document.getElementById('modal-alteracao');
+        const modalMensagem = document.getElementById('mensagem-retorno');
+        const btnModalOkAlteracao = document.getElementById('modal-ok');
+
+        function mostrarModal(msg) {
+            modalMensagem.textContent = msg;
+            modalAlteracao.style.display = 'flex';
+        }
+
+        btnModalOkAlteracao.addEventListener('click', () => {
+            modalAlteracao.style.display = 'none';
+        });
+    </script>
+
+    <script>
+        window.addEventListener("load", () => {
+            document.body.classList.add("loaded");
+        });
+    </script>
+
+    <script>
+        const navbar = document.querySelector(".navbar");
+        const menuButton = document.querySelector(".menu-button")
+
+        menuButton.addEventListener('click', () => {
+            navbar.classList.toggle('show-menu');
+        });
+    </script>
+
+    <script src="js/cart.js"></script>
+
+</body>
+
+</html>

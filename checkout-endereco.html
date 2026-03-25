@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <title>Prática Indústria & Comércio | Soluções em Qualidade e Praticidade</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap"
+    rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./styles/globalendereco.css" />
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <div class="navbar">
+    <div class="header-inner-content">
+      <h1 class="logo-header">PRÁTICA<span><br>Indústria & Comércio</span></h1>
+      <nav>
+        <ul>
+          <li>
+            <a href="index.html">
+              <h3>Home</h3>
+            </a>
+          </li>
+          <li>
+            <a href='index.html#produtos'><h3>Produtos</h3></a>
+            </a>
+          </li>
+          <li>
+            <a href="sobrenos.html">
+              <h3>Sobre</h3>
+            </a>
+          </li>
+          <li>
+            <a href="#contato">
+              <h3>Contato</h3>
+            </a>
+          </li>
+          <li id="user-nav">
+          </li>
+        </ul>
+      </nav>
+      <div class="nav-icon-container">
+        <img src="./img/bolsa.png" class="shop" id="cart-btn">
+        <img src="./img/menu.png" class="menu-button">
+      </div>
+    </div>
+  </div>
+  <div class="container-principal">
+    <h2>Endereço de Entrega</h2>
+    <form id="formEndereco">
+      <input id="rua" placeholder="Rua + Bairro">
+      <input id="numero" placeholder="Número">
+      <input id="cidade" placeholder="Cidade">
+      <input id="estado" placeholder="Estado">
+      <input id="cep" placeholder="CEP">
+
+      <div class="container-button">
+        <button id="btn-ir-pagamento" type="button">Ir para pagamento PIX</button>
+      </div>
+    </form>
+  </div>
+
+  <footer>
+    <div id='contato'>
+      <p>© 2025 Smart Engie Serviços LTDA | CNPJ: 08.787.487/0001-06</p>
+      <p>Telefone / WhatsApp: <a href="https://wa.me/5524998112244" target="_blank">(24) 99811-2244</a> | <a
+          href="mailto:ch.paiva@gmail.com">Email: ch.paiva@gmail.com</a></p>
+      <p>Horário de atendimento: Seg à Sex, das 8h às 18h</p>
+      <p>Siga-nos: <a href="https://www.instagram.com/pratica_ind_com/" target="_blank">[Instagram]</a></p>
+    </div>
+
+    <div>
+      <p></p>
+      <p>Desenvolvido por Pedro Paiva</p>
+      <p>Política de Privacidade | Termos de Uso</p>
+    </div>
+  </footer>
+
+  <!-- Modal de erro -->
+  <div id="modal-erro" class="modal-overlay">
+    <div class="modal-box">
+      <h2>Atenção</h2>
+      <p id="modal-mensagem"></p>
+      <button id="modal-ok-erro" class="btn-ok">OK</button>
+    </div>
+  </div>
+
+  <!-- Carrinho -->
+  <div class="cart-container">
+        <div class="cart-header">
+            <h3>Seu Carrinho</h3>
+            <span class="close-cart">&times;</span>
+        </div>
+        <div class="cart-items">
+            <!-- Os produtos serão adicionados aqui via JS -->
+        </div>
+        <div class="cart-footer">
+            <p>Total: R$ <span id="cart-total">0.00</span></p>
+            <button id="checkout-btn">Finalizar Compra</button>
+        </div>
+  </div>
+
+  
+
+
+  <script src="js/cart.js"></script>
+
+  <script>
+    const btnIrPagamento = document.getElementById("btn-ir-pagamento");
+
+    btnIrPagamento.addEventListener("click", async () => {
+
+      // 🔒 bloqueia clique duplo
+      btnIrPagamento.disabled = true;
+      btnIrPagamento.innerText = "Gerando pagamento...";
+
+      const usuarioId = localStorage.getItem("usuarioId");
+
+      if (!usuarioId) {
+        window.location.href = "telalogin.html";
+        return;
+      }
+
+      const rua = document.getElementById("rua").value.trim();
+      const numero = document.getElementById("numero").value.trim();
+      const cidade = document.getElementById("cidade").value.trim();
+      const estado = document.getElementById("estado").value.trim();
+      const cep = document.getElementById("cep").value.trim();
+
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const valor = cart.reduce(
+        (total, item) => total + item.price * item.quantity,
+        0
+      ).toFixed(2);
+
+      if (cart.length === 0) {
+        mostrarErro("Carrinho vazio!");
+        btnIrPagamento.disabled = false;
+        btnIrPagamento.innerText = "Ir para pagamento PIX";
+        return;
+      }
+
+      if (!rua || !numero || !cidade || !estado || !cep) {
+        mostrarErro("Preencha todos os campos do endereço.");
+        btnIrPagamento.disabled = false;
+        btnIrPagamento.innerText = "Ir para pagamento PIX";
+        return;
+      }
+
+      try {
+        const resp = await fetch("http://localhost:3000/pedido", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            usuario_id: usuarioId,
+            rua,
+            numero,
+            cidade,
+            estado,
+            cep,
+            valor,
+            itens: cart
+          })
+        });
+
+        const data = await resp.json();
+
+        if (data.sucesso) {
+          localStorage.setItem("pedidoId", data.pedidoId);
+
+          localStorage.removeItem("cart");
+          localStorage.setItem("cartOpen", "false");
+
+          window.location.href = "checkout-pagamento.html";
+        } else {
+          mostrarErro("Erro ao salvar pedido.");
+        }
+
+      } catch (err) {
+        mostrarErro("Erro no servidor.");
+      } finally {
+        // 🔓 libera botão se não redirecionar
+        btnIrPagamento.disabled = false;
+        btnIrPagamento.innerText = "Ir para pagamento PIX";
+      }
+    });
+  </script>
+
+  <script>
+    const modalErro = document.getElementById('modal-erro');
+    const modalMensagem = document.getElementById('modal-mensagem');
+    const btnModalOkErro = document.getElementById('modal-ok-erro');
+
+    function mostrarErro(msg) {
+      modalMensagem.textContent = msg;
+      modalErro.style.display = 'flex';
+    }
+
+    btnModalOkErro.addEventListener('click', () => {
+      modalErro.style.display = 'none';
+    });
+  </script>
+
+  <script>
+    window.addEventListener("load", () => {
+      document.body.classList.add("loaded");
+    });
+  </script>
+
+  <script>
+    const navbar = document.querySelector(".navbar");
+    const menuButton = document.querySelector(".menu-button")
+
+    menuButton.addEventListener('click', () => {
+      navbar.classList.toggle('show-menu');
+    });
+  </script>
+
+
+</body>
+
+</html>

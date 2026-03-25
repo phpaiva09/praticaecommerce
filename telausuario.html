@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <title>Prática Indústria & Comércio | Soluções em Qualidade e Praticidade</title>
+    <link rel="stylesheet" href="./styles/globalusuario.css" />
+
+    <!-- Fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="header-inner-content">
+            <h1 class="logo-header">PRÁTICA<span><br>Indústria & Comércio</span></h1>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <h3>Home</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href='index.html#produtos'>
+                            <h3>Produtos</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="sobrenos.html">
+                            <h3>Sobre</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#contato">
+                            <h3>Contato</h3>
+                        </a>
+                    </li>
+                    <li id="user-nav">
+                    </li>
+                </ul>
+            </nav>
+            <div class="nav-icon-container">
+                <img src="./img/bolsa.png" class="shop" id="cart-btn">
+                <img src="./img/menu.png" class="menu-button">
+            </div>
+        </div>
+    </div>
+
+    <!-- Carrinho -->
+    <div class="cart-container">
+        <div class="cart-header">
+            <h3>Seu Carrinho</h3>
+            <span class="close-cart">&times;</span>
+        </div>
+        <div class="cart-items">
+            <!-- Os produtos serão adicionados aqui via JS -->
+        </div>
+        <div class="cart-footer">
+            <p>Total: R$ <span id="cart-total">0.00</span></p>
+            <button id="checkout-btn">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <main>
+        <div class="container-principal">
+            <h2>Minha conta</h2>
+            <div class="container-subtitle">
+                <p>Acesse ou altere dados cadastrais de sua conta.</p>
+                <a href="telapedidos.html" class="meus-pedidos-link">Meus pedidos</a>
+            </div>
+            <div class="card-acesso">
+                <h3>Dados de acesso</h3>
+                <div class="card-dados">
+                    <div class="cardtelefoneeemail">
+                        <div class="card-email">
+                            <div class="info">
+                                <p>Email</p>
+                                <span class="acao" id="btnAlterarEmail">Alterar e-mail 🖋️</span>
+                            </div>
+                            <span id="emailUsuario"></span>
+                        </div>
+
+                        <div class="card-telefone">
+                            <div class="info">
+                                <p>Telefone</p>
+                                <span class="acao" id="btnAlterarTelefone">Alterar telefone 🖋️</span>
+                            </div>
+                            <span id="telefoneUsuario"></span>
+                        </div>
+                    </div>
+                    <div class="card-senha">
+                        <div class="info">
+                            <p>Senha</p>
+                            <span class="acao" id="btnAlterarSenha">Alterar senha 🖋️</span>
+                        </div>
+                        <span>********</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-dados-pessoais">
+                <h3>Dados pessoais</h3>
+                <div class="card-dados">
+                    <div class="card-cpf">
+                        <p>CPF</p>
+                        <span id="cpfFormatado"></span>
+                    </div>
+                    <div class="cardNome">
+                        <div class="info">
+                            <p>Nome</p>
+                            <span class="acao" id="btnAlterarNome">Alterar nome 🖋️</span>
+                        </div>
+                        <span id="nomeUsuario"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-perigo">
+                <button id="btnExcluirConta">
+                    Excluir conta
+                </button>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <div id='contato'>
+            <p>© 2025 Smart Engie Serviços LTDA | CNPJ: 08.787.487/0001-06</p>
+            <p>Telefone / WhatsApp: <a href="https://wa.me/5524998112244" target="_blank">(24) 99811-2244</a> | <a
+                    href="mailto:ch.paiva@gmail.com">Email: ch.paiva@gmail.com</a></p>
+            <p>Horário de atendimento: Seg à Sex, das 8h às 18h</p>
+            <p>Siga-nos: <a href="https://www.instagram.com/pratica_ind_com/" target="_blank">[Instagram]</a></p>
+        </div>
+
+        <div>
+            <p></p>
+            <p>Desenvolvido por Pedro Paiva</p>
+            <p>Política de Privacidade | Termos de Uso</p>
+        </div>
+    </footer>
+
+    <div id="modalExcluir" class="modal">
+        <div class="modal-conteudo">
+            <h3>Confirmar Exclusão</h3>
+            <p>Digite sua senha para confirmar:</p>
+            <input type="password" id="senhaConfirmacao" placeholder="Sua senha">
+
+            <div class="modal-buttons">
+                <button id="confirmarDelete">Excluir</button>
+                <button id="cancelarExcluir">Cancelar</button>
+            </div>
+            <p id="erroExcluir" class="erro"></p>
+        </div>
+    </div>
+
+    <div id="modalSenha" class="modal">
+        <div class="modal-conteudo">
+            <h3>Alterar senha</h3>
+
+            <input type="password" id="senhaAtual" placeholder="Senha atual">
+            <input type="password" id="novaSenha" placeholder="Nova senha">
+            <input type="password" id="confirmarSenha" placeholder="Confirmar nova senha">
+
+            <div class="modal-buttons">
+                <button id="salvarSenha">Salvar</button>
+                <button id="cancelarSenha">Cancelar</button>
+            </div>
+            <p id="erroSenha" class="erro"></p>
+        </div>
+    </div>
+
+    <div id="modalEmail" class="modal">
+        <div class="modal-conteudo">
+            <h3>Alterar Email</h3>
+
+            <input type="email" id="emailAtual" placeholder="Email atual">
+            <input type="email" id="novoEmail" placeholder="Novo email">
+            <input type="email" id="confirmarEmail" placeholder="Confirmar novo email">
+
+            <div class="modal-buttons">
+                <button id="salvarEmail">Salvar</button>
+                <button id="cancelarEmail">Cancelar</button>
+            </div>
+            <p id="erroEmail" class="erro"></p>
+        </div>
+    </div>
+
+    <div id="modalTelefone" class="modal">
+        <div class="modal-conteudo">
+            <h3>Alterar Telefone</h3>
+
+            <input type="telefone" id="telefoneAtual" placeholder="Telefone atual">
+            <input type="telefone" id="novoTelefone" placeholder="Novo telefone">
+            <input type="telefone" id="confirmarTelefone" placeholder="Confirmar novo telefone">
+
+            <div class="modal-buttons">
+                <button id="salvarTelefone">Salvar</button>
+                <button id="cancelarTelefone">Cancelar</button>
+            </div>
+            <p id="erroTelefone" class="erro"></p>
+        </div>
+    </div>
+
+    <div id="modalNome" class="modal">
+        <div class="modal-conteudo">
+            <h3>Alterar Nome</h3>
+
+            <input type="nome" id="nomeAtual" placeholder="Nome atual">
+            <input type="nome" id="novoNome" placeholder="Novo nome completo">
+            <input type="nome" id="confirmarNome" placeholder="Confirmar novo nome">
+
+            <div class="modal-buttons">
+                <button id="salvarNome">Salvar</button>
+                <button id="cancelarNome">Cancelar</button>
+            </div>
+            <p id="erroNome" class="erro"></p>
+        </div>
+    </div>
+
+    <div id="modal-alteracao" class="modal-overlay" style="display:none;">
+        <div class="modal-box">
+            <h2>Atenção</h2>
+            <p id="modal-mensagem"></p>
+            <button id="modal-ok" class="btn-ok">OK</button>
+        </div>
+    </div>
+
+    <script>
+        const usuarioId = localStorage.getItem('usuarioId');
+
+        if (!usuarioId) {
+            window.location.href = 'telalogin.html';
+        }
+
+        const email = localStorage.getItem('usuarioEmail');
+        document.getElementById('emailUsuario').innerText = email;
+
+        const telefone = localStorage.getItem('usuarioTelefone');
+
+        if (telefone) {
+            const ddd = telefone.slice(0, 2);
+            const parte1 = telefone.slice(2, 7);
+            const parte2 = telefone.slice(7);
+
+            const telefoneFormatado = `(${ddd}) ${parte1}-${parte2}`;
+
+            document.getElementById('telefoneUsuario').innerText = telefoneFormatado;
+        }
+
+        const cpf = localStorage.getItem('usuarioCPF');
+
+        if (cpf) {
+            const parte1 = cpf.slice(0, 3);
+            const parte2 = cpf.slice(3, 6);
+            const parte3 = cpf.slice(6, 9);
+            const parte4 = cpf.slice(9);
+
+            const cpfFormatado = `${parte1}.${parte2}.${parte3}-${parte4}`;
+
+            document.getElementById('cpfFormatado').innerText = cpfFormatado;
+        }
+
+        const nome = localStorage.getItem('usuarioNome');
+        document.getElementById('nomeUsuario').innerText = nome;
+
+    </script>
+
+    <script>
+        const btnAlterarNome = document.getElementById('btnAlterarNome');
+        const modalNome = document.getElementById('modalNome');
+        const cancelarNome = document.getElementById('cancelarNome');
+        const salvarNome = document.getElementById('salvarNome');
+        const erroNome = document.getElementById('erroNome');
+
+
+        btnAlterarNome.addEventListener('click', () => {
+            modalNome.style.display = 'flex';
+        });
+
+        cancelarNome.addEventListener('click', () => {
+            modalNome.style.display = 'none';
+            erroNome.innerText = '';
+
+            // Limpa os campos
+            document.getElementById('nomeAtual').value = '';
+            document.getElementById('novoNome').value = '';
+            document.getElementById('confirmarNome').value = '';
+        });
+
+        salvarNome.addEventListener('click', () => {
+            const nomeAtual = document.getElementById('nomeAtual').value
+            const novoNome = document.getElementById('novoNome').value
+            const confirmarNome = document.getElementById('confirmarNome').value;
+
+            if (!nomeAtual || !novoNome || !confirmarNome) {
+                erroNome.innerText = 'Preencha todos os campos';
+                return;
+            }
+
+            if (novoNome !== confirmarNome) {
+                erroNome.innerText = 'Os nomes não conferem';
+                return;
+            }
+
+            fetch('http://localhost:3000/alterar-nome', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    usuarioId: localStorage.getItem('usuarioId'),
+                    nomeAtual,
+                    novoNome
+                })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.sucesso) {
+                        mostrarModal('Nome alterado com sucesso!');
+                        localStorage.setItem('usuarioNome', novoNome);
+                        document.getElementById('nomeUsuario').innerText = novoNome;
+                        modalNome.style.display = 'none';
+
+
+                    } else {
+                        erroNome.innerText = data.mensagem;
+                    }
+                })
+                .catch(() => {
+                    erroNome.innerText = 'Erro ao conectar com o servidor';
+                });
+        });
+
+        const btnAlterarTelefone = document.getElementById('btnAlterarTelefone');
+        const modalTelefone = document.getElementById('modalTelefone');
+        const cancelarTelefone = document.getElementById('cancelarTelefone');
+        const salvarTelefone = document.getElementById('salvarTelefone');
+        const erroTelefone = document.getElementById('erroTelefone');
+
+
+        btnAlterarTelefone.addEventListener('click', () => {
+            modalTelefone.style.display = 'flex';
+        });
+
+        cancelarTelefone.addEventListener('click', () => {
+            modalTelefone.style.display = 'none';
+            erroTelefone.innerText = '';
+
+            // Limpa os campos
+            document.getElementById('telefoneAtual').value = '';
+            document.getElementById('novoTelefone').value = '';
+            document.getElementById('confirmarTelefone').value = '';
+        });
+
+        salvarTelefone.addEventListener('click', () => {
+            const telefoneAtual = document.getElementById('telefoneAtual').value.replace(/\D/g, '')
+            const novoTelefone = document.getElementById('novoTelefone').value.replace(/\D/g, '')
+            const confirmarTelefone = document.getElementById('confirmarTelefone').value;
+
+            if (!telefoneAtual || !novoTelefone || !confirmarTelefone) {
+                erroTelefone.innerText = 'Preencha todos os campos';
+                return;
+            }
+
+            if (novoTelefone !== confirmarTelefone) {
+                erroTelefone.innerText = 'Os telefones não conferem';
+                return;
+            }
+
+            fetch('http://localhost:3000/alterar-telefone', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    usuarioId: localStorage.getItem('usuarioId'),
+                    telefoneAtual,
+                    novoTelefone
+                })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.sucesso) {
+                        mostrarModal('Telefone alterado com sucesso!');
+                        localStorage.setItem('usuarioTelefone', novoTelefone);
+
+                        // Formata o número antes de jogar na tela
+                        const ddd = novoTelefone.slice(0, 2);
+                        const parte1 = novoTelefone.slice(2, 7);
+                        const parte2 = novoTelefone.slice(7);
+                        const telefoneFormatado = `(${ddd}) ${parte1}-${parte2}`;
+
+                        // Atualiza o HTML com o número bonito
+                        document.getElementById('telefoneUsuario').innerText = telefoneFormatado;
+
+                        modalTelefone.style.display = 'none';
+                    } else {
+                        erroTelefone.innerText = data.mensagem;
+                    }
+                })
+                .catch(() => {
+                    erroTelefone.innerText = 'Erro ao conectar com o servidor';
+                });
+        });
+
+        const btnAlterarEmail = document.getElementById('btnAlterarEmail');
+        const modalEmail = document.getElementById('modalEmail'); // crie esse modal no HTML
+        const cancelarEmail = document.getElementById('cancelarEmail');
+        const salvarEmail = document.getElementById('salvarEmail');
+        const erroEmail = document.getElementById('erroEmail');
+
+
+        btnAlterarEmail.addEventListener('click', () => {
+            modalEmail.style.display = 'flex';
+        });
+
+        cancelarEmail.addEventListener('click', () => {
+            modalEmail.style.display = 'none';
+            erroEmail.innerText = '';
+
+            // Limpa os campos
+            document.getElementById('emailAtual').value = '';
+            document.getElementById('novoEmail').value = '';
+            document.getElementById('confirmarEmail').value = '';
+        });
+
+        salvarEmail.addEventListener('click', () => {
+            const emailAtual = document.getElementById('emailAtual').value;
+            const novoEmail = document.getElementById('novoEmail').value;
+            const confirmarEmail = document.getElementById('confirmarEmail').value;
+
+            if (!emailAtual || !novoEmail || !confirmarEmail) {
+                erroEmail.innerText = 'Preencha todos os campos';
+                return;
+            }
+
+            if (novoEmail !== confirmarEmail) {
+                erroEmail.innerText = 'Os emails não conferem';
+                return;
+            }
+
+            fetch('http://localhost:3000/alterar-email', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    usuarioId: localStorage.getItem('usuarioId'),
+                    emailAtual,
+                    novoEmail
+                })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.sucesso) {
+                        mostrarModal('Email alterado com sucesso!');
+                        localStorage.setItem('usuarioEmail', novoEmail);
+                        document.getElementById('emailUsuario').innerText = novoEmail;
+                        modalEmail.style.display = 'none';
+
+
+                    } else {
+                        erroEmail.innerText = data.mensagem;
+                    }
+                })
+                .catch(() => {
+                    erroEmail.innerText = 'Erro ao conectar com o servidor';
+                });
+        });
+
+        const btnAlterar = document.getElementById('btnAlterarSenha');
+        const modal = document.getElementById('modalSenha');
+        const cancelar = document.getElementById('cancelarSenha');
+        const salvar = document.getElementById('salvarSenha');
+        const erro = document.getElementById('erroSenha');
+
+        btnAlterar.addEventListener('click', () => {
+            modal.style.display = 'flex';
+        });
+
+        cancelar.addEventListener('click', () => {
+            modal.style.display = 'none';
+            erro.innerText = '';
+
+            // Limpa os campos
+            document.getElementById('senhaAtual').value = '';
+            document.getElementById('novaSenha').value = '';
+            document.getElementById('confirmarSenha').value = '';
+        });
+
+        salvar.addEventListener('click', () => {
+
+            // 👇 1. PEGAR OS VALORES (AQUI É O LUGAR CERTO)
+            const senhaAtual = document.getElementById('senhaAtual').value;
+            const novaSenha = document.getElementById('novaSenha').value;
+            const confirmarSenha = document.getElementById('confirmarSenha').value;
+
+            // 👇 2. VALIDAR CAMPOS
+            if (!senhaAtual || !novaSenha || !confirmarSenha) {
+                erro.innerText = 'Preencha todos os campos';
+                return;
+            }
+
+            if (novaSenha !== confirmarSenha) {
+                erro.innerText = 'As senhas não conferem';
+                return;
+            }
+
+            // 👇 3. ENVIAR PARA O BACKEND
+            fetch('http://localhost:3000/alterar-senha', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    usuarioId: localStorage.getItem('usuarioId'),
+                    senhaAtual: senhaAtual,
+                    novaSenha: novaSenha
+                })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.sucesso) {
+                        mostrarModal('Senha alterada com sucesso!');
+                        modal.style.display = 'none';
+                    } else {
+                        erro.innerText = data.mensagem;
+                    }
+                })
+                .catch(() => {
+                    erro.innerText = 'Erro ao conectar com o servidor';
+                });
+        });
+
+        const modalAlteracao = document.getElementById('modal-alteracao');
+        const modalMensagem = document.getElementById('modal-mensagem');
+        const btnModalOkAlteracao = document.getElementById('modal-ok');
+
+        function mostrarModal(msg) {
+            modalMensagem.textContent = msg;
+            modalAlteracao.style.display = 'flex';
+        }
+
+        btnModalOkAlteracao.addEventListener('click', () => {
+            modalAlteracao.style.display = 'none';
+        });
+
+        document.getElementById('btnExcluirConta').addEventListener('click', () => {
+            document.getElementById('modalExcluir').style.display = 'flex';
+        });
+
+        const modalExcluir = document.getElementById('modalExcluir');
+        const cancelarExclusao = document.getElementById('cancelarExcluir');
+        const erroExcluir = document.getElementById('erroExcluir');
+
+        cancelarExclusao.addEventListener('click', () => {
+            modalExcluir.style.display = 'none';
+            erroExcluir.innerText = '';
+
+            // Limpa os campos
+            document.getElementById('senhaConfirmacao').value = '';
+        });
+
+        document.getElementById('confirmarDelete').addEventListener('click', async () => {
+            const senha = document.getElementById('senhaConfirmacao').value;
+            const idSessao = localStorage.getItem('usuarioId'); // Puxando o ID direto
+
+            if (!senha) {
+                erroExcluir.innerText = "Por favor, digite sua senha para confirmar.";
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:3000/excluir-conta', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        usuarioId: idSessao,
+                        senha: senha
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.sucesso) {
+                    mostrarModal("Sua conta foi excluída. Sentiremos sua falta!");
+                    localStorage.clear();
+                    window.location.href = 'index.html';
+                } else {
+                    alert("Erro: " + data.mensagem); // Ajustado para 'mensagem' para seguir seu padrão
+                }
+            } catch (error) {
+                mostrarModal("Erro ao conectar com o servidor.");
+            }
+        });
+    </script>
+
+    <script>
+        const navbar = document.querySelector(".navbar");
+        const menuButton = document.querySelector(".menu-button")
+
+        menuButton.addEventListener('click', () => {
+            navbar.classList.toggle('show-menu');
+        });
+    </script>
+
+    <script src="js/cart.js"></script>
+
+    <script>
+        window.addEventListener("load", () => {
+            document.body.classList.add("loaded");
+        });
+    </script>
+</body>
+
+</html>

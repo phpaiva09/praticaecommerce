@@ -1,0 +1,916 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'arial';
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+body.loaded {
+    opacity: 1;
+}
+
+
+
+/* Header */
+.container-inner {
+    max-width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.navbar {
+    background-color: #2c2c2c;
+    padding: 0.5rem;
+    position: static;
+    top: 0;
+    box-shadow: 10px 0 10px;
+    z-index: 99;
+}
+
+ul {
+    display: flex;
+    list-style-type: none;
+
+}
+
+ul h3 {
+    font-weight: 100;
+    color: #fff;
+    cursor: pointer;
+    margin-right: 1.5rem;
+    font-size: 1.1rem;
+    font-family: "Merriweather", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+    font-weight: 300;
+}
+
+ul a {
+    text-decoration: none;
+
+}
+
+.hover-sair:hover {
+    transform: translateY(-3px);
+    transition: all 0.2s;
+    display: inline-block;
+}
+
+nav ul li:hover:not(#user-nav) {
+    transform: translateY(-3px);
+    transition: all 0.2s;
+    font-weight: bold;
+}
+
+#user-nav {
+    cursor: pointer;
+    margin-right: 1.5rem;
+    font-size: 1.1rem;
+    font-family: "Merriweather", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+    font-weight: 300;
+}
+
+#user-nav a {
+    color: #fff;
+}
+
+#user-nav span {
+    color: #fff;
+}
+
+.nav-icon-container {
+    display: flex;
+    align-items: center;
+}
+
+.nav-icon-container img {
+    width: 75px;
+    margin: 0;
+    cursor: pointer;
+    /* Quando o usuário passar o cursor sobre a imagem ele vira uma mãozinha */
+}
+
+.nav-icon-container img:first-child {
+    margin-right: 1rem;
+}
+
+.navbar>div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.logo-header {
+    line-height: 1.5rem;
+    color: #926c15;
+    font-weight: 450;
+    text-align: center;
+    padding-left: 1.5rem;
+    font-family: "Merriweather", serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+    font-size: 1.6rem;
+}
+
+.logo-header span {
+    color: #fff;
+    font-weight: 200;
+    font-size: 1.1rem;
+}
+
+.menu-button {
+    display: none;
+
+}
+
+header {
+    background-image: radial-gradient(#fff, #c7c7c7);
+}
+
+.header-bottom-side {
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    padding: 1rem;
+    padding-left: 9rem;
+    height: 500px;
+}
+
+.header-bottom-side-left {
+    height: 100%;
+    flex-basis: 50%;
+    padding-top: 6rem;
+}
+
+.header-bottom-side-left h2 {
+    font-size: 3.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.header-bottom-side-left p {
+    line-height: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.header-bottom-side-left button {
+    background-color: #926c15;
+    border: none;
+    cursor: pointer;
+    padding: 0.8rem 3.8rem;
+    border-radius: 9999px;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.header-bottom-side-left button:hover {
+    background-color: #76520e;
+}
+
+.header-bottom-side-right {
+    flex-basis: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-bottom-side-right img {
+    width: 60%;
+}
+
+html {
+    scroll-behavior: smooth;
+    /* Ao clicar no compre já a rolagem é lenta */
+}
+
+
+
+/* --- Imagem Principal (a área da direita) --- */
+
+.imagem-principal-container img {
+    width: 100%;
+    height: auto;
+    /* 1. ESTA É A LINHA CHAVE QUE VOCÊ DEVE AJUSTAR */
+    max-height: 600px;
+    /* VALOR ANTERIOR (Aumente ou diminua este valor) */
+
+    /* 2. Para a sua imagem, vamos tentar um valor menor para diminuir a altura visível: */
+    max-height: 400px;
+    /* Tente 400px ou até 350px, dependendo da tela */
+
+    object-fit: contain;
+    /* Garante que a imagem caiba sem recortes e mantendo a proporção */
+}
+
+.descricao {
+    color:#555;
+    padding: 5rem 10rem 0rem 10rem;
+    font-size: 20px;
+}
+
+.descricao h3 {
+    margin-bottom: 1rem;
+}
+
+.descricao p {
+    line-height: 2rem;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 5.5rem;
+    flex-direction: column;
+}
+
+.container-principal {
+    width: 90%;
+    margin-top: 3.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.product img {
+    width: 100%;
+    /* ocupa toda a largura do container */
+    height: 200px;
+    /* altura fixa para todas as imagens */
+    object-fit: cover;
+    /* corta e ajusta a imagem sem distorcer */
+    border-radius: 10px;
+    /* opcional, deixa cantos arredondados */
+    display: block;
+    /* remove espaço extra embaixo da imagem */
+}
+
+.container-right {
+    width: 100%;
+    /* ocupa 100% do espaço disponível no container pai */
+    max-width: 400px;
+    /* largura máxima do bloco */
+    min-height: 400px;
+    /* altura mínima para padronizar */
+    display: flex;
+    flex-direction: column;
+    /* organiza o conteúdo verticalmente */
+    justify-content: space-between;
+    /* espaça os elementos igualmente */
+    padding: 20px;
+}
+
+.galeria-container {
+    display: flex;
+    /* Ou use 'block' e ajuste margens */
+}
+
+.imagem-principal-container {
+    width: 450px;
+    /* mantém a largura que você já usa */
+    height: 400px;
+    /* altura fixa para impedir variação */
+    display: flex;
+    align-items: center;
+    /* centraliza verticalmente */
+    justify-content: center;
+    /* centraliza horizontalmente */
+    overflow: hidden;
+    /* impede que imagens maiores "vazem" */
+}
+
+.imagem-principal-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    /* mantém proporção da imagem */
+    transition: opacity 0.3s ease;
+}
+
+.imagem-principal-container .imagemPrincipal:first-child(1) {
+    margin-top: 15px;
+    /* Por exemplo, adiciona 15px de espaço */
+}
+
+.miniaturas-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 2rem;
+}
+
+.miniatura {
+    width: 60px;
+    /* Tamanho da sua miniatura */
+    height: 60px;
+    object-fit: contain;
+    /* Para garantir que a imagem preencha o espaço sem distorcer */
+    cursor: pointer;
+    border: 1px solid #ccc;
+    transition: border-color 0.2s;
+}
+
+/* Efeito de miniatura selecionada */
+.miniatura.selecionada {
+    border: 3px solid #926c15;
+    /* Borda azul mais grossa para indicar seleção */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    /* Sombra opcional */
+}
+
+.miniatura:hover:not(.selecionada) {
+    border-color: #aaa;
+    /* Pequeno feedback ao passar o mouse */
+}
+
+
+
+footer {
+    margin-top: auto;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #2c2c2c;
+    height: 220px;
+    text-align: center;
+    z-index: 1000;
+}
+
+footer p {
+    font-size: 0.9rem;
+    padding-top: 1rem;
+    color: #fff;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.redes-sociais {
+    text-align: center;
+}
+
+
+
+.container-right {
+    line-height: 2.5rem;
+}
+
+.rate {
+    color: #926c15;
+    font-size: 1.2rem;
+}
+
+span {
+    color: black;
+}
+
+.preco {
+    font-size: 2.5rem;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 350;
+    font-style: normal;
+}
+
+.container-principal a {
+    text-decoration: none;
+    color: #926c15;
+}
+
+.container-right h2 {
+    line-height: 1.9rem;
+}
+
+/* Botão para selecionar cor */
+.opcoes-cor {
+    margin-top: 1.5rem;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 300;
+}
+
+.botao-cor {
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    padding: 0.4rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fff;
+    color: #000;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+}
+
+.botao-cor:hover {
+    border-color: #926c15;
+}
+
+.botao-cor.selecionado {
+    border: 2px solid #926c15;
+    color: #926c15;
+    font-weight: 500;
+}
+
+
+/* === Estilo do Carrinho === */
+.cart-container {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    /* Começa fora da tela */
+    width: 400px;
+    height: 100vh;
+    background: #fff;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+    transition: right 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    z-index: 2000;
+    padding: 15px;
+    overflow-y: auto;
+}
+
+.cart-container.active {
+    right: 0;
+    /* Quando ativado, aparece */
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.close-cart {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.cart-items {
+    flex: 1;
+    margin-top: 15px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    /* 🔥 ALINHA TUDO NO CENTRO */
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.cart-item img {
+    border-radius: 5px;
+    width: 70px;
+    /* largura fixa */
+    height: 70px;
+    /* altura fixa */
+    object-fit: contain;
+    /* mantém proporção SEM distorcer */
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+}
+
+.item-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* 🔥 centraliza verticalmente */
+    flex: 1;
+    /* ocupa o espaço do meio */
+}
+
+.item-info p {
+    font-size: 14px;
+}
+
+.item-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.item-actions .remove img {
+    height: 35px;
+}
+
+.item-actions span {
+    font-size: 18px;
+}
+
+.item-actions button {
+    background-color: #fff;
+    color: black;
+    border: none;
+    border-radius: 50%;
+    /* deixa 100% arredondado (círculo) */
+    width: 20px;
+    /* largura fixa */
+    height: 20px;
+    /* altura fixa para ser círculo */
+    font-size: 20px;
+    cursor: pointer;
+    display: inline-flex;
+    /* para alinhar texto no centro */
+    align-items: center;
+    /* centralizar verticalmente */
+    justify-content: center;
+    /* centralizar horizontalmente */
+    padding: 0;
+    /* sem padding extra */
+    user-select: none;
+    /* evita seleção acidental */
+    margin: 0 5px;
+    /* espaçamento horizontal entre botões */
+    box-sizing: border-box;
+    /* garantir que width/height funcionem bem */
+}
+
+.cart-footer {
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+    text-align: center;
+}
+
+#checkout-btn {
+    margin-top: 1rem;
+    background-color: #926c15;
+    border: none;
+    cursor: pointer;
+    padding: 0.8rem 3.8rem;
+    border-radius: 9999px;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+#checkout-btn:hover {
+    background-color: #76520e;
+}
+
+
+.item-actions .decrease {
+    font-size: 22px;
+    border: 1px solid black;
+    padding-bottom: 0.1rem;
+}
+
+.item-actions .increase {
+    font-size: 20px;
+    border: 1px solid black;
+    padding-top: 0.1rem;
+}
+
+h3 {
+    font-weight: 450;
+}
+
+
+
+/* Modal da mensagem */
+.add-to-cart {
+    margin-top: 1rem;
+    background-color: #926c15;
+    border: none;
+    cursor: pointer;
+    padding: 0.8rem 3.8rem;
+    border-radius: 9999px;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.add-to-cart:disabled {
+    background-color: #926c15;
+    /* dourado mais escuro */
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.add-to-cart:hover {
+    background-color: #76520e;
+}
+
+/* Overlay escuro */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+/* Caixa do modal */
+.modal-box {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-box h2 {
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: #926c15;
+    /* dourado elegante */
+}
+
+.modal-box p {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+/* Botões */
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn-ok {
+    background: #926c15;
+    color: #fff;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 200;
+    transition: all 0.2s;
+}
+
+.btn-ok:hover {
+    background-color: #76520e;
+}
+
+.btn-cancelar {
+    background: transparent;
+    border: 1px solid #ccc;
+    padding: 10px 22px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 200;
+    transition: all 0.2s;
+}
+
+.btn-cancelar:hover {
+    background-color: #cfcfcf;
+}
+
+/* Animação */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+
+/* Header Queries*/
+@media (max-width:900px) {
+    * {
+        box-sizing: border-box;
+    }
+
+    .header-inner-content {
+        max-width: 100%;
+        padding: 0 1rem;
+    }
+
+    .menu-button {
+        display: block;
+    }
+
+    .show-menu nav {
+        display: block;
+    }
+
+    header {
+        height: auto;
+    }
+
+    .logo-header {
+        padding-left: 0.5rem;
+    }
+
+    .navbar {
+        position: fixed;
+        width: 100%;
+        box-shadow: 10px 0 10px;
+    }
+
+    nav {
+        display: none;
+        position: fixed;
+        text-align: center;
+        top: 84px;
+        left: 0;
+        right: 0;
+        width: 100%;
+        /* ✅ nunca use 100vw */
+        background: #2c2c2c;
+        z-index: 9999;
+        animation: slideDown .3s ease;
+        overflow-x: hidden;
+        border-radius: 9px;
+    }
+
+    nav ul {
+        width: 100%;
+        /* ✅ largura correta */
+        margin: 0;
+        /* ✅ remove default */
+        padding: 0;
+        list-style: none;
+    }
+
+    nav ul li {
+        width: 100%;
+        text-align: center;
+    }
+
+    nav ul li a {
+        display: block;
+        width: 100%;
+    }
+
+    nav ul li a h3 {
+        margin: 0;
+        padding: 1.2rem 2rem;
+    }
+
+    #user-nav {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        white-space: nowrap;
+    }
+
+    #user-nav p,
+    #user-nav span,
+    #user-nav a {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .container-principal {
+        width: 90%;
+        margin-top: 10.5rem;
+        align-items: flex-start;
+        display: flex;
+        justify-content: center;
+        gap: 60px;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    .cols-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    html, body {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden;
+    }
+
+    main, 
+    .container-principal {
+        flex: 1;
+    }
+
+    .modal-box {
+        margin-top: -15rem;
+    }
+
+    footer {
+        background-color: #2c2c2c;
+        min-height: 220px;
+        text-align: center;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+@media (max-width:600px) {
+    .navbar {
+        position: fixed;
+    }
+
+    nav {
+        display: none;
+        position: fixed;
+        top: 84px;
+        left: 0;
+        width: 100%; /* ✅ em vez de right: 0 */
+        max-width: 100%; /* 🔥 segurança extra */
+        background: #2c2c2c;
+        z-index: 9999;
+        overflow-x: hidden;
+    }
+
+    nav ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* 🔥 centraliza todos os itens */
+        width: 100%;
+    }
+
+    #user-nav a, 
+    #user-nav span {
+        width: auto !important;   /* Impede que ele tente ocupar a tela toda */
+        display: inline-block !important; 
+        padding: 0 5px !important; /* Remove aquele padding gigante de 2rem */
+        margin: 0;
+    }
+
+    #user-nav {
+        gap: 0; /* Ajuste o espaço entre o Olá e o Sair aqui se precisar */
+        display: flex;
+        justify-content: center;
+        margin: 1rem;
+    }
+
+    nav ul li {
+        width: 100%;
+    }
+
+    nav ul li a {
+        display: block;
+        width: 100%;
+    }
+
+    nav ul li a h3 {
+        margin: 0;
+        padding: 1.2rem 2rem;
+    }
+    
+    .imagem-principal-container {
+        width: 300px;
+    }
+
+    .descricao {
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .container-principal {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    footer p {
+        font-size: 0.9rem;
+        padding-top: 0.9rem;
+        color: #fff;
+    }
+}

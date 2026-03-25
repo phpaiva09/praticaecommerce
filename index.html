@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <title>Prática Indústria & Comércio | Soluções em Qualidade e Praticidade</title>
+    <link rel="stylesheet" href="./styles/global.css" />
+
+    <!-- Fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="header-inner-content">
+            <h1 class="logo-header">PRÁTICA<span><br>Indústria & Comércio</span></h1>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <h3>Home</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href='#produtos'>
+                            <h3>Produtos</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="sobrenos.html">
+                            <h3>Sobre</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#contato">
+                            <h3>Contato</h3>
+                        </a>
+                    </li>
+                    <li id="user-nav">
+                    </li>
+                </ul>
+            </nav>
+            <div class="nav-icon-container">
+                <img src="./img/bolsa.png" class="shop" id="cart-btn">
+                <img src="./img/menu.png" class="menu-button">
+            </div>
+        </div>
+    </div>
+
+
+    <header>
+        <div class="container-principal">
+            <div class="container-left">
+                <h2>Dê Um Novo Estilo ao Seu Trabalho!</h2>
+                <p>Soluções que unem praticidade e qualidade para transformar desafios em resultados.</p>
+                <a href='#produtos'><button>Ver Agora &#8594;</button></a>
+            </div>
+            <div class="container-right">
+                <img src="./img/carrinho.png" width="350px">
+            </div>
+        </div>
+    </header>
+
+    <!-- Carrinho -->
+    <div class="cart-container">
+        <div class="cart-header">
+            <h3>Seu Carrinho</h3>
+            <span class="close-cart">&times;</span>
+        </div>
+        <div class="cart-items">
+            <!-- Os produtos serão adicionados aqui via JS -->
+        </div>
+        <div class="cart-footer">
+            <p>Total: R$ <span id="cart-total">0.00</span></p>
+            <button id="checkout-btn">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <div id='produtos'>
+            <div class="page-inner-content">
+                <h3 class="selection-title">Nossos Produtos</h3>
+                <div class="subtitle-underline"></div>
+                <div class="cols cols-4">
+                    <div class="product">
+                        <a href="page-produto1.html"><img src="./img/produto1.png" width="220px" height="250px"
+                                class="prod1"></a>
+                        <p class="product-name">Mesa Carrinho Para Vapor De Ozônio Branco</p>
+                        <p class="rate">&#9733; <span>4.9</span></p>
+                        <p class="product-price">R$ 255,17</p>
+                    </div>
+                    <div class="product">
+                        <a href="page-produto2.html"><img src="./img/produto2.png" width="200px" height="250px"></a>
+                        <p class="product-name">Carrinho Móvel Para Gerador De Ozônio Preto</p>
+                        <p class="rate">&#9733; <span>4.4</span></p>
+                        <p class="product-price">R$ 474,90</p>
+                    </div>
+                    <div class="product">
+                        <a href="page-produto3.html"><img src="./img/produto3.png" width="200px" height="250px"></a>
+                        <p class="product-name">Carrinho Suporte Auxiliar Para Vapor De Ozônio</p>
+                        <p class="rate">&#9733; <span>4.7</span></p>
+                        <p class="product-price">R$ 275,00</p>
+                    </div>
+                    <div class="product">
+                        <a href="page-produto4.html"><img src="./img/produto4.png" width="200px" height="250px"></a>
+                        <p class="product-name">Carrinho Móvel Para Ozonioterapia Cilindro 7 Litros</p>
+                        <p class="rate">&#9733; <span>5.0</span></p>
+                        <p class="product-price">R$ 458,49</p>
+                    </div>
+                    <div class="product">
+                        <a href="page-produto5.html"><img src="./img/produto5.png" width="220px" height="210px"></a>
+                        <p class="product-name">Mesa Carrinho Para Vapor De Ozônio Branco</p>
+                        <p class="rate">&#9733; <span>5.0</span></p>
+                        <p class="product-price">R$ 315,00</p>
+                    </div>
+                    <div class="product">
+                        <a href="page-produto6.html"><img src="./img/produto1.png" width="220px" height="210px"></a>
+                        <p class="product-name">Carrinho Vapor De Ozônio Rodízio Com Trava</p>
+                        <p class="rate">&#9733; <span>5.0</span></p>
+                        <p class="product-price">R$ 260,94</p>
+                    </div>
+                    <div class="product">
+                        <a href="page-produto7.html"><img src="./img/produto7.webp" width="120px" height="210px"></a>
+                        <p class="product-name">Carrinho Para Vapor De Ozônio Alto</p>
+                        <p class="rate">&#9733; <span>5.0</span></p>
+                        <p class="product-price">R$ 275,53</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div id='contato'>
+            <p>© 2025 Smart Engie Serviços LTDA | CNPJ: 08.787.487/0001-06</p>
+            <p>Telefone / WhatsApp: <a href="https://wa.me/5524998112244" target="_blank">(24) 99811-2244</a> | <a
+                    href="mailto:ch.paiva@gmail.com">Email: ch.paiva@gmail.com</a></p>
+            <p>Horário de atendimento: Seg à Sex, das 8h às 18h</p>
+            <p>Siga-nos: <a href="https://www.instagram.com/pratica_ind_com/" target="_blank">[Instagram]</a></p>
+        </div>
+
+        <div>
+            <p></p>
+            <p>Desenvolvido por Pedro Paiva</p>
+            <p>Política de Privacidade | Termos de Uso</p>
+        </div>
+    </footer>
+
+    <script>
+        const navbar = document.querySelector(".navbar");
+        const menuButton = document.querySelector(".menu-button")
+
+        menuButton.addEventListener('click', () => {
+            navbar.classList.toggle('show-menu');
+        });
+    </script>
+
+    <script src="js/cart.js"></script>
+
+    <script>
+        window.addEventListener("load", () => {
+            document.body.classList.add("loaded");
+        });
+    </script>
+</body>
+
+</html>

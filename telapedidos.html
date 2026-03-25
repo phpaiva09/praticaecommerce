@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <title>Prática Indústria & Comércio | Soluções em Qualidade e Praticidade</title>
+    <link rel="stylesheet" href="./styles/globalpedidos.css" />
+
+    <!-- Fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="header-inner-content">
+            <h1 class="logo-header">PRÁTICA<span><br>Indústria & Comércio</span></h1>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="index.html"><h3>Home</h3></a>
+                    </li>
+                    <li>
+                        <a href='index.html#produtos'><h3>Produtos</h3></a>
+                    </li>
+                    <li>
+                        <a href="sobrenos.html"><h3>Sobre</h3></a>
+                    </li>
+                    <li>
+                        <a href="#contato"><h3>Contato</h3></a>
+                    </li>
+                    <li id="user-nav">
+                    </li>
+                </ul>
+            </nav>
+            <div class="nav-icon-container">
+                <img src="./img/bolsa.png" class="shop" id="cart-btn">
+                <img src="./img/menu.png" class="menu-button">
+            </div>
+        </div>
+    </div>
+
+    <!-- Carrinho -->
+    <div class="cart-container">
+        <div class="cart-header">
+            <h3>Seu Carrinho</h3>
+            <span class="close-cart">&times;</span>
+        </div>
+        <div class="cart-items">
+            <!-- Os produtos serão adicionados aqui via JS -->
+        </div>
+        <div class="cart-footer">
+            <p>Total: R$ <span id="cart-total">0.00</span></p>
+            <button id="checkout-btn">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <main>
+        <div class="container-principal">
+            <div class="header-pedidos">
+                <h2>Meus pedidos</h2>
+
+                <select id="filtro">
+                    <option value="3">Últimos 3 meses</option>
+                    <option value="6">Últimos 6 meses</option>
+                    <option value="12">Último ano</option>
+                </select>
+            </div>
+
+            <div id="lista-pedidos"></div>
+        </div>
+    </main>
+
+    <footer>
+        <div id='contato'>
+            <p>© 2025 Smart Engie Serviços LTDA | CNPJ: 08.787.487/0001-06</p>
+            <p>Telefone / WhatsApp: <a href="https://wa.me/5524998112244" target="_blank">(24) 99811-2244</a> | <a
+                    href="mailto:ch.paiva@gmail.com">Email: ch.paiva@gmail.com</a></p>
+            <p>Horário de atendimento: Seg à Sex, das 8h às 18h</p>
+            <p>Siga-nos: <a href="https://www.instagram.com/pratica_ind_com/" target="_blank">[Instagram]</a></p>
+        </div>
+
+        <div>
+            <p></p>
+            <p>Desenvolvido por Pedro Paiva</p>
+            <p>Política de Privacidade | Termos de Uso</p>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.querySelector(".menu-button");
+        const nav = document.querySelector("nav");
+
+        menuBtn.addEventListener("click", () => {
+            nav.parentElement.classList.toggle("show-menu");
+        });
+
+    </script>
+
+    <script src="js/cart.js"></script>
+
+    <script>
+        window.addEventListener("load", () => {
+            document.body.classList.add("loaded");
+        });
+    </script>
+
+    <script src="js/meus-pedidos.js"></script>
+
+
+</body>
+
+</html>

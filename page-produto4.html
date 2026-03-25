@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <title>Prática Indústria & Comércio | Soluções em Qualidade e Praticidade</title>
+    <link rel="stylesheet" href="./styles/globalp1.css"/>
+
+    <!-- Fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div class="navbar">
+        <div class="header-inner-content">
+            <h1 class="logo-header">PRÁTICA<span><br>Indústria & Comércio</span></h1>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="index.html"><h3>Home</h3></a>
+                    </li>
+                    <li>
+                        <a href='index.html#produtos'><h3>Produtos</h3></a>
+                    </li>
+                    <li>
+                        <a href="sobrenos.html"><h3>Sobre</h3></a>
+                    </li>
+                    <li>
+                        <a href="#contato"><h3>Contato</h3></a>
+                    </li>
+                    <li id="user-nav">
+                    </li>
+                </ul>
+            </nav>
+            <div class="nav-icon-container">
+                <img src="./img/bolsa.png" class="shop">
+                <img src="./img/menu.png" class="menu-button" >
+            </div>
+        </div>
+    </div>
+
+    <!-- Carrinho -->
+    <div class="cart-container">
+        <div class="cart-header">
+            <h3>Seu Carrinho</h3>
+            <span class="close-cart">&times;</span>
+        </div>
+        <div class="cart-items">
+            <!-- Os produtos serão adicionados aqui via JS -->
+        </div>
+        <div class="cart-footer">
+            <p>Total: R$ <span id="cart-total">0.00</span></p>
+            <button id="checkout-btn">Finalizar Compra</button>
+        </div>
+    </div>
+
+
+    <main>
+        <div class="container-principal">
+        <div class="galeria-container">
+            <div class="miniaturas-container">
+                <img class="miniatura selecionada" src="./img/produto4.png" 
+                    data-imagem-grande="./img/produto4.png" class="iG1"
+                    alt="Miniatura 1" onclick="trocarImagem(this)">
+
+                <img class="miniatura" src="./img/produto4-3.webp" 
+                    data-imagem-grande="./img/produto4-3.webp" 
+                    alt="Miniatura 2" onclick="trocarImagem(this)">
+
+                <img class="miniatura" src="./img/produto2-4.webp" 
+                    data-imagem-grande="./img/produto2-4.webp" 
+                    alt="Miniatura 2" onclick="trocarImagem(this)">
+
+                <img class="miniatura" src="./img/produto2-3.png" 
+                    data-imagem-grande="./img/produto2-3.png" 
+                    alt="Miniatura 2" onclick="trocarImagem(this)">
+            </div>
+                <div class="imagem-principal-container">
+                    <img id="imagemPrincipal" src="./img/produto4.png" alt="Produto Visão 1">
+                </div>
+        </div>
+            <div class="container-right">
+                <a href="index.html#produtos"><p>Confira nossos outros produtos</p></a>
+                <p>+20 Vendas</p>
+                <h2>Carrinho Auxiliar Móvel<br> Para Gerador De Ozônio<br> De Ozônio Branco</h2>
+                <p class="rate"><span>5.0</span> &#9733; &#9733; &#9733; &#9733; &#9733;</p>
+                <p class="preco">R$ 458,49</p>
+                <div class="opcoes-cor">
+                    <p>Cor: <span id="corSelecionada">branco</span></p>
+                    <div class="botoes-cor">
+                        <button class="botao-cor" data-cor="branco">branco</button>
+                    </div>
+                    <button class="add-to-cart" data-produto-id="4">Adicionar ao Carrinho</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="descricao">
+            <h3>Descrição</h3>
+            <p>
+                O carrinho suporte auxiliar para gerador de ozônio Prática se aplica à vários modelos de geradores de ozônio e à vários tamanhos de cilindros de Oxigênio.
+
+                Possibilita movimentar o equipamento com seu cilindro ao redor do paciente propiciando agilidade, conforto e segurança no atendimento pois o cilindro fixo oferece segurança e evita acidentes e danos à válvula
+
+                Os rodízios resistentes suportam até 60kg garantindo que não amassem ao longo do tempo.
+
+                Possui base e cinta para fixação do cilindro de Oxigênio.
+
+                Sua bandeja cortada a LASER com cantos arredondados proporciona beleza e segurança.
+
+                Ajuste de altura e rotação da bandeja.
+
+                Produzido em aço galvanizado que evita ferrugem e pintura eletrostática na cor branca.
+
+                Pesquise pela com preta também disponível.
+
+                Altura máxima do cilindro com válvula : 85cm
+                Circunferência do cilindro: 25 à 38cm
+
+                Temos modelo para cilindro de Oxigênio com circunferência entre 50 e 57cm
+
+                verifique o tamanho da bandeja indicada para seu equipamento:
+                Média: 20 x 32cm
+                Grande: 29 x 32cm
+
+                Somos fabricantes por isso podemos oferecer a melhor garantia.
+
+                Garantia do vendedor: 6 meses
+            </p>
+        </div>
+
+    </main>
+
+    <footer>
+        <div id = 'contato'>
+            <p>© 2025 Smart Engie Serviços LTDA | CNPJ: 08.787.487/0001-06</p>
+            <p>Telefone / WhatsApp: <a href="https://wa.me/5524998112244" target="_blank">(24) 99811-2244</a> | <a href="mailto:ch.paiva@gmail.com">Email: ch.paiva@gmail.com</a></p>
+            <p>Horário de atendimento: Seg à Sex, das 8h às 18h</p> 
+            <p>Siga-nos: <a href="https://www.instagram.com/pratica_ind_com/" target="_blank">[Instagram]</a></p>
+        </div>
+
+        <div>
+            <p></p>
+            <p>Desenvolvido por Pedro Paiva</p>
+            <p>Política de Privacidade | Termos de Uso</p>
+        </div>
+    </footer>
+ 
+    <div id="modal-login" class="modal-overlay">
+        <div class="modal-box">
+            <h2>Atenção</h2>
+            <p>Você precisa estar logado para adicionar este produto ao carrinho.</p>
+
+            <div class="modal-buttons">
+                <button id="modal-cancelar" class="btn-cancelar">Cancelar</button>
+                <button id="modal-ok" class="btn-ok">Fazer login</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function trocarImagem(miniaturaClicada) { // <-- Adicionar 'function' aqui!
+            // 1. Achar a Imagem Principal
+            const imagemPrincipal = document.getElementById('imagemPrincipal');
+
+            // 2. Obter o caminho da imagem grande a partir do atributo data-imagem-grande
+            const novoCaminho = miniaturaClicada.getAttribute('data-imagem-grande');
+                
+            // 3. Atualizar o src da Imagem Principal
+            imagemPrincipal.src = novoCaminho;
+
+            // 4. Remover a classe 'selecionada' de todas as miniaturas
+            const miniaturas = document.querySelectorAll('.miniatura');
+            miniaturas.forEach(miniatura => {
+                miniatura.classList.remove('selecionada');
+            });
+
+            // 5. Adicionar a classe 'selecionada' à miniatura que foi clicada
+            miniaturaClicada.classList.add('selecionada');
+        }
+
+        const botoesCor = document.querySelectorAll('.botao-cor');
+        const textoCor = document.getElementById('corSelecionada');
+        const addBtn = document.querySelector('.add-to-cart');
+        const miniaturas = document.querySelectorAll('.miniatura'); 
+
+        // Começa com botão desativado
+        addBtn.disabled = true;
+
+        // Seleção de cor
+        botoesCor.forEach(botao => {
+            botao.addEventListener('click', () => {
+                botoesCor.forEach(b => b.classList.remove('selecionado'));
+                botao.classList.add('selecionado');
+
+                const cor = botao.getAttribute('data-cor');
+                textoCor.textContent = cor;
+
+                if (cor === 'preto' && miniaturas.length > 1) {
+                    trocarImagem(miniaturas[1]); 
+                } else if (cor === 'branco' && miniaturas.length > 0) {
+                    trocarImagem(miniaturas[0]);
+                }
+
+                addBtn.disabled = false; // ativa o botão
+            });
+        });
+        
+        const modal = document.getElementById("modal-login");
+        const btnOk = document.getElementById("modal-ok");
+        const btnCancelar = document.getElementById("modal-cancelar");
+
+        // Clique no botão "Adicionar ao Carrinho"
+        addBtn.addEventListener('click', () => {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+
+            if (!isLoggedIn) {
+                modal.style.display = "flex";
+            } else {
+                console.log("Produto adicionado ao carrinho!");
+                // aqui você pode chamar sua função real de carrinho
+            }
+        });
+
+        // OK → vai para login
+        btnOk.addEventListener("click", () => {
+            window.location.href = "telalogin.html";
+        });
+
+        // Cancelar → fecha modal
+        btnCancelar.addEventListener("click", () => {
+            modal.style.display = "none";
+        });
+
+        // Clicar fora → fecha modal
+        modal.addEventListener("click", (e) => {
+            if (e.target === modal) {
+                modal.style.display = "none";
+            }
+        });
+    </script>
+
+
+    <script>
+        const navbar = document.querySelector(".navbar");
+        const menuButton = document.querySelector(".menu-button")
+
+        menuButton.addEventListener('click', () => {
+            navbar.classList.toggle('show-menu');
+        });
+    </script>
+
+    <script src="js/cart.js"></script>
+
+    <script>
+        window.addEventListener("load", () => {
+            document.body.classList.add("loaded");
+        });
+    </script>
+</body>
+</html>

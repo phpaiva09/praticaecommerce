@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <title>Prática Indústria & Comércio | Soluções em Qualidade e Praticidade</title>
+    <link rel="stylesheet" href="./styles/globalredefinirsenha.css" />
+
+    <!-- Fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="header-inner-content">
+            <h1 class="logo-header">PRÁTICA<span><br>Indústria & Comércio</span></h1>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <h3>Home</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href='index.html#produtos'>
+                            <h3>Produtos</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="sobrenos.html">
+                            <h3>Sobre</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#contato">
+                            <h3>Contato</h3>
+                        </a>
+                </ul>
+            </nav>
+            <div class="nav-icon-container">
+                <img src="./img/bolsa.png" class="shop" id="cart-btn">
+                <img src="./img/menu.png" class="menu-button">
+            </div>
+        </div>
+    </div>
+
+    <!-- Carrinho -->
+    <div class="cart-container">
+        <div class="cart-header">
+            <h3>Seu Carrinho</h3>
+            <span class="close-cart">&times;</span>
+        </div>
+        <div class="cart-items">
+            <!-- Os produtos serão adicionados aqui via JS -->
+        </div>
+        <div class="cart-footer">
+            <p>Total: R$ <span id="cart-total">0.00</span></p>
+            <button id="checkout-btn">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <main class="esqueci-container">
+        <div class="esqueci-box">
+            <h2>Criar Nova Senha</h2>
+            <p>Digite sua nova senha abaixo para recuperar o acesso à sua conta.</p>
+
+            <form id="form-redefinir">
+                <input type="hidden" id="token-input">
+
+                <div class="input-group">
+                    <div class="input1">
+                        <p class="nova-senha">Nova Senha</p>
+                        <input type="password" id="nova-senha" placeholder="Mínimo 8 caracteres">
+                    </div>
+                    <p class="confirmar-senha">Confirmar Nova Senha</p>
+                    <input type="password" id="confirmar-senha" placeholder="Repita a senha">
+                </div>
+
+                <button type="submit" id="btn-redefinir">Atualizar Senha</button>
+                <div id="mensagem-retorno"></div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div id='contato'>
+            <p>© 2025 Smart Engie Serviços LTDA | CNPJ: 08.787.487/0001-06</p>
+            <p>Telefone / WhatsApp: (24) 99811-2244 | <a href="mailto:ch.paiva@gmail.com">Email: ch.paiva@gmail.com</a>
+            </p>
+            <p>Horário de atendimento: Seg à Sex, das 8h às 18h</p>
+            <p>Siga-nos: <a href="https://www.instagram.com/pratica_ind_com/" target="_blank">[Instagram]</a></p>
+        </div>
+
+        <div>
+            <p></p>
+            <p>Desenvolvido por Pedro Paiva</p>
+            <p>Política de Privacidade | Termos de Uso</p>
+        </div>
+    </footer>
+
+    <div id="modal-alteracao" class="modal-overlay" style="display:none;">
+        <div class="modal-box">
+            <h2>Atenção</h2> 
+            <p id="mensagem-modal"></p>
+            <button id="modal-ok" class="btn-ok">OK</button>
+        </div>
+    </div>
+
+    <script>
+        // 1. Capturar o token da URL automaticamente
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
+
+        const modalAlteracao = document.getElementById('modal-alteracao');
+        const modalMensagem = document.getElementById('mensagem-modal');
+        const btnModalOkAlteracao = document.getElementById('modal-ok');
+
+        function mostrarModal(msg) {
+            modalMensagem.textContent = msg;
+            modalAlteracao.style.display = 'flex';
+        }
+        btnModalOkAlteracao.addEventListener('click', () => {
+            modalAlteracao.style.display = 'none';
+        });
+
+        function senhaForte(senha) {
+            return (
+                senha.length >= 8 &&
+                /[A-Z]/.test(senha) &&
+                /[a-z]/.test(senha) &&
+                /[0-9]/.test(senha)
+            );
+        }
+
+        // Se não houver token na URL, redireciona ou avisa
+        if (!token) {
+            mostrarModal("Token de recuperação ausente. Solicite um novo link.");
+
+            btnModalOkAlteracao.onclick = () => {
+                window.location.href = "esqueci-senha.html";
+            };
+        }
+
+        document.getElementById('form-redefinir').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const novaSenha = document.getElementById('nova-senha').value;
+            const confirmarSenha = document.getElementById('confirmar-senha').value;
+            const msgDiv = document.getElementById('mensagem-retorno');
+
+            if (!novaSenha || !confirmarSenha) {
+                mostrarModal("Preencha o campo de senha."); // Chama a função corretamente
+                return; // Para a execução aqui e não tenta o fetch
+            }
+
+            if (!senhaForte(novaSenha)) {
+                mostrarModal("Senha muito fraca! A senha deve ter no mínimo 8 caracteres, incluir letras maiúsculas, minúsculas e números.");
+                return; 
+            }
+
+            // Validação básica de confirmação
+            if (novaSenha !== confirmarSenha) {
+                mostrarModal("As senhas não coincidem!");
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:3000/redefinir-senha', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        token: token,
+                        novaSenha: novaSenha
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.sucesso) {
+                    msgDiv.style.color = "green";
+                    msgDiv.innerText = "Senha alterada com sucesso! Redirecionando...";
+                    setTimeout(() => {
+                        window.location.href = "telalogin.html";
+                    }, 3000);
+                } else {
+                    msgDiv.style.color = "red";
+                    msgDiv.innerText = data.msg || "Erro ao redefinir senha.";
+                }
+            } catch (error) {
+                msgDiv.style.color = "red";
+                msgDiv.innerText = "Erro ao conectar com o servidor.";
+            }
+        });
+
+    </script>
+
+    <script>
+        window.addEventListener("load", () => {
+            document.body.classList.add("loaded");
+        });
+    </script>
+
+    <script>
+        const navbar = document.querySelector(".navbar");
+        const menuButton = document.querySelector(".menu-button")
+
+        menuButton.addEventListener('click', () => {
+            navbar.classList.toggle('show-menu');
+        });
+    </script>
+
+    <script src="js/cart.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <title>Prática Indústria & Comércio | Soluções em Qualidade e Praticidade</title>
+    <link rel="stylesheet" href="./styles/globalsobre.css"/>
+
+    <!-- Fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+    <div class="navbar">
+        <div class="header-inner-content">
+            <h1 class="logo-header">PRÁTICA<span><br>Indústria & Comércio</span></h1>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="index.html"><h3>Home</h3></a>
+                    </li>
+                    <li>
+                        <a href='index.html#produtos'><h3>Produtos</h3></a>
+                    </li>
+                    <li>
+                        <a href="sobrenos.html"><h3>Sobre</h3></a>
+                    </li>
+                    <li>
+                        <a href="#contato"><h3>Contato</h3></a>
+                    </li>
+                    <li id="user-nav">
+                    </li>
+                </ul>
+            </nav>
+            <div class="nav-icon-container">
+                <img src="./img/bolsa.png" class="shop">
+                <img src="./img/menu.png" class="menu-button" >
+            </div>
+        </div>
+    </div>
+
+    <!-- Carrinho -->
+    <div class="cart-container">
+        <div class="cart-header">
+            <h3>Seu Carrinho</h3>
+            <span class="close-cart">&times;</span>
+        </div>
+        <div class="cart-items">
+            <!-- Os produtos serão adicionados aqui via JS -->
+        </div>
+        <div class="cart-footer">
+            <p>Total: R$ <span id="cart-total">0.00</span></p>
+            <button id="checkout-btn">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <main>
+        <div class="container-cinza">
+            <div class="conteiner-sobre">
+                <h1>Sobre a Prática Indústria & Comércio</h1>
+                <h3>Nossa Missão</h3>
+                <p>Na Prática Indústria & Comércio, nossa missão é clara: transformar a excelência industrial em praticidade para o seu dia a dia profissional.
+
+                Nascemos da convicção de que o equipamento certo tem o poder de aprimorar resultados. Por isso, dedicamos nossa expertise em fabricação para desenvolver e comercializar produtos que unem a robustez e a durabilidade da indústria com o design funcional e a segurança que ambientes como clínicas, salões de beleza e estúdios de fisioterapia exigem.</p>
+
+                <h3>Nosso Diferencial</h3><p>A qualidade de quem fabrica,
+                o que nos diferencia é a nossa origem. Somos fabricantes. Isso nos permite ter controle total sobre cada etapa do processo, desde a seleção da matéria-prima (como o aço com pintura eletrostática e proteção anti-ferrugem) até o corte a LASER com cantos arredondados, pensando na sua segurança.</p>
+
+                <h3>Quando você escolhe um produto Prática, você está investindo em:</h3>
+                
+                <p>Controle de Qualidade Total: Garantia de que cada detalhe, como os rodízios robustos e o ajuste de altura, atende aos padrões mais altos de funcionalidade e longevidade.</p>
+
+                <p>Design Inteligente: Nossos produtos, como o Carrinho Auxiliar para Vapor de Ozônio, são projetados para oferecer máxima flexibilidade (rotação 360°, fácil ajuste de altura) e um acabamento elegante.</p>
+
+                Garantia de Fabricante: Oferecemos a melhor garantia porque confiamos plenamente na qualidade e durabilidade do que produzimos.</p>
+
+                <h3>Compromisso com o Profissional</h3>
+                <p>Entendemos que no mundo da estética, beleza e saúde, a organização, a higiene e a eficiência são cruciais. A Prática Indústria & Comércio é sua parceira em oferecer um ambiente de trabalho mais seguro, mais organizado e altamente funcional.</p>
+
+                <p>Nós não vendemos apenas equipamentos, nós entregamos a base sólida e prática para o sucesso do seu negócio.</p>
+            </div>   
+        </div>     
+    </main>
+
+    <footer>
+        <div id = 'contato'>
+            <p>© 2025 Smart Engie Serviços LTDA | CNPJ: 08.787.487/0001-06</p>
+            <p>Telefone / WhatsApp: <a href="https://wa.me/5524998112244" target="_blank">(24) 99811-2244</a> | <a href="mailto:ch.paiva@gmail.com">Email: ch.paiva@gmail.com</a></p>
+            <p>Horário de atendimento: Seg à Sex, das 8h às 18h</p> 
+            <p>Siga-nos: <a href="https://www.instagram.com/pratica_ind_com/" target="_blank">[Instagram]</a></p>
+        </div>
+
+        <div>
+            <p></p>
+            <p>Desenvolvido por Pedro Paiva</p>
+            <p>Política de Privacidade | Termos de Uso</p>
+        </div>
+    </footer>
+
+    <script>
+        const navbar = document.querySelector(".navbar");
+        const menuButton = document.querySelector(".menu-button")
+
+        menuButton.addEventListener('click', () => {
+            navbar.classList.toggle('show-menu');
+        });
+    </script>
+
+    <script src="js/cart.js"></script>
+
+    <script>
+    window.addEventListener("load", () => {
+        document.body.classList.add("loaded");
+    });
+    </script>
+
+
+</body>
+</html>
