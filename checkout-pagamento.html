@@ -174,7 +174,7 @@
 
             try {
                 // Sempre buscamos um PIX novo do servidor para garantir que os dados batam com o ID atual
-                const resp = await fetch(`http://localhost:3000/pedido/${idParaVerificar}/pix`, { method: "POST" });
+                const resp = await fetch(`http://pratica-api.onrender.com/pedido/${idParaVerificar}/pix`, { method: "POST" });
                 const data = await resp.json();
 
                 if (data.qrCode && data.qrBase64) {

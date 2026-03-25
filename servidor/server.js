@@ -41,12 +41,7 @@ const path = require('path'); // Adicione isso no topo do arquivo com os outros 
 app.use(express.static(path.join(__dirname, '..')));
 
 // ================== BANCO ==================
-const db = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
-});
+const db = mysql.createConnection(process.env.MYSQL_URL);
 
 db.connect(err => {
     if (err) {
@@ -1035,6 +1030,12 @@ app.post('/excluir-conta', async (req, res) => {
 });
 
 app.get("/admin/pedidos", async (req, res) => {
+
+    const adminKey = req.headers["x-admin-key"];
+
+    if (adminKey !== process.env.ADMIN_KEY) {
+        return res.status(403).json({ erro: "Acesso negado" });
+    }
     try {
         const [rows] = await db.promise().query(`
             SELECT 

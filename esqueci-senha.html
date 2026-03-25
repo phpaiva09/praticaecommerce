@@ -138,7 +138,7 @@
             btn.innerText = "Enviando...";
 
             try {
-                const response = await fetch('http://localhost:3000/esqueci-senha', {
+                const response = await fetch('http://pratica-api.onrender.com/esqueci-senha', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email })
