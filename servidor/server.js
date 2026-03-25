@@ -25,7 +25,7 @@ const nodemailer = require('nodemailer');
 require('dotenv').config();
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // ================== MIDDLEWARE ==================
 app.use(cors());
@@ -654,7 +654,7 @@ app.post('/esqueci-senha', async (req, res) => {
         );
 
         // 3. Envia o e-mail
-        const link = `http://localhost:3000/redefinir-senha.html?token=${token}`;
+        const link = `http://praticaecommerce.vercel.app/redefinir-senha.html?token=${token}`;
         
         await transporter.sendMail({
             from: process.env.EMAIL_USER,
@@ -1076,5 +1076,5 @@ app.get("/admin/pedidos", async (req, res) => {
 
 // ================== SERVER ==================
 app.listen(port, () => {
-    console.log(`Servidor rodando em http://localhost:${port}`);
+    console.log(`Servidor rodando na porta ${port}`);
 });
