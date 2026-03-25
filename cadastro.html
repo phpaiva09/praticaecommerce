@@ -208,7 +208,7 @@
         btnOk.addEventListener("click", () => {
             if (!dadosCadastro) return;
 
-            fetch('http://pratica-api.onrender.com/cadastro', {
+            fetch('https://pratica-api.onrender.com/cadastro', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(dadosCadastro)
