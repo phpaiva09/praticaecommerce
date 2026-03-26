@@ -75,7 +75,7 @@ async function pagarPedido(pedidoId, valorDoPedido) {
   try {
     localStorage.removeItem("pedidoId");
 
-    const res = await fetch(`http://pratica-api.onrender.com/pedido/${pedidoId}/pix`, {
+    const res = await fetch(`https://pratica-api.onrender.com/pedido/${pedidoId}/pix`, {
       method: "POST"
     });
 
