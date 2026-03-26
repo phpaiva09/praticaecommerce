@@ -296,37 +296,26 @@ app.post('/pedido', async (req, res) => {
         );
 
         // 5️⃣ Enviar email
-        await transporter.sendMail({
-            from: process.env.EMAIL_USER,
-            to: email,
-            subject: 'Confirmação do seu pedido - Prática Indústria & Comércio',
-            html: `
+        try {
+            await transporter.sendMail({
+                from: process.env.EMAIL_USER,
+                to: email,
+                subject: 'Confirmação do seu pedido - Prática Indústria & Comércio',
+                html: `
             <h2>Olá, ${nome}!</h2>
             <p>Recebemos seu pedido com sucesso! 🎉</p>
             <p>
                 Agradecemos por escolher a <strong>Prática Indústria & Comércio</strong>.
-                Seu pedido já está sendo processado com todo cuidado.
             </p>
-            <p><strong>Endereço de entrega:</strong></p>
-            <p>
-                ${rua}, ${numero}<br>
-                ${cidade} - ${estado}<br>
-                CEP: ${cep}
-            </p>
-            <p><strong>Valor do pedido:</strong> R$ ${valorTotal.toFixed(2)}</p>
-            <p>
-                Em breve, você receberá informações sobre o pagamento e envio do seu pedido.
-            </p>
-            <p>
-                Se tiver alguma dúvida, estamos à disposição para ajudar! 😊
-            </p>
-            <p>
-                Atenciosamente,<br>
-                <strong>Equipe Prática Indústria & Comércio</strong>
-            </p>
-      `
-        });
+            <p><strong>Endereço:</strong> ${rua}, ${numero}</p>
+            <p><strong>Total:</strong> R$ ${valorTotal.toFixed(2)}</p>
+        `
+            });
+        } catch (erroEmail) {
+            console.error("Erro ao enviar email:", erroEmail.message);
+        }
 
+        // ✅ SEMPRE responde sucesso
         res.json({
             sucesso: true,
             pedidoId,
@@ -656,7 +645,7 @@ app.post('/esqueci-senha', async (req, res) => {
 
         // 3. Envia o e-mail
         const link = `https://pratica-api.onrender.com/redefinir-senha.html?token=${token}`;
-        
+
         await transporter.sendMail({
             from: process.env.EMAIL_USER,
             to: email,
@@ -825,7 +814,7 @@ app.get('/pedido/:id/status', async (req, res) => {
     }
 });
 
-app.post('/webhook-mp', async (req, res) => { 
+app.post('/webhook-mp', async (req, res) => {
     try {
         // 1. Captação de IDs e Cabeçalhos
         const paymentId = req.body.data?.id || req.query['data.id'] || req.body.id;
