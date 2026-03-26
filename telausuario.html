@@ -287,11 +287,7 @@
         cancelarNome.addEventListener('click', () => {
             modalNome.style.display = 'none';
             erroNome.innerText = '';
-
-            // Limpa os campos
-            document.getElementById('nomeAtual').value = '';
-            document.getElementById('novoNome').value = '';
-            document.getElementById('confirmarNome').value = '';
+            limparInputs('modalNome');
         });
 
         salvarNome.addEventListener('click', () => {
@@ -350,11 +346,7 @@
         cancelarTelefone.addEventListener('click', () => {
             modalTelefone.style.display = 'none';
             erroTelefone.innerText = '';
-
-            // Limpa os campos
-            document.getElementById('telefoneAtual').value = '';
-            document.getElementById('novoTelefone').value = '';
-            document.getElementById('confirmarTelefone').value = '';
+            limparInputs('modalTelefone');
         });
 
         salvarTelefone.addEventListener('click', () => {
@@ -420,11 +412,7 @@
         cancelarEmail.addEventListener('click', () => {
             modalEmail.style.display = 'none';
             erroEmail.innerText = '';
-
-            // Limpa os campos
-            document.getElementById('emailAtual').value = '';
-            document.getElementById('novoEmail').value = '';
-            document.getElementById('confirmarEmail').value = '';
+            limparInputs('modalEmail');
         });
 
         salvarEmail.addEventListener('click', () => {
@@ -482,11 +470,7 @@
         cancelar.addEventListener('click', () => {
             modal.style.display = 'none';
             erro.innerText = '';
-
-            // Limpa os campos
-            document.getElementById('senhaAtual').value = '';
-            document.getElementById('novaSenha').value = '';
-            document.getElementById('confirmarSenha').value = '';
+            limparInputs('modalSenha');
         });
 
         salvar.addEventListener('click', () => {
@@ -544,6 +528,11 @@
 
         btnModalOkAlteracao.addEventListener('click', () => {
             modalAlteracao.style.display = 'none';
+
+            limparInputs('modalNome');
+            limparInputs('modalTelefone');
+            limparInputs('modalEmail');
+            limparInputs('modalSenha');
         });
 
         document.getElementById('btnExcluirConta').addEventListener('click', () => {
@@ -594,6 +583,18 @@
                 mostrarModal("Erro ao conectar com o servidor.");
             }
         });
+
+        function limparInputs(modalId) {
+            const modal = document.getElementById(modalId);
+            const inputs = modal.querySelectorAll('input');
+
+            inputs.forEach(input => {
+                input.value = '';
+            });
+
+            const erro = modal.querySelector('.erro');
+            if (erro) erro.innerText = '';
+        }
     </script>
 
     <script>
