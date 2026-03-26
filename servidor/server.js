@@ -55,14 +55,16 @@ db.connect(err => {
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 465,
-    secure: true, // Use true para a porta 465, false para outras
+    secure: true, 
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
     },
-    tls: {
-        rejectUnauthorized: false // Ajuda a evitar bloqueios de certificados em nuvem
-    }
+    // Configurações cruciais para o Render:
+    dnsV6: false, // Força o uso de IPv4 (resolve o ENETUNREACH)
+    connectionTimeout: 20000, // Dá 20 segundos para conectar
+    greetingTimeout: 20000,
+    socketTimeout: 20000
 });
 
 // ================== MERCADO PAGO ==================
