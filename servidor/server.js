@@ -305,7 +305,7 @@ app.post('/pedido', async (req, res) => {
             <h2>Olá, ${nome}!</h2>
             <p>Recebemos seu pedido com sucesso! 🎉</p>
             <p>
-                Muito obrigado por escolher a <strong>Prática Indústria & Comércio</strong>.
+                Agradecemos por escolher a <strong>Prática Indústria & Comércio</strong>.
                 Seu pedido já está sendo processado com todo cuidado.
             </p>
             <p><strong>Endereço de entrega:</strong></p>
