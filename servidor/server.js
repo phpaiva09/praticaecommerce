@@ -649,7 +649,7 @@ app.post('/esqueci-senha', async (req, res) => {
         );
 
         // 3. Envia o e-mail
-        const link = `http://praticaecommerce.vercel.app/redefinir-senha.html?token=${token}`;
+        const link = `https://pratica-api.onrender.com/redefinir-senha.html?token=${token}`;
         
         await transporter.sendMail({
             from: process.env.EMAIL_USER,
