@@ -216,7 +216,7 @@
         if (idParaVerificar) {
             const intervalo = setInterval(async () => {
                 try {
-                    const resp = await fetch(`http://localhost:3000/pedido/${idParaVerificar}/status`);
+                    const resp = await fetch(`https://pratica-api.onrender.com/pedido/${idParaVerificar}/status`);
                     const data = await resp.json();
                     if (data.sucesso && data.status === "pago") {
                         clearInterval(intervalo);
