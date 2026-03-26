@@ -66,8 +66,32 @@ const transporter = nodemailer.createTransport({
     family: 4 // 🔥 FORÇA IPv4
 });
 
+transporter.verify((error, success) => {
+    if (error) {
+        console.error('Erro no SMTP:', error);
+    } else {
+        console.log('Servidor de email pronto 🚀');
+    }
+});
+
 // ================== MERCADO PAGO ==================
 const MP_ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN;
+
+app.get('/teste-email', async (req, res) => {
+    try {
+        await transporter.sendMail({
+            from: process.env.EMAIL_USER,
+            to: process.env.EMAIL_USER,
+            subject: 'Teste 🚀',
+            html: '<h1>Email funcionando!</h1>'
+        });
+
+        res.send('Email enviado!');
+    } catch (err) {
+        console.error(err);
+        res.send('Erro ao enviar email');
+    }
+});
 
 // ================== CADASTRO ==================
 app.post('/cadastro', async (req, res) => {
