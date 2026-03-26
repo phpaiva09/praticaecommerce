@@ -57,25 +57,15 @@ db.connect(err => {
 // ================== EMAIL ==================
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
-    port: 587, // 🔥 MUDA AQUI (não usa 465)
-    secure: false, // 🔥 IMPORTANTE (false para 587)
+    port: 587,
+    secure: false,
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
     },
+    family: 4, // 🔥 ISSO AQUI É O MAIS IMPORTANTE
     tls: {
         rejectUnauthorized: false
-    },
-    connectionTimeout: 10000,
-    greetingTimeout: 10000,
-    socketTimeout: 10000
-});
-
-transporter.verify((error, success) => {
-    if (error) {
-        console.error('Erro no SMTP:', error);
-    } else {
-        console.log('Servidor de email pronto 🚀');
     }
 });
 
