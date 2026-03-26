@@ -107,7 +107,7 @@ async function pagarPedido(pedidoId, valorDoPedido) {
 
 async function carregarPedidos() {
   try {
-    const res = await fetch(`http://pratica-api.onrender.com/meus-pedidos/${usuarioId}`);
+    const res = await fetch(`https://pratica-api.onrender.com/meus-pedidos/${usuarioId}`);
     const pedidos = await res.json();
 
     container.innerHTML = "";
