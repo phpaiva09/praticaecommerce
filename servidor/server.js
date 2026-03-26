@@ -446,7 +446,7 @@ app.post('/alterar-email', async (req, res) => {
             });
         }
 
-        if (!emailAtual == !novoEmail) {
+        if (emailAtual === novoEmail) {
             return res.status(400).json({
                 sucesso: false,
                 mensagem: 'O email já está cadastrado'
