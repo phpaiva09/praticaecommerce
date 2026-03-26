@@ -372,7 +372,7 @@
                 return;
             }
 
-            fetch('http://localhost:3000/alterar-telefone', {
+            fetch('https://pratica-api.onrender.com/alterar-telefone', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -442,7 +442,7 @@
                 return;
             }
 
-            fetch('http://localhost:3000/alterar-email', {
+            fetch('https://pratica-api.onrender.com/alterar-email', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -508,7 +508,7 @@
             }
 
             // 👇 3. ENVIAR PARA O BACKEND
-            fetch('http://localhost:3000/alterar-senha', {
+            fetch('https://pratica-api.onrender.com/alterar-senha', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -572,7 +572,7 @@
             }
 
             try {
-                const response = await fetch('http://localhost:3000/excluir-conta', {
+                const response = await fetch('https://pratica-api.onrender.com/excluir-conta', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
