@@ -57,13 +57,18 @@ db.connect(err => {
 // ================== EMAIL ==================
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
-    port: 465,
-    secure: true,
+    port: 587, // 🔥 MUDA AQUI (não usa 465)
+    secure: false, // 🔥 IMPORTANTE (false para 587)
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
     },
-    family: 4 // 🔥 FORÇA IPv4
+    tls: {
+        rejectUnauthorized: false
+    },
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 10000
 });
 
 transporter.verify((error, success) => {
@@ -76,22 +81,6 @@ transporter.verify((error, success) => {
 
 // ================== MERCADO PAGO ==================
 const MP_ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN;
-
-app.get('/teste-email', async (req, res) => {
-    try {
-        await transporter.sendMail({
-            from: process.env.EMAIL_USER,
-            to: process.env.EMAIL_USER,
-            subject: 'Teste 🚀',
-            html: '<h1>Email funcionando!</h1>'
-        });
-
-        res.send('Email enviado!');
-    } catch (err) {
-        console.error(err);
-        res.send('Erro ao enviar email');
-    }
-});
 
 // ================== CADASTRO ==================
 app.post('/cadastro', async (req, res) => {
@@ -1093,9 +1082,6 @@ app.get("/admin/pedidos", async (req, res) => {
         res.status(500).json({ sucesso: false });
     }
 });
-
-console.log("EMAIL_USER:", process.env.EMAIL_USER);
-console.log("EMAIL_PASS:", process.env.EMAIL_PASS ? "OK" : "NÃO DEFINIDO");
 
 // ================== SERVER ==================
 app.listen(port, () => {
