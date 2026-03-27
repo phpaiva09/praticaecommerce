@@ -330,17 +330,6 @@ app.post('/pedido', async (req, res) => {
 
     <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
 
-    <h3>📦 Resumo do seu pedido</h3>
-
-    <ul style="padding-left: 18px;">
-        ${itens.map(item => `
-            <li>
-                ${quantidade}x ${item.nome} 
-                - R$ ${Number(item.preco_unitario).toFixed(2)}
-            </li>
-        `).join('')}
-    </ul>
-
     <p style="margin-top: 15px;">
         <strong>Total:</strong><br>
         R$ ${valorTotal.toFixed(2)}
