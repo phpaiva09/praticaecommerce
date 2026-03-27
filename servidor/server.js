@@ -335,7 +335,8 @@ app.post('/pedido', async (req, res) => {
     <ul style="padding-left: 18px;">
         ${itens.map(item => `
             <li>
-                ${itensHtml}
+                ${quantidade}x ${item.nome} 
+                - R$ ${Number(item.preco_unitario).toFixed(2)}
             </li>
         `).join('')}
     </ul>
