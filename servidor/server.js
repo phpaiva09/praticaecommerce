@@ -169,6 +169,22 @@ app.post('/cadastro', async (req, res) => {
     }
 });
 
+app.get('/teste-email', async (req, res) => {
+    try {
+        await transporter.sendMail({
+            from: `"Teste" <${process.env.EMAIL_USER}>`,
+            to: "SEUEMAILAQUI@gmail.com",
+            subject: "Teste email",
+            text: "Se chegou, está funcionando"
+        });
+
+        res.send("Email enviado!");
+    } catch (err) {
+        console.error(err);
+        res.send("Erro ao enviar");
+    }
+});
+
 // ================== LOGIN ==================
 app.post('/login', (req, res) => {
     const { email, senha } = req.body;
@@ -301,7 +317,7 @@ app.post('/pedido', async (req, res) => {
         );
 
         // 5️⃣ Enviar email (ASSÍNCRONO - NÃO trava a resposta)
-        transporter.sendMail({
+        await transporter.sendMail({
             from: `"Prática Indústria" <${process.env.EMAIL_USER}>`,
             to: email,
             subject: 'Confirmação do seu pedido - Prática Indústria & Comércio',
@@ -912,7 +928,7 @@ app.post('/webhook-mp', async (req, res) => {
                     );
 
                     // C) Envio do E-mail
-                    transporter.sendMail({
+                    await transporter.sendMail({
                         from: `"Prática Indústria" <${process.env.EMAIL_USER}>`,
                         to: pedido.email,
                         subject: 'Pagamento aprovado! 🎉',
