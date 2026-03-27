@@ -1,6 +1,3 @@
-const { Resend } = require('resend');
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const dns = require('dns');
 dns.setDefaultResultOrder('ipv4first');
 
@@ -27,6 +24,7 @@ const mysql = require('mysql2');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
 const axios = require('axios');
+const nodemailer = require('nodemailer');
 require('dotenv').config();
 
 const app = express();
@@ -57,20 +55,19 @@ db.connect(err => {
 });
 
 // ================== EMAIL ==================
-async function enviarEmail(to, assunto, html) {
-    try {
-        await resend.emails.send({
-            from: 'onboarding@resend.dev', // depois você troca pelo domínio
-            to,
-            subject: assunto,
-            html
-        });
-
-        console.log('📧 Email enviado para:', to);
-    } catch (err) {
-        console.error('❌ Erro ao enviar email:', err.message);
+const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false,
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+    },
+    family: 4, // 🔥 ISSO AQUI É O MAIS IMPORTANTE
+    tls: {
+        rejectUnauthorized: false
     }
-}
+});
 
 // ================== MERCADO PAGO ==================
 const MP_ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN;
@@ -303,24 +300,25 @@ app.post('/pedido', async (req, res) => {
 
         // 5️⃣ Enviar email
         try {
-            await enviarEmail(
-                email,
-                'Confirmação do seu pedido - Prática Indústria & Comércio',
-                `
-        <h2>Olá, ${nome}!</h2>
-        <p>Recebemos seu pedido com sucesso! 🎉</p>
-        <p>
-            Agradecemos por escolher a <strong>Prática Indústria & Comércio</strong>.
-        </p>
-        <p><strong>Endereço:</strong> ${rua}, ${numero}</p>
-        <p><strong>Total:</strong> R$ ${valorTotal.toFixed(2)}</p>
+            await transporter.sendMail({
+                from: process.env.EMAIL_USER,
+                to: email,
+                subject: 'Confirmação do seu pedido - Prática Indústria & Comércio',
+                html: `
+            <h2>Olá, ${nome}!</h2>
+            <p>Recebemos seu pedido com sucesso! 🎉</p>
+            <p>
+                Agradecemos por escolher a <strong>Prática Indústria & Comércio</strong>.
+            </p>
+            <p><strong>Endereço:</strong> ${rua}, ${numero}</p>
+            <p><strong>Total:</strong> R$ ${valorTotal.toFixed(2)}</p>
         `
-            );
+            });
         } catch (erroEmail) {
             console.error("Erro ao enviar email:", erroEmail.message);
         }
 
-        // ✅ resposta FINAL (isso é obrigatório)
+        // ✅ SEMPRE responde sucesso
         res.json({
             sucesso: true,
             pedidoId,
@@ -651,14 +649,15 @@ app.post('/esqueci-senha', async (req, res) => {
         // 3. Envia o e-mail
         const link = `https://pratica-api.onrender.com/redefinir-senha.html?token=${token}`;
 
-        await enviarEmail(
-            email,
-            'Recuperação de Senha - Prática Indústria & Comércio',
-            `<h3>Recuperação de Senha</h3>
-     <p>Você solicitou a alteração de senha. Clique no link abaixo para criar uma nova senha:</p>
-     <a href="${link}">${link}</a>
-     <p>Este link expira em 1 hora.</p>`
-        );
+        await transporter.sendMail({
+            from: process.env.EMAIL_USER,
+            to: email,
+            subject: 'Recuperação de Senha - Prática Indústria & Comércio',
+            html: `<h3>Recuperação de Senha</h3>
+                   <p>Você solicitou a alteração de senha. Clique no link abaixo para criar uma nova senha:</p>
+                   <a href="${link}">${link}</a>
+                   <p>Este link expira em 1 hora.</p>`
+        });
 
         res.json({ sucesso: true, msg: 'E-mail enviado com sucesso!' });
 
@@ -910,52 +909,55 @@ app.post('/webhook-mp', async (req, res) => {
 
                     // C) Envio do E-mail
                     try {
-                        await enviarEmail(
-                            pedido.email,
-                            'Pagamento aprovado! 🎉',
-                            `
-        <div style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: auto; line-height: 1.6;">
+                        await transporter.sendMail({
+                            from: process.env.EMAIL_USER,
+                            to: pedido.email,
+                            subject: 'Pagamento aprovado! 🎉',
+                            html: `
+                                <div style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: auto; line-height: 1.6;">
+            
+                                <h2 style="color: #2c2c2c;">Olá, ${pedido.nome}!</h2>
 
-        <h2 style="color: #2c2c2c;">Olá, ${pedido.nome}!</h2>
+                                <p>
+                                    Temos uma ótima notícia<br>
+                                    O pagamento do seu pedido <strong>#${pedidoId}</strong> foi confirmado com sucesso!
+                                </p>
 
-        <p>
-            Temos uma ótima notícia<br>
-            O pagamento do seu pedido <strong>#${pedidoId}</strong> foi confirmado com sucesso!
-        </p>
+                                <p>
+                                    A partir de agora, já iniciamos a separação e preparação dos seus produtos com todo o cuidado 💛
+                                </p>
 
-        <p>
-            A partir de agora, já iniciamos a separação e preparação dos seus produtos com todo o cuidado 💛
-        </p>
+                                <h3 style="margin-top: 24px;">🧾 Detalhes do pedido</h3>
+                                <ul style="padding-left: 18px;">
+                                    ${itensHtml}
+                                </ul>
 
-        <h3 style="margin-top: 24px;">🧾 Detalhes do pedido</h3>
-        <ul style="padding-left: 18px;">
-            ${itensHtml}
-        </ul>
+                                <p style="margin-top: 20px;">
+                                    📦 <strong>Envio:</strong><br>
+                                    Em até <strong>48 horas</strong>, você receberá um novo e-mail com o 
+                                    <strong>código de rastreamento</strong> para acompanhar cada etapa da entrega.
+                                </p>
 
-        <p style="margin-top: 20px;">
-            📦 <strong>Envio:</strong><br>
-            Em até <strong>48 horas</strong>, você receberá um novo e-mail com o 
-            <strong>código de rastreamento</strong>.
-        </p>
+                                <p>
+                                    Caso tenha qualquer dúvida ou precise de ajuda, é só responder este e-mail —  
+                                    teremos prazer em te atender 😊
+                                </p>
 
-        <p>
-            Caso tenha qualquer dúvida, é só responder este e-mail 😊
-        </p>
+                                <p style="margin-top: 24px;">
+                                    Obrigado por escolher a <strong>Prática Indústria & Comércio</strong>.<br>
+                                    Esperamos te ver novamente em breve!
+                                </p>
 
-        <p style="margin-top: 24px;">
-            Obrigado por escolher a <strong>Prática Indústria & Comércio</strong>
-        </p>
+                                <hr style="margin: 30px 0; border: none; border-top: 1px solid #ddd;">
 
-        <hr style="margin: 30px 0;">
-
-        <small>
-            Código da transação: ${paymentId}
-        </small>
-        </div>
-        `
-                        );
-
-                        console.log(`📧 Email enviado para: ${pedido.email}`);
+                                <small style="color: #777;">
+                                    Código da transação: ${paymentId}<br>
+                                    Este é um e-mail automático, mas estamos sempre por perto se precisar 😉
+                                </small>
+                            </div>
+                        `
+                        });
+                        console.log(`📧 E - mail enviado para: ${pedido.email} `);
                     } catch (emailErr) {
                         console.error('❌ Erro ao enviar e-mail:', emailErr.message);
                     }
