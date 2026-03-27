@@ -173,7 +173,7 @@ app.get('/teste-email', async (req, res) => {
     try {
         await transporter.sendMail({
             from: `"Teste" <${process.env.EMAIL_USER}>`,
-            to: "SEUEMAILAQUI@gmail.com",
+            to: "phpaiva0905@gmail.com",
             subject: "Teste email",
             text: "Se chegou, está funcionando"
         });
