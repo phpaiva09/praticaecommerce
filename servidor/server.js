@@ -315,14 +315,77 @@ app.post('/pedido', async (req, res) => {
             to: email,
             subject: 'Confirmação do seu pedido - Prática Indústria & Comércio',
             html: `
-        <h2>Olá, ${nome}!</h2>
-        <p>Recebemos seu pedido com sucesso! 🎉</p>
-        <p>
-            Agradecemos por escolher a <strong>Prática Indústria & Comércio</strong>.
-        </p>
-        <p><strong>Endereço:</strong> ${rua}, ${numero}</p>
-        <p><strong>Total:</strong> R$ ${valorTotal.toFixed(2)}</p>
-    `
+<div style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: auto; line-height: 1.6;">
+
+    <h2 style="color: #2c2c2c;">Olá, ${nome}!</h2>
+
+    <p>
+        Recebemos seu pedido com sucesso! 🛒<br>
+        Ele já está registrado em nosso sistema e aguardando o pagamento para ser processado.
+    </p>
+
+    <p>
+        💡 Assim que o pagamento for confirmado, iniciaremos a separação e envio dos seus produtos.
+    </p>
+
+    <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
+
+    <h3>📦 Resumo do seu pedido</h3>
+
+    <ul style="padding-left: 18px;">
+        ${itens.map(item => `
+            <li>
+                ${item.quantidade}x ${item.nome} 
+                - R$ ${Number(item.preco_unitario).toFixed(2)}
+            </li>
+        `).join('')}
+    </ul>
+
+    <p style="margin-top: 15px;">
+        <strong>Total:</strong><br>
+        R$ ${valorTotal.toFixed(2)}
+    </p>
+
+    <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
+
+    <h3>📍 Endereço de entrega</h3>
+    <p>
+        ${rua}, ${numero}<br>
+        ${cidade} - ${estado}<br>
+        CEP: ${cep}
+    </p>
+
+    <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
+
+    <p>
+        ⏳ <strong>Status do pedido:</strong> Aguardando pagamento
+    </p>
+
+    <p>
+        Para finalizar sua compra, realize o pagamento utilizando o método escolhido no site.
+    </p>
+
+    <p style="margin-top: 20px;">
+        ⚠️ Caso o pagamento não seja realizado, o pedido poderá ser cancelado automaticamente.
+    </p>
+
+    <p style="margin-top: 25px;">
+        Qualquer dúvida, estamos à disposição 😊
+    </p>
+
+    <p style="margin-top: 25px;">
+        Atenciosamente,<br>
+        <strong>Equipe Prática Indústria & Comércio</strong>
+    </p>
+
+    <hr style="margin: 30px 0; border: none; border-top: 1px solid #ddd;">
+
+    <small style="color: #777;">
+        Este é um e-mail automático. Por favor, não responda.
+    </small>
+
+</div>
+`
         })
             .then(() => {
                 console.log(`📧 E-mail enviado para: ${email}`);
