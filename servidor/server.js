@@ -60,16 +60,9 @@ db.connect(err => {
 });
 
 // ================== EMAIL ==================
-const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false,
-    family: 4, // 🔥 FORÇA IPv4
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-    }
-});
+const { Resend } = require('resend');
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 // ================== MERCADO PAGO ==================
 const MP_ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN;
@@ -171,11 +164,11 @@ app.post('/cadastro', async (req, res) => {
 
 app.get('/teste-email', async (req, res) => {
     try {
-        await transporter.sendMail({
-            from: `"Teste" <${process.env.EMAIL_USER}>`,
-            to: "phpaiva0905@gmail.com",
-            subject: "Teste email",
-            text: "Se chegou, está funcionando"
+        await resend.emails.send({
+            from: process.env.EMAIL_FROM,
+            to: 'phpaiva0905@gmail.com',
+            subject: 'Teste email',
+            html: '<h1>Se chegou, está funcionando 🚀</h1>'
         });
 
         res.send("Email enviado!");
@@ -317,8 +310,8 @@ app.post('/pedido', async (req, res) => {
         );
 
         // 5️⃣ Enviar email (ASSÍNCRONO - NÃO trava a resposta)
-        await transporter.sendMail({
-            from: `"Prática Indústria" <${process.env.EMAIL_USER}>`,
+        await resend.emails.send({
+            from: process.env.EMAIL_FROM,
             to: email,
             subject: 'Confirmação do seu pedido - Prática Indústria & Comércio',
             html: `
@@ -669,8 +662,8 @@ app.post('/esqueci-senha', async (req, res) => {
         // 3. Envia o e-mail
         const link = `https://pratica-api.onrender.com/redefinir-senha.html?token=${token}`;
 
-        await transporter.sendMail({
-            from: `"Prática Indústria" <${process.env.EMAIL_USER}>`,
+        await resend.emails.send({
+            from: process.env.EMAIL_FROM,
             to: email,
             subject: 'Recuperação de Senha - Prática Indústria & Comércio',
             html: `<h3>Recuperação de Senha</h3>
@@ -928,8 +921,8 @@ app.post('/webhook-mp', async (req, res) => {
                     );
 
                     // C) Envio do E-mail
-                    await transporter.sendMail({
-                        from: `"Prática Indústria" <${process.env.EMAIL_USER}>`,
+                    await resend.emails.send({
+                        from: process.env.EMAIL_FROM,
                         to: pedido.email,
                         subject: 'Pagamento aprovado! 🎉',
                         html: `
