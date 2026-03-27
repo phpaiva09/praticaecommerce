@@ -31,7 +31,12 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // ================== MIDDLEWARE ==================
-app.use(cors());
+app.use(cors({
+    origin: 'https://praticaecommerce.vercel.app',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true
+}));
+
 app.use(express.json({
     verify: (req, res, buf) => {
         req.rawBody = buf.toString();
