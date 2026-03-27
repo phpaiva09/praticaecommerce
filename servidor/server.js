@@ -56,16 +56,10 @@ db.connect(err => {
 
 // ================== EMAIL ==================
 const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false,
+    service: 'gmail',
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
-    },
-    family: 4, // 🔥 ISSO AQUI É O MAIS IMPORTANTE
-    tls: {
-        rejectUnauthorized: false
     }
 });
 
@@ -301,7 +295,7 @@ app.post('/pedido', async (req, res) => {
         // 5️⃣ Enviar email
         try {
             await transporter.sendMail({
-                from: process.env.EMAIL_USER,
+                from: `"Prática Indústria" <${process.env.EMAIL_USER}>`,
                 to: email,
                 subject: 'Confirmação do seu pedido - Prática Indústria & Comércio',
                 html: `
@@ -650,7 +644,7 @@ app.post('/esqueci-senha', async (req, res) => {
         const link = `https://pratica-api.onrender.com/redefinir-senha.html?token=${token}`;
 
         await transporter.sendMail({
-            from: process.env.EMAIL_USER,
+            from: `"Prática Indústria" <${process.env.EMAIL_USER}>`,
             to: email,
             subject: 'Recuperação de Senha - Prática Indústria & Comércio',
             html: `<h3>Recuperação de Senha</h3>
@@ -910,7 +904,7 @@ app.post('/webhook-mp', async (req, res) => {
                     // C) Envio do E-mail
                     try {
                         await transporter.sendMail({
-                            from: process.env.EMAIL_USER,
+                            from: `"Prática Indústria" <${process.env.EMAIL_USER}>`,
                             to: pedido.email,
                             subject: 'Pagamento aprovado! 🎉',
                             html: `
