@@ -24,7 +24,6 @@ const mysql = require('mysql2');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
 const axios = require('axios');
-const nodemailer = require('nodemailer');
 require('dotenv').config();
 
 const app = express();
