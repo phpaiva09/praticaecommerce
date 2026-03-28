@@ -216,6 +216,12 @@ html {
     /* Garante que a imagem caiba sem recortes e mantendo a proporção */
 }
 
+.descricao {
+    color:#555;
+    padding: 5rem 10rem 0rem 10rem;
+    font-size: 18px;
+}
+
 main {
     display: flex;
     justify-content: center;
