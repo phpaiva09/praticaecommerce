@@ -99,7 +99,11 @@
 
     <script>
         async function carregarPedidos() {
-            const resp = await fetch("https://pratica-api.onrender.com/admin/pedidos");
+            const resp = await fetch("https://pratica-api.onrender.com/admin/pedidos", {
+                headers: {
+                    "x-admin-key": "SUA_ADMIN_KEY_AQUI"
+                }
+            });
             const dados = await resp.json();
 
             const pedidos = {};
@@ -160,6 +164,15 @@
                     listaItens.appendChild(li);
                 });
 
+                // 🔹 RESTAURAR PEDIDOS MARCADOS COMO ENVIADOS
+                const enviados = JSON.parse(localStorage.getItem("pedidosEnviados")) || [];
+
+                const pedidoElement = clone.querySelector(".pedido");
+
+                if (enviados.includes(String(pedido.info.pedido_id))) {
+                    marcarComoEnviado(pedidoElement);
+                }
+
                 container.appendChild(clone);
             });
         }
@@ -167,13 +180,41 @@
 
     <script>
         document.addEventListener("click", (e) => {
+
             if (e.target.classList.contains("btn-enviado")) {
 
-                e.target.disabled = true;              // desabilita
-                e.target.textContent = "Enviado";      // muda texto
-                e.target.style.background = "#aaa";    // deixa cinza (opcional)
+                const pedido = e.target.closest(".pedido");
+
+                const pedidoId = pedido.querySelector(".pedido-id")
+                    .textContent.replace("Pedido #", "");
+
+                // pega lista salva
+                let enviados = JSON.parse(localStorage.getItem("pedidosEnviados")) || [];
+
+                // adiciona se ainda não existir
+                if (!enviados.includes(pedidoId)) {
+                    enviados.push(pedidoId);
+                }
+
+                // salva novamente
+                localStorage.setItem("pedidosEnviados", JSON.stringify(enviados));
+
+                marcarComoEnviado(pedido);
             }
         });
+
+        function marcarComoEnviado(pedido) {
+
+            const botao = pedido.querySelector(".btn-enviado");
+
+            pedido.style.opacity = "0.6";
+            pedido.style.border = "2px solid green";
+
+            botao.disabled = true;
+            botao.textContent = "Enviado";
+
+            pedido.querySelector(".pedido-status").textContent = "enviado";
+        }
     </script>
 
     <script>
