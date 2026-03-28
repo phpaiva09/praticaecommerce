@@ -1088,12 +1088,6 @@ app.post('/excluir-conta', async (req, res) => {
 });
 
 app.get("/admin/pedidos", async (req, res) => {
-
-    const adminKey = req.headers["x-admin-key"];
-
-    if (adminKey !== process.env.ADMIN_KEY) {
-        return res.status(403).json({ erro: "Acesso negado" });
-    }
     try {
         const [rows] = await db.promise().query(`
             SELECT 
@@ -1132,6 +1126,7 @@ app.get("/admin/pedidos", async (req, res) => {
         res.status(500).json({ sucesso: false });
     }
 });
+
 
 // ================== SERVER ==================
 app.listen(port, () => {
