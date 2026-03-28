@@ -99,25 +99,43 @@
 
     <script>
         async function carregarPedidos() {
-            const resp = await fetch("https://pratica-api.onrender.com/admin/pedidos");
-            const dados = await resp.json();
+            // ⚠️ IMPORTANTE: Esta chave deve ser IGUAL à que está no seu .env (ADMIN_KEY)
+            const ADMIN_KEY = "sua_chave_aqui";
 
-            const pedidos = {};
+            try {
+                const resp = await fetch("https://pratica-api.onrender.com/admin/pedidos", {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-admin-key': ADMIN_KEY // Envia a chave para passar pelo verifyAdmin
+                    }
+                });
 
-            dados.forEach(row => {
-                if (!pedidos[row.pedido_id]) {
-                    pedidos[row.pedido_id] = {
-                        info: row,
-                        itens: []
-                    };
+                if (!resp.ok) {
+                    throw new Error(`Erro: ${resp.status} - Verifique sua ADMIN_KEY ou o CORS.`);
                 }
 
-                if (row.item_id) {
-                    pedidos[row.pedido_id].itens.push(row);
-                }
-            });
+                const dados = await resp.json();
+                const pedidos = {};
 
-            renderPedidos(pedidos);
+                // Organiza os dados (Transforma as linhas do SQL em objetos de pedidos com arrays de itens)
+                dados.forEach(row => {
+                    if (!pedidos[row.pedido_id]) {
+                        pedidos[row.pedido_id] = {
+                            info: row,
+                            itens: []
+                        };
+                    }
+                    if (row.item_id) {
+                        pedidos[row.pedido_id].itens.push(row);
+                    }
+                });
+
+                renderPedidos(pedidos);
+            } catch (err) {
+                console.error("Falha ao carregar pedidos:", err);
+                document.getElementById("lista-pedidos").innerHTML = `<p style="color:red">Erro ao carregar: ${err.message}</p>`;
+            }
         }
     </script>
 

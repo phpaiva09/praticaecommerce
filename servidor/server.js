@@ -1087,44 +1087,27 @@ app.post('/excluir-conta', async (req, res) => {
     }
 });
 
-app.get("/admin/pedidos", async (req, res) => {
-    try {
-        const [rows] = await db.promise().query(`
-            SELECT 
-                p.id AS pedido_id,
-                p.nome,
-                p.telefone,
-                p.email,
-                p.rua,
-                p.numero,
-                p.cidade,
-                p.estado,
-                p.cep,
-                p.valor,
-                p.status,
-
-                i.id AS item_id,
-                i.produto_id,
-                i.quantidade,
-                i.preco_unitario,
-                i.subtotal,
-                i.cor,
-                i.imagem,
-
-                pr.nome AS produto_nome
-
-            FROM pedidos p
-            LEFT JOIN pedido_itens i ON p.id = i.pedido_id
-            LEFT JOIN produtos pr ON pr.id = i.produto_id
-            ORDER BY p.id DESC
-        `);
-
-        res.json(rows);
-
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ sucesso: false });
-    }
+// Endpoint para buscar pedidos (COM JOIN PARA TRAZER ITENS)
+app.get("/admin/pedidos", verifyAdmin, async (req, res) => {
+  try {
+    const sql = `
+      SELECT 
+        p.id AS pedido_id, p.nome, p.email, p.telefone, p.rua, p.numero, 
+        p.cidade, p.estado, p.cep, p.valor, p.status,
+        pi.id AS item_id, pi.produto_id, pi.quantidade, pi.preco_unitario, pi.cor,
+        prod.nome AS produto_nome
+      FROM pedidos p
+      LEFT JOIN pedido_itens pi ON p.id = pi.pedido_id
+      LEFT JOIN produtos prod ON pi.produto_id = prod.id
+      ORDER BY p.id DESC
+    `;
+    
+    const [rows] = await db.promise().query(sql);
+    res.json(rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Erro ao buscar pedidos no banco" });
+  }
 });
 
 
