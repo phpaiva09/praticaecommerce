@@ -270,6 +270,7 @@ app.post('/pedido', async (req, res) => {
 
         const pedidoId = pedidoResult.insertId;
         let valorTotal = 0;
+        let itensHtml = '';
 
         // 3️⃣ Processar itens
         for (const item of itens) {
