@@ -629,6 +629,10 @@ h3 {
         border: none;
     }
 
+    .cart-container {
+        width: 300px;
+    }
+
     footer p {
         font-size: 0.9rem;
         padding-top: 0.9rem;

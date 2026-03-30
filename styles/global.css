@@ -642,6 +642,10 @@ h3 {
         padding-right: 1rem;
     }
 
+    .cart-container {
+        width: 300px;
+    }
+
     .cols-4 {
         grid-template-columns: repeat(1, 1fr);
     }
