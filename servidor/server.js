@@ -292,6 +292,14 @@ app.post('/pedido', async (req, res) => {
 
             valorTotal += subtotal;
 
+             itensHtml += `
+                <li>
+                    ${produto.nome} (${item.cor}) 
+                    - ${quantidade}x 
+                    - R$ ${precoUnitario.toFixed(2)}
+                </li>
+            `;
+
             await db.promise().query(
                 `
         INSERT INTO pedido_itens
