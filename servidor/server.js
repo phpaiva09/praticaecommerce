@@ -34,6 +34,7 @@ const port = process.env.PORT || 3000;
 app.use(cors({
     origin: [
         'https://praticaecommerce.vercel.app',
+        'https://www.praticaindecom.com.br',
         'http://127.0.0.1:5502',
         'http://localhost:5502'
     ],
