@@ -270,8 +270,7 @@ app.post('/pedido', async (req, res) => {
 
         const pedidoId = pedidoResult.insertId;
         let valorTotal = 0;
-        let itensHtml = '';
-
+    
         // 3️⃣ Processar itens
         for (const item of itens) {
             const [prodRows] = await db.promise().query(
@@ -292,14 +291,6 @@ app.post('/pedido', async (req, res) => {
             const subtotal = precoUnitario * quantidade;
 
             valorTotal += subtotal;
-
-             itensHtml += `
-                <li>
-                    ${produto.nome} (${item.cor}) 
-                    - ${quantidade}x 
-                    - R$ ${precoUnitario.toFixed(2)}
-                </li>
-            `;
 
             await db.promise().query(
                 `
@@ -343,13 +334,6 @@ app.post('/pedido', async (req, res) => {
     <p>
         💡 Assim que o pagamento for confirmado, iniciaremos a separação e envio dos seus produtos.
     </p>
-
-    <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
-
-    <h3>🛒 Itens do seu pedido</h3>
-    <ul>
-        ${itensHtml}
-    </ul>
 
     <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
 
