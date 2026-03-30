@@ -31,7 +31,11 @@ const port = process.env.PORT || 3000;
 
 // ================== MIDDLEWARE ==================
 app.use(cors({
-    origin: 'https://praticaecommerce.vercel.app',
+    origin: [
+        'https://praticaecommerce.vercel.app',
+        'http://127.0.0.1:5502',
+        'http://localhost:5502'
+    ],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }));
@@ -1072,6 +1076,12 @@ app.post('/excluir-conta', async (req, res) => {
 });
 
 app.get("/admin/pedidos", async (req, res) => {
+
+    const adminKey = req.headers["x-admin-key"];
+
+    if (adminKey !== process.env.ADMIN_KEY) {
+        return res.status(403).json({ erro: "Acesso negado" });
+    }
     try {
         const [rows] = await db.promise().query(`
             SELECT 
