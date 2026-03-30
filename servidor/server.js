@@ -327,13 +327,20 @@ app.post('/pedido', async (req, res) => {
     <h2 style="color: #2c2c2c;">Olá, ${nome}!</h2>
 
     <p>
-        Recebemos seu pedido com sucesso! 🛒<br>
+        Recebemos seu pedido com sucesso!<br>
         Ele já está registrado em nosso sistema e aguardando o pagamento para ser processado.
     </p>
 
     <p>
         💡 Assim que o pagamento for confirmado, iniciaremos a separação e envio dos seus produtos.
     </p>
+
+    <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
+
+    <h3>🛒 Itens do seu pedido</h3>
+    <ul>
+        ${itensHtml}
+    </ul>
 
     <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
 
