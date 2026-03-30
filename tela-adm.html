@@ -98,35 +98,56 @@
     </footer>
 
     <script>
-        async function carregarPedidos() {
-            const resp = await fetch("https://pratica-api.onrender.com/admin/pedidos", {
-                headers: {
-                    "x-admin-key": "superchave123"
-                }
-            });
-
-            const dados = await resp.json();
-
-            const pedidos = {};
-
-            dados.forEach(row => {
-                if (!pedidos[row.pedido_id]) {
-                    pedidos[row.pedido_id] = {
-                        info: row,
-                        itens: []
-                    };
-                }
-
-                if (row.item_id) {
-                    pedidos[row.pedido_id].itens.push(row);
-                }
-            });
-
-            renderPedidos(pedidos);
+        function marcarComoEnviado(pedidoId) {
+            const enviados = JSON.parse(localStorage.getItem("pedidos_enviados")) || {};
+            enviados[`pedido_${pedidoId}`] = true;
+            localStorage.setItem("pedidos_enviados", JSON.stringify(enviados));
         }
-    </script>
 
-    <script>
+        function jaFoiEnviado(pedidoId) {
+            const enviados = JSON.parse(localStorage.getItem("pedidos_enviados")) || {};
+            return enviados[`pedido_${pedidoId}`];
+        }
+
+        async function carregarPedidos() {
+            try {
+                const resp = await fetch("https://pratica-api.onrender.com/admin/pedidos", {
+                    headers: {
+                        "x-admin-key": "superchave123"
+                    }
+                });
+
+                const dados = await resp.json();
+
+                // 🔴 evita erro do forEach
+                if (!Array.isArray(dados)) {
+                    console.error("Erro da API:", dados);
+                    alert("Erro ao carregar pedidos (403 ou chave inválida)");
+                    return;
+                }
+
+                const pedidos = {};
+
+                dados.forEach(row => {
+                    if (!pedidos[row.pedido_id]) {
+                        pedidos[row.pedido_id] = {
+                            info: row,
+                            itens: []
+                        };
+                    }
+
+                    if (row.item_id) {
+                        pedidos[row.pedido_id].itens.push(row);
+                    }
+                });
+
+                renderPedidos(pedidos);
+
+            } catch (err) {
+                console.error("Erro geral:", err);
+            }
+        }
+
         function renderPedidos(pedidos) {
             const container = document.getElementById("lista-pedidos");
             const template = document.getElementById("pedido-template");
@@ -137,7 +158,9 @@
 
                 const clone = template.content.cloneNode(true);
 
-                clone.querySelector(".pedido-id").textContent = `Pedido #${pedido.info.pedido_id}`;
+                const pedidoId = pedido.info.pedido_id;
+
+                clone.querySelector(".pedido-id").textContent = `Pedido #${pedidoId}`;
                 clone.querySelector(".pedido-nome").textContent = pedido.info.nome;
                 clone.querySelector(".pedido-email").textContent = pedido.info.email;
                 clone.querySelector(".pedido-telefone").textContent = pedido.info.telefone;
@@ -156,29 +179,34 @@
                 pedido.itens.forEach(item => {
                     const li = document.createElement("li");
 
-                    li.textContent = `
-                ${item.produto_nome} (${item.cor}) 
+                    li.textContent = `${item.produto_nome} (${item.cor}) 
                 - ${item.quantidade}x 
-                - R$ ${Number(item.preco_unitario).toFixed(2)}
-            `;
+                - R$ ${Number(item.preco_unitario).toFixed(2)}`;
 
                     listaItens.appendChild(li);
+                });
+
+                // 🔥 BOTÃO COM LOCAL STORAGE
+                const btn = clone.querySelector(".btn-enviado");
+
+                // se já foi enviado
+                if (jaFoiEnviado(pedidoId)) {
+                    btn.disabled = true;
+                    btn.textContent = "Enviado";
+                    btn.style.background = "#aaa";
+                }
+
+                btn.addEventListener("click", () => {
+                    marcarComoEnviado(pedidoId);
+
+                    btn.disabled = true;
+                    btn.textContent = "Enviado";
+                    btn.style.background = "#aaa";
                 });
 
                 container.appendChild(clone);
             });
         }
-    </script>
-
-    <script>
-        document.addEventListener("click", (e) => {
-            if (e.target.classList.contains("btn-enviado")) {
-
-                e.target.disabled = true;              // desabilita
-                e.target.textContent = "Enviado";      // muda texto
-                e.target.style.background = "#aaa";    // deixa cinza (opcional)
-            }
-        });
     </script>
 
     <script>
