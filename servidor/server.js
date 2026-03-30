@@ -25,6 +25,7 @@ const cors = require('cors');
 const bcrypt = require('bcrypt');
 const axios = require('axios');
 require('dotenv').config();
+const jwt = require('jsonwebtoken');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -47,6 +48,24 @@ app.use(express.json({
 }));
 
 const path = require('path'); // Adicione isso no topo do arquivo com os outros requires
+
+function verificarAdmin(req, res, next) {
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader) return res.sendStatus(401);
+
+    const token = authHeader.split(" ")[1];
+
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+        if (!decoded.admin) return res.sendStatus(403);
+
+        next();
+    } catch {
+        return res.sendStatus(403);
+    }
+}
 
 // Altere a linha do static para esta:
 app.use(express.static(path.join(__dirname, '..')));
@@ -1075,13 +1094,27 @@ app.post('/excluir-conta', async (req, res) => {
     }
 });
 
-app.get("/admin/pedidos", async (req, res) => {
+app.post('/admin/login', (req, res) => {
+    const { email, senha } = req.body;
 
-    const adminKey = req.headers["x-admin-key"];
+    // 🔒 ideal: vir do banco (vou simplificar)
+    if (
+        email === process.env.ADMIN_EMAIL &&
+        senha === process.env.ADMIN_PASSWORD
+    ) {
+        const token = jwt.sign(
+            { admin: true },
+            process.env.JWT_SECRET,
+            { expiresIn: '8h' }
+        );
 
-    if (adminKey !== process.env.ADMIN_KEY) {
-        return res.status(403).json({ erro: "Acesso negado" });
+        return res.json({ sucesso: true, token });
     }
+
+    res.status(401).json({ sucesso: false });
+});
+
+app.get("/admin/pedidos", verificarAdmin, async (req, res) => {
     try {
         const [rows] = await db.promise().query(`
             SELECT 

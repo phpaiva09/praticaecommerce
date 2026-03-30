@@ -111,18 +111,30 @@
 
         async function carregarPedidos() {
             try {
+                const token = localStorage.getItem("admin_token");
+
+                if (!token) {
+                    alert("Você precisa fazer login como admin!");
+                    return;
+                }
+
                 const resp = await fetch("https://pratica-api.onrender.com/admin/pedidos", {
                     headers: {
-                        "x-admin-key": "superchave123"
+                        "Authorization": "Bearer " + token
                     }
                 });
 
+                if (resp.status === 401 || resp.status === 403) {
+                    localStorage.removeItem("admin_token");
+                    alert("Sessão expirada. Faça login novamente.");
+                    window.location.href = "tela-adm.html";
+                    return;
+                }
+
                 const dados = await resp.json();
 
-                // 🔴 evita erro do forEach
                 if (!Array.isArray(dados)) {
                     console.error("Erro da API:", dados);
-                    alert("Erro ao carregar pedidos (403 ou chave inválida)");
                     return;
                 }
 
