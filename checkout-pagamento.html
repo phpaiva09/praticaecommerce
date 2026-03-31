@@ -100,6 +100,19 @@
 
                     <button onclick="copiarPix()">📋 Copiar Código PIX</button>
                 </div>
+                <div class="container-cartao">
+                    <h3>Pagar com Cartão</h3>
+
+                    <form id="form-cartao">
+                        <input type="text" id="cardNumber" placeholder="Número do cartão" required />
+                        <input type="text" id="cardHolderName" placeholder="Nome no cartão" required />
+                        <input type="text" id="expirationDate" placeholder="MM/YY" required />
+                        <input type="text" id="securityCode" placeholder="CVV" required />
+                        <input type="text" id="cpf" placeholder="CPF" required />
+
+                        <button type="submit">💳 Pagar com Cartão</button>
+                    </form>
+                </div>
             </div>
         </div>
     </main>
@@ -135,6 +148,85 @@
             <button id="modal-ok-erro" class="btn-ok">OK</button>
         </div>
     </div>
+
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+
+    <script>
+        // 🔴 COLOQUE SUA PUBLIC KEY REAL AQUI
+        const mp = new MercadoPago("SUA_PUBLIC_KEY_AQUI");
+
+        const form = document.getElementById("form-cartao");
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const cardNumber = document.getElementById("cardNumber").value;
+            const cardHolderName = document.getElementById("cardHolderName").value;
+            const expirationDate = document.getElementById("expirationDate").value;
+            const securityCode = document.getElementById("securityCode").value;
+            const cpf = document.getElementById("cpf").value;
+
+            // 🔴 VALIDAÇÃO BÁSICA
+            if (!cardNumber || !cardHolderName || !expirationDate || !securityCode || !cpf) {
+                return mostrarErro("Preencha todos os campos do cartão");
+            }
+
+            try {
+                // 💳 CRIAR TOKEN
+                const cardToken = await mp.createCardToken({
+                    cardNumber,
+                    cardholderName: cardHolderName,
+                    expirationDate,
+                    securityCode,
+                    identificationType: "CPF",
+                    identificationNumber: cpf
+                });
+
+                if (!cardToken.id) {
+                    return mostrarErro("Erro ao gerar token do cartão");
+                }
+
+                const pedidoId = localStorage.getItem("pedidoId");
+
+                if (!pedidoId) {
+                    return mostrarErro("Pedido não encontrado");
+                }
+
+                // 🔄 ENVIA PARA O BACKEND
+                const resp = await fetch(`https://pratica-api.onrender.com/pedido/${pedidoId}/cartao`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        token: cardToken.id,
+                        payment_method_id: cardToken.payment_method_id,
+                        cpf: cpf // 🔥 AGORA VAI PRO BACKEND
+                    })
+                });
+
+                const data = await resp.json();
+
+                if (data.sucesso) {
+                    if (data.status === "approved") {
+                        document.getElementById("modal-sucesso").style.display = "flex";
+                    }
+                    else if (data.status === "pending") {
+                        mostrarErro("Pagamento em análise");
+                    }
+                    else {
+                        mostrarErro("Pagamento recusado");
+                    }
+                } else {
+                    mostrarErro(data.msg || "Erro no pagamento");
+                }
+
+            } catch (err) {
+                console.error(err);
+                mostrarErro("Erro ao processar cartão");
+            }
+        });
+    </script>
 
     <script>
         // 1. Pegamos os dados crus do LocalStorage toda vez que a página carrega

@@ -767,6 +767,107 @@ app.post('/redefinir-senha', async (req, res) => {
     }
 });
 
+app.post('/pedido/:id/cartao', async (req, res) => {
+    try {
+        const pedidoId = req.params.id;
+        const { token, payment_method_id, cpf } = req.body;
+
+        // 🔴 Validação básica
+        if (!token || !payment_method_id) {
+            return res.status(400).json({
+                sucesso: false,
+                msg: 'Dados do cartão incompletos'
+            });
+        }
+
+        // 🔎 Buscar pedido
+        const [rows] = await db.promise().query(
+            'SELECT * FROM pedidos WHERE id = ?',
+            [pedidoId]
+        );
+
+        if (!rows.length) {
+            return res.status(404).json({
+                sucesso: false,
+                msg: 'Pedido não encontrado'
+            });
+        }
+
+        const pedido = rows[0];
+
+        // 🔴 Evita pagamento duplicado
+        if (pedido.status === 'pago') {
+            return res.json({
+                sucesso: false,
+                msg: 'Pedido já foi pago'
+            });
+        }
+
+        // 🔴 Valida valor
+        if (!pedido.valor || Number(pedido.valor) <= 0) {
+            return res.status(400).json({
+                sucesso: false,
+                msg: 'Valor inválido'
+            });
+        }
+
+        // 💳 Criação do pagamento
+        const pagamento = await axios.post(
+            'https://api.mercadopago.com/v1/payments',
+            {
+                transaction_amount: Number(pedido.valor),
+                token: token,
+                description: `Pedido #${pedidoId}`,
+                installments: 1,
+                payment_method_id: payment_method_id,
+
+                payer: {
+                    email: pedido.email,
+                    identification: {
+                        type: "CPF",
+                        number: cpf
+                    }
+                },
+
+                metadata: {
+                    pedido_id: pedidoId
+                }
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${MP_ACCESS_TOKEN}`,
+                    'Content-Type': 'application/json'
+                }
+            }
+        );
+
+        const status = pagamento.data.status;
+
+        // ✅ Se aprovado
+        if (status === 'approved') {
+            await db.promise().query(
+                'UPDATE pedidos SET status = "pago", payment_id = ? WHERE id = ?',
+                [pagamento.data.id, pedidoId]
+            );
+        }
+
+        // 🔄 Retorno completo
+        res.json({
+            sucesso: true,
+            status: status,
+            payment_id: pagamento.data.id
+        });
+
+    } catch (err) {
+        console.error("Erro MP:", err.response?.data || err.message);
+
+        res.status(500).json({
+            sucesso: false,
+            msg: err.response?.data?.message || 'Erro no pagamento com cartão'
+        });
+    }
+});
+
 // ================== GERAR PIX ==================
 app.post('/pedido/:id/pix', async (req, res) => {
     try {
