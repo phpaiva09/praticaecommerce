@@ -815,8 +815,34 @@ button#btn-ir-pedidos:focus {
         padding-top: 0rem;
     }
 
+    .logo-header {
+        font-size: 1.3rem;
+    }
+
+    .logo-header span {
+        font-size: 0.9rem;
+    }
+
+    .header-inner-content {
+        padding: 0;
+    }
+
+    .container-principal {
+        width: 100%;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
     .cart-container {
         width: 300px;
+    }
+
+    .nav-icon-container img {
+        width: 70px;
+    }
+
+    .nav-icon-container img:first-child {
+        margin-right: 0rem;
     }
 
     footer p {
