@@ -260,7 +260,7 @@ form#form-cartao input {
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 10px;
+    padding: 8px;
     margin: 8px 0;
     border: 1px solid #000;
     border-radius: 8px;
