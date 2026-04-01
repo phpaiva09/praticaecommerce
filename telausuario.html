@@ -150,12 +150,15 @@
         <div class="modal-conteudo">
             <h3>Confirmar Exclusão</h3>
             <p>Digite sua senha para confirmar:</p>
-            <input type="password" id="senhaConfirmacao" placeholder="Sua senha">
+            <form id="formExcluir">
+                <input type="password" id="senhaConfirmacao" placeholder="Sua senha">
 
-            <div class="modal-buttons">
-                <button id="confirmarDelete">Excluir</button>
-                <button id="cancelarExcluir">Cancelar</button>
-            </div>
+                <div class="modal-buttons">
+                    <button id="confirmarDelete">Excluir</button>
+                    <button id="cancelarExcluir">Cancelar</button>
+                </div>
+            </form>
+
             <p id="erroExcluir" class="erro"></p>
         </div>
     </div>
@@ -164,14 +167,16 @@
         <div class="modal-conteudo">
             <h3>Alterar senha</h3>
 
-            <input type="password" id="senhaAtual" placeholder="Senha atual">
-            <input type="password" id="novaSenha" placeholder="Nova senha">
-            <input type="password" id="confirmarSenha" placeholder="Confirmar nova senha">
+            <form id="formSenha">
+                <input type="password" id="senhaAtual" placeholder="Senha atual">
+                <input type="password" id="novaSenha" placeholder="Nova senha">
+                <input type="password" id="confirmarSenha" placeholder="Confirmar nova senha">
 
-            <div class="modal-buttons">
-                <button id="salvarSenha">Salvar</button>
-                <button id="cancelarSenha">Cancelar</button>
-            </div>
+                <div class="modal-buttons">
+                    <button id="salvarSenha">Salvar</button>
+                    <button id="cancelarSenha">Cancelar</button>
+                </div>
+            </form>
             <p id="erroSenha" class="erro"></p>
         </div>
     </div>
