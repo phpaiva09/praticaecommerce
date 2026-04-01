@@ -306,6 +306,7 @@ form#form-cartao input {
 #securityCode iframe {
     width: 100% !important;
     height: 37px !important;
+    padding-left: 10px;
     display: block;
 }
 
