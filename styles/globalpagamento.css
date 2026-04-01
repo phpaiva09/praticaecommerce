@@ -305,7 +305,7 @@ form#form-cartao input {
 #expirationDate iframe,
 #securityCode iframe {
     width: 100% !important;
-    height: 48px !important;
+    height: 37px !important;
     display: block;
 }
 
