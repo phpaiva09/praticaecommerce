@@ -168,10 +168,15 @@
             <h3>Alterar senha</h3>
 
             <form id="formSenha">
-                <input type="password" id="senhaAtual" placeholder="Senha atual" autocomplete="current-password">
-                <input type="password" id="novaSenha" placeholder="Nova senha" autocomplete="new-password">
-                <input type="password" id="confirmarSenha" placeholder="Confirmar nova senha"
-                    autocomplete="new-password">
+                <form>
+                    <input type="hidden" id="username" autocomplete="username">
+
+                    <input type="password" id="senhaAtual" placeholder="Senha atual" autocomplete="current-password">
+                    <input type="password" id="novaSenha" placeholder="Nova senha" autocomplete="new-password">
+                    <input type="password" id="confirmarSenha" placeholder="Confirmar nova senha"
+                        autocomplete="new-password">
+                </form>
+                autocomplete="new-password">
 
                 <div class="modal-buttons">
                     <button id="salvarSenha">Salvar</button>
