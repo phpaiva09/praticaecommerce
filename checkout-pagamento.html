@@ -213,10 +213,12 @@
                         qrCode: data.qrCode,
                         qrBase64: data.qrBase64
                     }));
-                    iniciarCartao();
                 } else {
                     mostrarErro(data.msg || "Erro ao carregar PIX");
                 }
+
+                iniciarCartao();
+                
             } catch (err) {
                 console.error("Erro ao gerar PIX:", err);
             }
