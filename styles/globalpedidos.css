@@ -700,10 +700,8 @@ strong {
         position: fixed;
         top: 84px;
         left: 0;
-        width: 100%;
-        /* ✅ em vez de right: 0 */
-        max-width: 100%;
-        /* 🔥 segurança extra */
+        width: 100%; /* ✅ em vez de right: 0 */
+        max-width: 100%; /* 🔥 segurança extra */
         background: #2c2c2c;
         z-index: 9999;
         overflow-x: hidden;
@@ -712,24 +710,20 @@ strong {
     nav ul {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        /* 🔥 centraliza todos os itens */
+        align-items: center; /* 🔥 centraliza todos os itens */
         width: 100%;
     }
 
-    #user-nav a,
+    #user-nav a, 
     #user-nav span {
-        width: auto !important;
-        /* Impede que ele tente ocupar a tela toda */
-        display: inline-block !important;
-        padding: 0 5px !important;
-        /* Remove aquele padding gigante de 2rem */
+        width: auto !important;   /* Impede que ele tente ocupar a tela toda */
+        display: inline-block !important; 
+        padding: 0 5px !important; /* Remove aquele padding gigante de 2rem */
         margin: 0;
     }
 
     #user-nav {
-        gap: 0;
-        /* Ajuste o espaço entre o Olá e o Sair aqui se precisar */
+        gap: 0; /* Ajuste o espaço entre o Olá e o Sair aqui se precisar */
         display: flex;
         justify-content: center;
         margin: 1rem;
@@ -747,10 +741,6 @@ strong {
     nav ul li a h3 {
         margin: 0;
         padding: 1.2rem 2rem;
-    }
-
-    .item-info span {
-        margin-right: 0;
     }
 
     .logo-header {
