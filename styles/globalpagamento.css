@@ -265,6 +265,7 @@ form#form-cartao input {
     border: 1px solid #000;
     border-radius: 8px;
     outline: none;
+    font-size: 20px;
 }
 
 #form-cartao button {
@@ -307,7 +308,6 @@ form#form-cartao input {
     width: 100% !important;
     height: 37px !important;
     padding-left: 10px;
-    font-size: 10px;
     display: block;
 }
 
