@@ -1047,6 +1047,14 @@ input#senhaConfirmacao {
         width: 70px;
     }
 
+    .meus-pedidos-link {
+        font-weight: 300;
+    }
+
+    button#btnExcluirConta {
+        font-weight: 300;
+    }
+
     .nav-icon-container img:first-child {
         margin-right: 0rem;
     }
