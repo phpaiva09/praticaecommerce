@@ -218,7 +218,7 @@
                 }
 
                 iniciarCartao();
-                
+
             } catch (err) {
                 console.error("Erro ao gerar PIX:", err);
             }
@@ -295,6 +295,14 @@
                 },
 
                 callbacks: {
+                    onFormMounted: (error) => {
+                        if (error) {
+                            console.warn("Erro ao montar formulário:", error);
+                        } else {
+                            console.log("Formulário de cartão montado");
+                        }
+                    },
+
                     onSubmit: async (event) => {
                         event.preventDefault();
 
