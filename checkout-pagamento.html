@@ -380,7 +380,7 @@
                                 if (result.status === "approved") {
                                     document.getElementById("modal-sucesso").style.display = "flex";
                                 } else if (result.status === "pending" || result.status === "in_process") {
-                                    mostrarErro("Pagamento em análise");
+                                    mostrarErro("Pagamento enviado com sucesso e está em análise. Você será avisado quando houver confirmação.");
                                 } else {
                                     mostrarErro(result.msg || "Pagamento recusado");
                                 }
