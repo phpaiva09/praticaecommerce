@@ -294,7 +294,7 @@ form#form-cartao input {
     width: 100%;
     height: 37px;
     margin: 8px 0;
-    margin-top: -10px;
+    padding-top: -10px;
     border: 1px solid #000;
     border-radius: 8px;
     background: #fff;
