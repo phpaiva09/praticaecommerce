@@ -988,6 +988,18 @@ input#senhaConfirmacao {
         padding: 1.2rem 2rem;
     }
 
+    .logo-header {
+        font-size: 1.3rem;
+    }
+
+    .logo-header span {
+        font-size: 0.9rem;
+    }
+
+    .header-inner-content {
+        padding: 0;
+    }
+
     .card-acesso,
     .card-dados,
     .card-dados-pessoais {
