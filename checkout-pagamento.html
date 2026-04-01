@@ -112,7 +112,7 @@
                         <input type="email" id="email" placeholder="Email" />
 
                         <select id="identificationType"></select>
-                        <input type="text" id="cpf" placeholder="CPF" />
+                        <input type="text" id="cpf" placeholder="Número do Documento" />
 
                         <select id="issuer"></select>
                         <select id="installments"></select>
@@ -336,6 +336,10 @@
                             console.warn("Erro ao montar formulário:", error);
                             return;
                         }
+
+                        document.getElementById("issuer").innerHTML = '<option value="">Emissor</option>';
+                        document.getElementById("installments").innerHTML = '<option value="">Parcelas</option>';
+                        
                         console.log("Formulário de cartão montado");
                     },
 

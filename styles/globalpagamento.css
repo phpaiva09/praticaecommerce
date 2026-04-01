@@ -291,14 +291,21 @@ form#form-cartao input {
 #cardNumber,
 #expirationDate,
 #securityCode {
-    display: flex;
-    flex-direction: column;
     width: 100%;
-    padding: 10px;
+    height: 48px;
     margin: 8px 0;
     border: 1px solid #000;
     border-radius: 8px;
-    outline: none;
+    background: #fff;
+    overflow: hidden;
+}
+
+#cardNumber iframe,
+#expirationDate iframe,
+#securityCode iframe {
+    width: 100% !important;
+    height: 48px !important;
+    display: block;
 }
 
 footer {
