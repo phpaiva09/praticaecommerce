@@ -770,17 +770,22 @@ app.post('/redefinir-senha', async (req, res) => {
 app.post('/pedido/:id/cartao', async (req, res) => {
     try {
         const pedidoId = req.params.id;
-        const { token, payment_method_id, cpf } = req.body;
+        const {
+            token,
+            payment_method_id,
+            issuer_id,
+            installments,
+            cpf,
+            email
+        } = req.body;
 
-        // 🔴 Validação básica
-        if (!token || !payment_method_id) {
+        if (!token || !payment_method_id || !cpf) {
             return res.status(400).json({
                 sucesso: false,
                 msg: 'Dados do cartão incompletos'
             });
         }
 
-        // 🔎 Buscar pedido
         const [rows] = await db.promise().query(
             'SELECT * FROM pedidos WHERE id = ?',
             [pedidoId]
@@ -795,7 +800,6 @@ app.post('/pedido/:id/cartao', async (req, res) => {
 
         const pedido = rows[0];
 
-        // 🔴 Evita pagamento duplicado
         if (pedido.status === 'pago') {
             return res.json({
                 sucesso: false,
@@ -803,7 +807,6 @@ app.post('/pedido/:id/cartao', async (req, res) => {
             });
         }
 
-        // 🔴 Valida valor
         if (!pedido.valor || Number(pedido.valor) <= 0) {
             return res.status(400).json({
                 sucesso: false,
@@ -811,39 +814,42 @@ app.post('/pedido/:id/cartao', async (req, res) => {
             });
         }
 
-        // 💳 Criação do pagamento
-        const pagamento = await axios.post(
-            'https://api.mercadopago.com/v1/payments',
-            {
-                transaction_amount: Number(pedido.valor),
-                token: token,
-                description: `Pedido #${pedidoId}`,
-                installments: 1,
-                payment_method_id: payment_method_id,
-
-                payer: {
-                    email: pedido.email,
-                    identification: {
-                        type: "CPF",
-                        number: cpf
-                    }
-                },
-
-                metadata: {
-                    pedido_id: pedidoId
+        const pagamentoBody = {
+            transaction_amount: Number(pedido.valor),
+            token,
+            description: `Pedido #${pedidoId}`,
+            installments: Number(installments) || 1,
+            payment_method_id,
+            payer: {
+                email: email || pedido.email,
+                identification: {
+                    type: "CPF",
+                    number: cpf
                 }
             },
+            metadata: {
+                pedido_id: pedidoId
+            }
+        };
+
+        if (issuer_id) {
+            pagamentoBody.issuer_id = issuer_id;
+        }
+
+        const pagamento = await axios.post(
+            'https://api.mercadopago.com/v1/payments',
+            pagamentoBody,
             {
                 headers: {
                     Authorization: `Bearer ${MP_ACCESS_TOKEN}`,
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'X-Idempotency-Key': uuidv4()
                 }
             }
         );
 
         const status = pagamento.data.status;
 
-        // ✅ Se aprovado
         if (status === 'approved') {
             await db.promise().query(
                 'UPDATE pedidos SET status = "pago", payment_id = ? WHERE id = ?',
@@ -851,10 +857,9 @@ app.post('/pedido/:id/cartao', async (req, res) => {
             );
         }
 
-        // 🔄 Retorno completo
         res.json({
             sucesso: true,
-            status: status,
+            status,
             payment_id: pagamento.data.id
         });
 
