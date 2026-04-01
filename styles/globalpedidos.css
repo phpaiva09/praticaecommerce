@@ -755,6 +755,10 @@ strong {
         padding: 0;
     }
 
+    nav ul li#user-nav {
+        padding: 0;
+    }
+
     .container-principal {
         width: 100%;
         padding-left: 1rem;
