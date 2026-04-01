@@ -268,10 +268,6 @@ form#form-cartao input {
     font-size: 17px;
 }
 
-input#cpf {
-    margin-bottom: 20px;
-}
-
 #form-cartao button {
         display: flex;
         flex-direction: column;
@@ -317,8 +313,8 @@ input#cpf {
 }
 
 #filtro {
-  padding: 8px 12px;
-  border-radius: 6px;
+  padding: 10px 14px;
+  border-radius: 10px;
   border: 1px solid #ddd;
   background: #fff;
   font-size: 14px;
