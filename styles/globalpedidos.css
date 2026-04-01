@@ -149,7 +149,7 @@ header {
 
 
 main {
-    flex: 1; 
+    flex: 1;
 }
 
 
@@ -343,25 +343,25 @@ h3 {
 
 
 details summary {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 15px;
-  font-weight: 500;
-  color: #111;
-  gap: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #111;
+    gap: 12px;
 }
 
 details summary::after {
-  content: "›";
-  font-size: 20px;
-  transform: rotate(0deg);
-  transition: transform 0.25s ease;
-  color: #555;
+    content: "›";
+    font-size: 20px;
+    transform: rotate(0deg);
+    transition: transform 0.25s ease;
+    color: #555;
 }
 
 details[open] summary::after {
-  transform: rotate(-270deg);
+    transform: rotate(-270deg);
 }
 
 details {
@@ -370,131 +370,133 @@ details {
 }
 
 .header-pedidos {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
 }
 
 .header-pedidos h2 {
-  font-size: 22px;
-  font-weight: 500;
-  color: #111;
+    font-size: 22px;
+    font-weight: 500;
+    color: #111;
 }
 
 .pedido {
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 15px;
-  margin-bottom: 15px;
-  line-height: 2.5rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 15px;
+    line-height: 2.5rem;
 }
 
 .pedido-card {
-  background: #fff;
-  border-radius: 10px;
-  padding: 18px 20px;
-  margin-bottom: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    background: #fff;
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 .pedido-header {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .pedido-topo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .pedido-topo h3 {
-  font-size: 16px;
-  font-weight: 500;
-  color: #111;
+    font-size: 16px;
+    font-weight: 500;
+    color: #111;
 }
 
 .pedido-status {
-  font-size: 13px;
-  padding: 4px 10px;
-  border-radius: 20px;
-  background: #f5f5f5;
-  color: #555;
+    font-size: 13px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: #f5f5f5;
+    color: #555;
 }
 
 .pedido-total {
-  font-weight: 600;
-  font-size: 15px;
-  color: #111;
+    font-weight: 600;
+    font-size: 15px;
+    color: #111;
 }
 
 .pedido-img {
-  width: 60px;
-  height: 60px;
-  background: #fff;   /* fundo neutro */
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;        /* não deixa esmagar */
+    width: 60px;
+    height: 60px;
+    background: #fff;
+    /* fundo neutro */
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    /* não deixa esmagar */
 }
 
 .pedido-img img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain; 
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
 }
 
 .item {
-  line-height: 70px;
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  margin-top: 10px;
+    line-height: 70px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 10px;
 }
 
 .lista-itens {
-  margin-top: 15px;
+    margin-top: 15px;
 }
 
 .item-pedido {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 0;
-  border-top: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-top: 1px solid #eee;
 }
 
 .item-pedido img {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
 }
 
 .item-info {
-  font-size: 14px;
-  color: #333;
+    font-size: 14px;
+    color: #333;
 }
 
 .ver-itens {
-  background: none;
-  border: none;
-  color: #000;
-  font-size: 13px;
-  cursor: pointer;
-  padding: 0;
-  margin-top: 8px;
+    background: none;
+    border: none;
+    color: #000;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 0;
+    margin-top: 8px;
 }
 
 .ver-itens:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 .pedido-card:hover {
-  transform: translateY(-2px);
-  transition: 0.2s;
+    transform: translateY(-2px);
+    transition: 0.2s;
 }
 
 .container-principal {
@@ -511,13 +513,17 @@ details {
 }
 
 #filtro {
-  padding: 8px 35px 8px 12px;
-  border-radius: 6px;
-  border: 1px solid #ddd;
-  background: #fff;
-  font-size: 14px;
-  cursor: pointer;
-  outline: none;
+    padding: 8px 35px 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    background: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='20' viewBox='0 0 20 20' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M5 7l5 5 5-5H5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
 }
 
 strong {
@@ -646,14 +652,15 @@ strong {
         max-width: 100%;
     }
 
-    html, body {
+    html,
+    body {
         height: 100%;
         display: flex;
         flex-direction: column;
         overflow-x: hidden;
     }
 
-    main, 
+    main,
     .container-principal {
         flex: 1;
         margin-top: -1rem;
@@ -693,8 +700,10 @@ strong {
         position: fixed;
         top: 84px;
         left: 0;
-        width: 100%; /* ✅ em vez de right: 0 */
-        max-width: 100%; /* 🔥 segurança extra */
+        width: 100%;
+        /* ✅ em vez de right: 0 */
+        max-width: 100%;
+        /* 🔥 segurança extra */
         background: #2c2c2c;
         z-index: 9999;
         overflow-x: hidden;
@@ -703,20 +712,24 @@ strong {
     nav ul {
         display: flex;
         flex-direction: column;
-        align-items: center; /* 🔥 centraliza todos os itens */
+        align-items: center;
+        /* 🔥 centraliza todos os itens */
         width: 100%;
     }
 
-    #user-nav a, 
+    #user-nav a,
     #user-nav span {
-        width: auto !important;   /* Impede que ele tente ocupar a tela toda */
-        display: inline-block !important; 
-        padding: 0 5px !important; /* Remove aquele padding gigante de 2rem */
+        width: auto !important;
+        /* Impede que ele tente ocupar a tela toda */
+        display: inline-block !important;
+        padding: 0 5px !important;
+        /* Remove aquele padding gigante de 2rem */
         margin: 0;
     }
 
     #user-nav {
-        gap: 0; /* Ajuste o espaço entre o Olá e o Sair aqui se precisar */
+        gap: 0;
+        /* Ajuste o espaço entre o Olá e o Sair aqui se precisar */
         display: flex;
         justify-content: center;
         margin: 1rem;
