@@ -151,7 +151,7 @@
             <h3>Confirmar Exclusão</h3>
             <p>Digite sua senha para confirmar:</p>
             <form id="formExcluir">
-                <input type="password" id="senhaConfirmacao" placeholder="Sua senha">
+                <input type="password" id="senhaConfirmacao" placeholder="Sua senha" autocomplete="current-password">
 
                 <div class="modal-buttons">
                     <button id="confirmarDelete">Excluir</button>
@@ -168,9 +168,10 @@
             <h3>Alterar senha</h3>
 
             <form id="formSenha">
-                <input type="password" id="senhaAtual" placeholder="Senha atual">
-                <input type="password" id="novaSenha" placeholder="Nova senha">
-                <input type="password" id="confirmarSenha" placeholder="Confirmar nova senha">
+                <input type="password" id="senhaAtual" placeholder="Senha atual" autocomplete="current-password">
+                <input type="password" id="novaSenha" placeholder="Nova senha" autocomplete="new-password">
+                <input type="password" id="confirmarSenha" placeholder="Confirmar nova senha"
+                    autocomplete="new-password">
 
                 <div class="modal-buttons">
                     <button id="salvarSenha">Salvar</button>
@@ -185,9 +186,9 @@
         <div class="modal-conteudo">
             <h3>Alterar Email</h3>
 
-            <input type="email" id="emailAtual" placeholder="Email atual">
-            <input type="email" id="novoEmail" placeholder="Novo email">
-            <input type="email" id="confirmarEmail" placeholder="Confirmar novo email">
+            <input type="email" id="emailAtual" placeholder="Email atual" autocomplete="email">
+            <input type="email" id="novoEmail" placeholder="Novo email" autocomplete="email">
+            <input type="email" id="confirmarEmail" placeholder="Confirmar novo email" autocomplete="email">
 
             <div class="modal-buttons">
                 <button id="salvarEmail">Salvar</button>
@@ -201,9 +202,9 @@
         <div class="modal-conteudo">
             <h3>Alterar Telefone</h3>
 
-            <input type="telefone" id="telefoneAtual" placeholder="Telefone atual">
-            <input type="telefone" id="novoTelefone" placeholder="Novo telefone">
-            <input type="telefone" id="confirmarTelefone" placeholder="Confirmar novo telefone">
+            <input type="tel" id="telefoneAtual" placeholder="Telefone atual" autocomplete="tel">
+            <input type="tel" id="novoTelefone" placeholder="Novo telefone" autocomplete="tel">
+            <input type="tel" id="confirmarTelefone" placeholder="Confirmar novo telefone" autocomplete="tel">
 
             <div class="modal-buttons">
                 <button id="salvarTelefone">Salvar</button>
@@ -217,9 +218,9 @@
         <div class="modal-conteudo">
             <h3>Alterar Nome</h3>
 
-            <input type="nome" id="nomeAtual" placeholder="Nome atual">
-            <input type="nome" id="novoNome" placeholder="Novo nome completo">
-            <input type="nome" id="confirmarNome" placeholder="Confirmar novo nome">
+            <input type="text" id="nomeAtual" placeholder="Nome atual" autocomplete="name">
+            <input type="text" id="novoNome" placeholder="Novo nome completo" autocomplete="name">
+            <input type="text" id="confirmarNome" placeholder="Confirmar novo nome" autocomplete="name">
 
             <div class="modal-buttons">
                 <button id="salvarNome">Salvar</button>
