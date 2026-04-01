@@ -1013,13 +1013,13 @@ input#senhaConfirmacao {
     .container-subtitle a {
         margin-top: 1rem;
         margin-bottom: 1rem;
+        font-weight: 400;
     }
 
     .meus-pedidos-link {
         position: static; /* 🔥 tira o absolute só no mobile */
         width: 100%; /* opcional: deixa tipo botão grande */
         text-align: center;
-        font-weight: 400;
     }
 
     .logo-header {
