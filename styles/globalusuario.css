@@ -1019,6 +1019,7 @@ input#senhaConfirmacao {
         position: static; /* 🔥 tira o absolute só no mobile */
         width: 100%; /* opcional: deixa tipo botão grande */
         text-align: center;
+        font-weight: 400;
     }
 
     .logo-header {
@@ -1045,23 +1046,6 @@ input#senhaConfirmacao {
 
     .nav-icon-container img {
         width: 70px;
-    }
-
-    .meus-pedidos-link {
-        position: absolute;
-        top: 0;
-        right: 0;
-        font-size: 0.5rem;
-        color: #2c2c2c;
-        text-decoration: none;
-        font-weight: 400;
-        padding: 6px 12px;
-        border: 1.5px solid #2c2c2c;
-        border-radius: 8px;
-        transition: background-color 0.3s ease, color 0.3s ease;
-        cursor: pointer;
-        width: 170px;
-        text-align: center;
     }
 
     button#btnExcluirConta {
