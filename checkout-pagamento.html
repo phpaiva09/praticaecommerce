@@ -104,13 +104,18 @@
                     <h3>Pagar com Cartão</h3>
 
                     <form id="form-cartao">
-                        <input type="text" id="cardNumber" placeholder="Número do cartão" required />
-                        <input type="text" id="cardHolderName" placeholder="Nome no cartão" required />
-                        <input type="text" id="expirationDate" placeholder="MM/YY" required />
-                        <input type="text" id="securityCode" placeholder="CVV" required />
-                        <input type="text" id="cpf" placeholder="CPF" required />
+                        <div id="cardNumber"></div>
+                        <div id="expirationDate"></div>
+                        <div id="securityCode"></div>
 
-                        <button type="submit">💳 Pagar com Cartão</button>
+                        <input type="text" id="cardholderName" placeholder="Nome no cartão" />
+                        <input type="email" id="email" placeholder="Email" />
+                        <input type="text" id="cpf" placeholder="CPF" />
+
+                        <select id="issuer"></select>
+                        <select id="installments"></select>
+
+                        <button type="submit">💳 Pagar</button>
                     </form>
                 </div>
             </div>
@@ -150,83 +155,6 @@
     </div>
 
     <script src="https://sdk.mercadopago.com/js/v2"></script>
-
-    <script>
-        // 🔴 COLOQUE SUA PUBLIC KEY REAL AQUI
-        const mp = new MercadoPago("APP_USR-cffbfba8-9701-459a-a965-4f20557ae752");
-
-        const form = document.getElementById("form-cartao");
-
-        form.addEventListener("submit", async (e) => {
-            e.preventDefault();
-
-            const cardNumber = document.getElementById("cardNumber").value;
-            const cardHolderName = document.getElementById("cardHolderName").value;
-            const expirationDate = document.getElementById("expirationDate").value;
-            const securityCode = document.getElementById("securityCode").value;
-            const cpf = document.getElementById("cpf").value;
-
-            // 🔴 VALIDAÇÃO BÁSICA
-            if (!cardNumber || !cardHolderName || !expirationDate || !securityCode || !cpf) {
-                return mostrarErro("Preencha todos os campos do cartão");
-            }
-
-            try {
-                // 💳 CRIAR TOKEN
-                const cardToken = await mp.createCardToken({
-                    cardNumber,
-                    cardholderName: cardHolderName,
-                    expirationDate,
-                    securityCode,
-                    identificationType: "CPF",
-                    identificationNumber: cpf
-                });
-
-                if (!cardToken.id) {
-                    return mostrarErro("Erro ao gerar token do cartão");
-                }
-
-                const pedidoId = localStorage.getItem("pedidoId");
-
-                if (!pedidoId) {
-                    return mostrarErro("Pedido não encontrado");
-                }
-
-                // 🔄 ENVIA PARA O BACKEND
-                const resp = await fetch(`https://pratica-api.onrender.com/pedido/${pedidoId}/cartao`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        token: cardToken.id,
-                        payment_method_id: cardToken.payment_method_id,
-                        cpf: cpf // 🔥 AGORA VAI PRO BACKEND
-                    })
-                });
-
-                const data = await resp.json();
-
-                if (data.sucesso) {
-                    if (data.status === "approved") {
-                        document.getElementById("modal-sucesso").style.display = "flex";
-                    }
-                    else if (data.status === "pending") {
-                        mostrarErro("Pagamento em análise");
-                    }
-                    else {
-                        mostrarErro("Pagamento recusado");
-                    }
-                } else {
-                    mostrarErro(data.msg || "Erro no pagamento");
-                }
-
-            } catch (err) {
-                console.error(err);
-                mostrarErro("Erro ao processar cartão");
-            }
-        });
-    </script>
 
     <script>
         // 1. Pegamos os dados crus do LocalStorage toda vez que a página carrega
@@ -285,6 +213,7 @@
                         qrCode: data.qrCode,
                         qrBase64: data.qrBase64
                     }));
+                    iniciarCartao();
                 } else {
                     mostrarErro(data.msg || "Erro ao carregar PIX");
                 }
@@ -341,7 +270,62 @@
         btnModalOkErro.addEventListener('click', () => {
             modalErro.style.display = 'none';
         });
+
+        const mp = new MercadoPago("APP_USR-cffbfba8-9701-459a-a965-4f20557ae752");
+
+        function iniciarCartao() {
+            const valor = parseFloat(valorFinal).toFixed(2);
+
+            const cardForm = mp.cardForm({
+                amount: valor,
+
+                form: {
+                    id: "form-cartao",
+                    cardNumber: { id: "cardNumber" },
+                    expirationDate: { id: "expirationDate" },
+                    securityCode: { id: "securityCode" },
+                    cardholderName: { id: "cardholderName" },
+                    issuer: { id: "issuer" },
+                    installments: { id: "installments" },
+                    identificationType: { id: "cpf" },
+                    identificationNumber: { id: "cpf" },
+                    cardholderEmail: { id: "email" }
+                },
+
+                callbacks: {
+                    onSubmit: async (event) => {
+                        event.preventDefault();
+
+                        const data = cardForm.getCardFormData();
+                        const pedidoId = localStorage.getItem("pedidoId");
+
+                        const resp = await fetch(`https://pratica-api.onrender.com/pedido/${pedidoId}/cartao`, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({
+                                token: data.token,
+                                payment_method_id: data.paymentMethodId,
+                                issuer_id: data.issuerId,
+                                installments: Number(data.installments),
+                                cpf: data.identificationNumber
+                            })
+                        });
+
+                        const result = await resp.json();
+
+                        if (result.sucesso && result.status === "approved") {
+                            document.getElementById("modal-sucesso").style.display = "flex";
+                        } else {
+                            mostrarErro(result.msg || "Erro no pagamento");
+                        }
+                    }
+                }
+            });
+        }
     </script>
+
 
     <script>
         const navbar = document.querySelector(".navbar");
