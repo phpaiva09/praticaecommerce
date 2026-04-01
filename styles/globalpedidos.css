@@ -505,7 +505,13 @@ details {
 }
 
 #filtro {
-  padding: 8px 12px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+#filtro {
+  padding: 8px 35px 8px 12px;
   border-radius: 6px;
   border: 1px solid #ddd;
   background: #fff;
