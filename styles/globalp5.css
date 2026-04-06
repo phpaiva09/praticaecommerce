@@ -942,6 +942,12 @@ h3 {
         margin-right: 0rem;
     }
 
+    footer {
+        padding: 10px 10px;
+        height: auto;
+        min-height: unset;
+    }
+
     footer p {
         font-size: 0.9rem;
         padding-top: 0.9rem;

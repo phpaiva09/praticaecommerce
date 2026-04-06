@@ -670,6 +670,12 @@ h3 {
         grid-template-columns: repeat(1, 1fr);
     }
 
+    footer {
+        padding: 10px 10px;
+        height: auto;
+        min-height: unset;
+    }
+
     footer p {
         font-size: 0.9rem;
         padding-top: 0.9rem;

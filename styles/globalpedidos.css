@@ -776,4 +776,10 @@ strong {
     .nav-icon-container img:first-child {
         margin-right: 0rem;
     }
+
+    footer {
+        padding: 10px 10px;
+        height: auto;
+        min-height: unset;
+    }
 }
