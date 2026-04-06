@@ -726,7 +726,7 @@ strong {
         gap: 0; /* Ajuste o espaço entre o Olá e o Sair aqui se precisar */
         display: flex;
         justify-content: center;
-        margin: 1rem;
+        margin: 0;
     }
 
     nav ul li {
