@@ -135,88 +135,102 @@ nav ul li:hover:not(#user-nav) {
     display: none;
 }
 
-main {
-    flex: 1;
+.pagina-politica {
+    background-color: #f5f5f5;
+    padding: 110px 20px 60px;
+    min-height: 100vh;
 }
 
-.conteiner-principal {
-    background-color: #fff;
-    text-align: center;
-    line-height: 2.5rem;
-    max-width: 400px;
-    margin: 6.5rem auto 0rem;
-    border: 2px solid #2c2c2c;
-    border-radius: 10px;
-    padding: 2rem;
-    flex: 1;
-}
-
-.conteiner-principal a {
-    text-decoration: none;
-    color: black;
-}
-
-.text-a {
-    display: flex;
-    flex-direction: column;
-    line-height: 35px;
-    margin-top: 10px;
-}
-
-.esqueci-senha {
-    margin-top: -15px;
-}
-
-h2 {
-    margin-bottom: 1.5rem;
-}
-
-.input {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* centraliza os inputs */
-    gap: 0.5rem;
-    /* espaço entre eles */
-    width: 100%;
-}
-
-input {
-    outline: none;
-    border: 1px solid black;
-    /* borda preta sólida */
-    border-radius: 999px;
-    line-height: 1.5rem;
-    padding: 0.4rem 0.8rem;
-    width: 15rem;
-}
-
-.conteiner-criar-enviar {
-    line-height: 50px;
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: column;
-}
-
-button {
+.politica-container {
+    max-width: 950px;
     margin: 0 auto;
-    width: 15rem;
-    background-color: #926c15;
-    border: none;
-    cursor: pointer;
-    padding: 0.6rem 3.8rem;
-    border-radius: 9999px;
-    color: #fff;
-    font-weight: 500;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    line-height: 1.8;
+    color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.politica-container h1 {
+    font-size: 2.2rem;
+    color: #926c15;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.data-atualizacao {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 0.95rem;
+}
+
+.politica-container h2 {
+    font-size: 1.4rem;
+    color: #2c2c2c;
+    margin-top: 30px;
+    margin-bottom: 12px;
+    border-left: 4px solid #926c15;
+    padding-left: 12px;
+}
+
+.politica-container p {
+    margin-bottom: 16px;
     font-size: 1rem;
-    transition: all 0.2s;
 }
 
-button:hover {
-    background-color: #76520e;
+.politica-container ul {
+    margin: 10px 0 20px 25px;
+    padding: 0;
+    display: block;
 }
 
+.politica-container ul li {
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
 
+.politica-container strong {
+    color: #111;
+}
+
+.final-politica {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+    font-weight: bold;
+    text-align: center;
+    color: #2c2c2c;
+}
+
+footer {
+    background-color: #2c2c2c;
+    min-height: 220px;
+    margin-top: auto;
+    text-align: center;
+}
+
+footer p {
+    font-size: 0.9rem;
+    padding-top: 1rem;
+    color: #fff;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.redes-sociais {
+    text-align: center;
+}
+
+html {
+    scroll-behavior: smooth;
+    /* Ao clicar no compre já a rolagem é lenta */
+}
 
 /* === Estilo do Carrinho === */
 .cart-container {
@@ -284,7 +298,9 @@ button:hover {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    /* 🔥 centraliza verticalmente */
     flex: 1;
+    /* ocupa o espaço do meio */
 }
 
 .item-info p {
@@ -344,7 +360,7 @@ button:hover {
     background-color: #926c15;
     border: none;
     cursor: pointer;
-    padding: 0.8rem 3.6rem;
+    padding: 0.8rem 3.8rem;
     border-radius: 9999px;
     color: #fff;
     font-weight: 500;
@@ -373,58 +389,6 @@ h3 {
     font-weight: 450;
 }
 
-
-
-/* Footer */
-footer {
-    background-color: #2c2c2c;
-    height: 220px;
-    margin-top: 3.5rem;
-    text-align: center;
-}
-
-footer p {
-    font-size: 0.9rem;
-    padding-top: 1rem;
-    color: #fff;
-}
-
-footer a {
-    color: #fff;
-    text-decoration: none;
-}
-
-.redes-sociais {
-    text-align: center;
-}
-
-html {
-    scroll-behavior: smooth;
-    /* Ao clicar no compre já a rolagem é lenta */
-}
-
-
-
-.item-actions .decrease {
-    font-size: 22px;
-    border: 1px solid black;
-}
-
-.item-actions .increase {
-    font-size: 20px;
-    border: 1px solid black;
-}
-
-.mensagem-erro {
-    color: #d71920;
-    font-size: 13px;
-    margin-top: 9px;
-    display: none;
-    line-height: 30px;
-}
-
-
-
 @media (max-width:900px) {
     * {
         box-sizing: border-box;
@@ -443,14 +407,15 @@ html {
         display: block;
     }
 
-    header {
-        height: auto;
-    }
-
     .logo-header {
         padding-left: 0.5rem;
     }
 
+
+    header {
+        min-height: auto;
+    }
+    
     .navbar {
         position: fixed;
         width: 100%;
@@ -473,18 +438,18 @@ html {
     }
 
     nav ul {
-        width: 100%;
-        /* ✅ largura correta */
+        display: flex;
+        list-style-type: none;
+        align-items: center; /* Alinha verticalmente os textos */
         margin: 0;
-        /* ✅ remove default */
         padding: 0;
-        list-style: none;
     }
 
     nav ul li {
         width: 100%;
         text-align: center;
     }
+
 
     nav ul li a {
         display: block;
@@ -494,10 +459,6 @@ html {
     nav ul li a h3 {
         margin: 0;
         padding: 1.2rem 2rem;
-    }
-
-    nav ul li#user-nav {
-        padding: 1.2rem 1rem;
     }
 
     #user-nav {
@@ -515,29 +476,25 @@ html {
         gap: 5px;
     }
 
+    body {
+        overflow-x: hidden;
+        /* segurança extra */
+    }
+
+    .cols-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
 
     .container-principal img {
         padding-top: 3rem;
         max-width: 100%;
     }
 
-    html, body {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        overflow-x: hidden;
-    }
-
-    main, 
     .container-principal {
-        flex: 1;
-        margin-top: 8rem;
-    }
-
-    footer {
-        background-color: #2c2c2c;
-        min-height: 220px;
+        flex-direction: column;
         text-align: center;
+        padding-top: 180px;
+        padding-bottom: 60px;
     }
 
     @keyframes slideDown {
@@ -606,17 +563,6 @@ html {
         padding: 1.2rem 2rem;
     }
 
-    .conteiner-principal {
-        background-color: #fff;
-        text-align: center;
-        line-height: 2.5rem;
-        max-width: 400px;
-        margin: 4rem auto 5rem;
-        border-radius: 10px;
-        padding: 2rem;
-        border: none;
-    }
-
     .logo-header {
         font-size: 1.3rem;
     }
@@ -647,9 +593,19 @@ html {
         margin-right: 0rem;
     }
 
+    .cols-4 {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
     footer {
         padding: 10px 10px;
         height: auto;
         min-height: unset;
+    }
+
+    footer p {
+        font-size: 0.9rem;
+        padding-top: 0.9rem;
+        color: #fff;
     }
 }
