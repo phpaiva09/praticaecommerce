@@ -672,8 +672,8 @@ input {
         padding-right: 1rem;
     }
 
-    h2 {
-        font-weight: 300;
+    .container-principal h2 {
+        font-weight: 400;
     }
 
     .cart-container {
