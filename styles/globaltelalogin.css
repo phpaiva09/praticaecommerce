@@ -377,6 +377,11 @@ button:hover {
     padding-top: 0.1rem;
 }
 
+h3 {
+    font-weight: 500;
+}
+
+
 
 /* Footer */
 footer {
@@ -655,6 +660,10 @@ html {
         margin-bottom: 1.5rem;
         font-weight: 400;
         line-height: 30px;
+    }
+
+    .container-login h3 {
+        font-weight: 300;
     }
 
     footer {
