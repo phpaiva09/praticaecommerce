@@ -672,6 +672,10 @@ input {
         padding-right: 1rem;
     }
 
+    h2 {
+        font-weight: 300;
+    }
+
     .cart-container {
         width: 300px;
     }
