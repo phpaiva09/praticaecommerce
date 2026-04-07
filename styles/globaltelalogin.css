@@ -648,8 +648,12 @@ html {
         margin-right: 0rem;
     }
 
+    h2 {
+        font-weight: 300;
+    }
+
     h3 {
-        font-weight: 100;
+        font-weight: 300;
     }
 
     footer {
