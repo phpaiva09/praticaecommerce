@@ -149,7 +149,6 @@ main {
     border-radius: 10px;
     padding: 2rem;
     flex: 1;
-    margin-bottom: 3rem;
 }
 
 .conteiner-principal a {
@@ -168,12 +167,9 @@ main {
     margin-top: -15px;
 }
 
-h3 {
-    font-size: 23px;
-}
-
-.container-login h3 {
-    margin-top: 1.5rem;
+h2 {
+    margin-bottom: 1.5rem;
+    font-weight: 100;
 }
 
 .input {
@@ -616,7 +612,7 @@ html {
         text-align: center;
         line-height: 2.5rem;
         max-width: 400px;
-        margin: 3rem auto 3rem;
+        margin: 4rem auto 5rem;
         border-radius: 10px;
         padding: 2rem;
         border: none;
