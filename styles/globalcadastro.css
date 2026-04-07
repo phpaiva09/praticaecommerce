@@ -678,6 +678,10 @@ input {
         font-weight: 300;
     }
 
+    .conteiner-principal a {
+        font-weight: 300;
+    }
+
     .cart-container {
         width: 300px;
     }
