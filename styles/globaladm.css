@@ -358,6 +358,7 @@ html {
         display: flex;
         justify-content: center;
         margin: 0;
+        padding-bottom: 1rem;
     }
 
     nav ul li {
