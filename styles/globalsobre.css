@@ -267,6 +267,7 @@ main {
     display: flex;
     justify-content: center;
     flex: 1;
+    padding-top: 3rem;
     padding-bottom: 3rem;
 }
 
@@ -277,24 +278,27 @@ main h1 {
 }
 
 main h3 {
-    font-size: 1.2rem;
-    padding-top: 1.6rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #333;
+    margin-top: 2.5rem;
+    margin-bottom: 1.2rem;
+    padding-left: 14px;
+    border-left: 4px solid #926c15;
+    line-height: 1.2;
 }
 
 /* Início main */
 .container-cinza {
-    background-color: rgb(202, 202, 202);
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    justify-content: center;
-    margin-top: 4.6rem;
-    padding-top: 2rem;
-    padding-left: 5rem;
-    padding-right: 5rem;
-    padding-bottom: 2rem;
-    border-radius: 1rem;
-    line-height: 1.8rem;
+    max-width: 950px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    line-height: 1.8;
+    color: #333;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .container-sobre {
