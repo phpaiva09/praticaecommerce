@@ -84,6 +84,14 @@
         </div>
     </main>
 
+    <div id="modal-erro" class="modal-overlay" style="display:none;">
+        <div class="modal-box">
+            <h2>Atenção</h2>
+            <p id="modal-mensagem"></p>
+            <button id="modal-ok-erro" class="btn-ok">OK</button>
+        </div>
+    </div>
+
     <footer>
         <div id='contato'>
             <p>© 2025 Smart Engie Serviços LTDA | CNPJ: 08.787.487/0001-06</p>
@@ -126,16 +134,16 @@
                 const data = await res.json();
 
                 if (!data.sucesso) {
-                    alert(data.msg || "Erro ao cancelar pedido");
+                    mostrarErro(data.msg || "Erro ao cancelar pedido");
                     return;
                 }
 
-                alert("Pedido cancelado com sucesso!");
+                mostrarErro("Pedido cancelado com sucesso!");
                 carregarPedidos();
 
             } catch (err) {
                 console.error(err);
-                alert("Erro ao cancelar pedido");
+                mostrarErro("Erro ao cancelar pedido");
             }
         }
 
@@ -160,18 +168,31 @@
                 const data = await res.json();
 
                 if (!data.sucesso) {
-                    alert(data.msg || "Erro ao solicitar reembolso");
+                    mostrarErro(data.msg || "Erro ao solicitar reembolso");
                     return;
                 }
 
-                alert("Solicitação de reembolso enviada com sucesso!");
+                mostrarErro("Solicitação de reembolso enviada com sucesso!");
                 carregarPedidos();
 
             } catch (err) {
                 console.error(err);
-                alert("Erro ao solicitar reembolso");
+                mostrarErro("Erro ao solicitar reembolso");
             }
         }
+
+        const modalErro = document.getElementById('modal-erro');
+        const modalMensagem = document.getElementById('modal-mensagem');
+        const btnModalOkErro = document.getElementById('modal-ok-erro');
+
+        function mostrarErro(msg) {
+            modalMensagem.textContent = msg;
+            modalErro.style.display = 'flex';
+        }
+
+        btnModalOkErro.addEventListener('click', () => {
+            modalErro.style.display = 'none';
+        });
     </script>
 
     <script src="js/cart.js"></script>

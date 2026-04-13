@@ -245,6 +245,41 @@ html {
     /* Ao clicar no compre já a rolagem é lenta */
 }
 
+.modal-box {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 380px;
+    width: 90%;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-box h2 {
+    font-weight: 500;
+    margin-bottom: 10px;
+    font-size: 23px;
+    color: #926c15;
+    /* dourado elegante */
+}
+
+.modal-box p {
+    font-size: 13.5px;
+    color: #555;
+    margin-bottom: 25px;
+    font-weight: 500;
+}
+
+/* Botões */
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    border: none;
+    margin-top: 0.3rem;
+}
+
 @media (max-width:900px) {
     * {
         box-sizing: border-box;
