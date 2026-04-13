@@ -170,7 +170,7 @@ header {
     font-size: 15px;
     width: 200px;
     padding: 0.6rem;
-    background-color: #2b69db;
+    background-color: #926c15;
     color: #fff;
     border: none;
     border-radius: 40px;
@@ -180,7 +180,7 @@ header {
 }
 
 .btn-enviado:hover {
-    background-color: #214a96;
+    background-color: #76520e;
 }
 
 .btn-enviado.enviado {
@@ -192,7 +192,7 @@ header {
     font-size: 15px;
     width: 200px;
     padding: 0.6rem;
-    background-color: #2b69db;
+    background-color: #926c15;
     color: #fff;
     border: none;
     border-radius: 40px;
@@ -202,14 +202,14 @@ header {
 }
 
 .btn-reembolsar:hover {
-    background-color: #214a96;
+    background-color: #76520e;
 }
 
-.btn-recusar-reembolsar {
+.btn-recusar-reembolso {
     font-size: 15px;
     width: 200px;
     padding: 0.6rem;
-    background-color: #ce2020;
+    background-color: #5c5b5b;
     color: #fff;
     border: none;
     border-radius: 40px;
@@ -218,8 +218,8 @@ header {
     transition: all 0.2s;
 }
 
-.btn-recusar-reembolsar:hover {
-    background-color: #941b1b;
+.btn-recusar-reembolso:hover {
+    background-color: #2c2c2c;
 }
 
 footer {
