@@ -270,7 +270,7 @@ app.post('/pedido', async (req, res) => {
 
         const pedidoId = pedidoResult.insertId;
         let valorTotal = 0;
-    
+
         // 3️⃣ Processar itens
         for (const item of itens) {
             const [prodRows] = await db.promise().query(
@@ -1501,9 +1501,50 @@ app.post('/admin/pedido/:id/reembolsar', verificarAdmin, async (req, res) => {
                 to: pedido.email,
                 subject: 'Reembolso aprovado',
                 html: `
-                    <h2>Reembolso aprovado</h2>
-                    <p>O reembolso do seu pedido #${pedidoId} foi autorizado com sucesso.</p>
-                `
+  <div style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: auto; line-height: 1.6;">
+    
+    <h2 style="color: #2c2c2c;">Reembolso aprovado</h2>
+
+    <p>Olá, <strong>${pedido.nome}</strong>!</p>
+
+    <p>
+      Informamos que a sua solicitação de reembolso referente ao pedido 
+      <strong>#${pedidoId}</strong> foi analisada e aprovada com sucesso.
+    </p>
+
+    <p>
+      O valor correspondente será devolvido por meio do mesmo método de pagamento utilizado na compra,
+      conforme as regras e prazos da operadora/instituição financeira.
+    </p>
+
+    <p>
+      Em alguns casos, o prazo para visualização do valor reembolsado pode variar de acordo com a forma de pagamento
+      e a administradora responsável.
+    </p>
+
+    <hr style="margin: 24px 0; border: none; border-top: 1px solid #ddd;">
+
+    <p>
+      <strong>Pedido:</strong> #${pedidoId}<br>
+      <strong>Status atual:</strong> Reembolsado
+    </p>
+
+    <p style="margin-top: 20px;">
+      Caso tenha qualquer dúvida ou precise de suporte adicional, nossa equipe permanece à disposição.
+    </p>
+
+    <p style="margin-top: 24px;">
+      Atenciosamente,<br>
+      <strong>Equipe Prática Indústria & Comércio</strong>
+    </p>
+
+    <hr style="margin: 30px 0; border: none; border-top: 1px solid #ddd;">
+
+    <small style="color: #777;">
+      Este é um e-mail automático. Por favor, não responda esta mensagem.
+    </small>
+  </div>
+`
             });
         } catch (err) {
             console.error('Erro ao enviar e-mail de reembolso:', err.message);
