@@ -564,6 +564,10 @@ strong {
     color: #ce2020;
 }
 
+p.mensagem-suporte {
+    font-size: 10px;
+}
+
 /* Media Query */
 @media (max-width:900px) {
     * {
