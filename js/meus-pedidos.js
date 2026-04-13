@@ -120,7 +120,7 @@ async function carregarPedidos() {
     pedidos.forEach(pedido => {
 
       const botaoCancelar = pedido.status === "pendente"
-        ? `<button class="btn-cancelar" onclick="cancelarPedido(${pedido.id})">
+        ? `<button class="btn-cancelar-pedido" onclick="cancelarPedido(${pedido.id})">
         Cancelar pedido
      </button>`
         : "";
