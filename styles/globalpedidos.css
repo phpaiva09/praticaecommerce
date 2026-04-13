@@ -547,6 +547,23 @@ strong {
     color: #2b69db;
 }
 
+.btn-reembolso {
+    width: 140px;
+    font-size: 0.9rem;
+    padding: 4px;
+    border: 1.5px solid #2b69db;
+    border-radius: 20px;
+    background-color: #2b69db;
+    color: #fff;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.btn-reembolso:hover {
+    background-color: #fff;
+    color: #2b69db;
+}
+
 .btn-cancelar {
     width: 140px;
     font-size: 0.9rem;
