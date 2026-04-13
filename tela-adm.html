@@ -242,6 +242,8 @@
                 clone.querySelector(".pedido-valor").textContent =
                     Number(pedido.info.valor).toFixed(2);
 
+                clone.querySelector(".pedido-status").textContent = formatarStatus(pedido.info.status);
+
                 function formatarStatus(status) {
                     const mapa = {
                         pendente: "Pendente",

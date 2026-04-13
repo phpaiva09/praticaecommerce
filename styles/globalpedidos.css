@@ -532,7 +532,7 @@ strong {
 
 .btn-pagar {
     width: 140px;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     padding: 4px;
     border: 1.5px solid #926c15;
     border-radius: 20px;
@@ -549,7 +549,7 @@ strong {
 
 .btn-reembolso {
     width: 140px;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     padding: 4px;
     border: 1.5px solid #926c15;
     border-radius: 20px;
@@ -565,18 +565,19 @@ strong {
 
 .btn-cancelar {
     width: 140px;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     padding: 4px;
-    border: 1.5px solid #5c5b5b;
+    border: 1.5px solid #2c2c2c;
     border-radius: 20px;
-    background-color: #5c5b5b;
-    color: #fff;
+    background-color: #fff;
+    color: #2c2c2c;
     transition: all 0.2s;
     cursor: pointer;
 }
 
 .btn-cancelar:hover {
     background-color: #2c2c2c;
+    color: #fff;
 }
 
 p.mensagem-suporte {
