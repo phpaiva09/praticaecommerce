@@ -106,12 +106,12 @@ async function pagarPedido(pedidoId, valorDoPedido) {
 
 function formatarStatus(status) {
   const mapa = {
-    pendente: "Pendente",
-    pago: "Pago",
-    cancelado: "Cancelado",
-    reembolso_solicitado: "Reembolso solicitado",
-    reembolsado: "Reembolsado",
-    reembolso_recusado: "Reembolso recusado"
+    pendente: "pendente",
+    pago: "pago",
+    cancelado: "cancelado",
+    reembolso_solicitado: "reembolso solicitado",
+    reembolsado: "reembolsado",
+    reembolso_recusado: "reembolso recusado"
   };
 
   return mapa[status] || status;
@@ -158,7 +158,7 @@ async function carregarPedidos() {
         : "";
 
       const mensagemRecusado = pedido.status === "reembolso_recusado"
-        ? `<p class="mensagem-suporte">A solicitação de reembolso foi recusada.</p>`
+        ? `<p class="mensagem-suporte">A solicitação de reembolso foi recusada. Caso tenho alguma dúvida entre em contato com o suporte.</p>`
         : "";
       const div = document.createElement("div");
       div.classList.add("pedido");
