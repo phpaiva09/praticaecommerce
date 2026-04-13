@@ -532,24 +532,23 @@ strong {
 
 .btn-pagar {
     width: 140px;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     padding: 4px;
-    border: 1.5px solid #2b69db;
+    border: 1.5px solid #926c15;
     border-radius: 20px;
-    background-color: #2b69db;
+    background-color: #926c15;
     color: #fff;
     transition: all 0.2s;
     cursor: pointer;
 }
 
 .btn-pagar:hover {
-    background-color: #fff;
-    color: #2b69db;
+    background-color: #76520e;
 }
 
 .btn-reembolso {
     width: 140px;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     padding: 4px;
     border: 1.5px solid #926c15;
     border-radius: 20px;
@@ -565,7 +564,7 @@ strong {
 
 .btn-cancelar {
     width: 140px;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     padding: 4px;
     border: 1.5px solid #5c5b5b;
     border-radius: 20px;
