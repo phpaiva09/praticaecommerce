@@ -551,34 +551,32 @@ strong {
     width: 140px;
     font-size: 0.9rem;
     padding: 4px;
-    border: 1.5px solid #2b69db;
+    border: 1.5px solid #926c15;
     border-radius: 20px;
-    background-color: #2b69db;
+    background-color: #926c15;
     color: #fff;
     transition: all 0.2s;
     cursor: pointer;
 }
 
 .btn-reembolso:hover {
-    background-color: #fff;
-    color: #2b69db;
+    background-color: #76520e;
 }
 
 .btn-cancelar {
     width: 140px;
     font-size: 0.9rem;
     padding: 4px;
-    border: 1.5px solid #ce2020;
+    border: 1.5px solid #5c5b5b;
     border-radius: 20px;
-    background-color: #ce2020;
+    background-color: #5c5b5b;
     color: #fff;
     transition: all 0.2s;
     cursor: pointer;
 }
 
 .btn-cancelar:hover {
-    background-color: #fff;
-    color: #ce2020;
+    background-color: #2c2c2c;
 }
 
 p.mensagem-suporte {
