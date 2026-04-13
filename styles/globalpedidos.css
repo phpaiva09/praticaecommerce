@@ -645,13 +645,14 @@ p.mensagem-suporte {
 }
 
 .btn-cancelar {
-    background: transparent;
-    border: 1px solid #ccc;
+    background: #ccc;
+    border: none;
     padding: 12px 40px;
     border-radius: 25px;
     cursor: pointer;
+    font-weight: bold;
     margin-top: 20px;
-    font-weight: 200;
+    width: auto;
     transition: all 0.2s;
 }
 
