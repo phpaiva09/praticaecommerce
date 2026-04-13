@@ -553,14 +553,15 @@ strong {
     padding: 4px;
     border: 1.5px solid #926c15;
     border-radius: 20px;
-    background-color: #926c15;
-    color: #fff;
+    background-color: #fff;
+    color: #926c15;
     transition: all 0.2s;
     cursor: pointer;
 }
 
 .btn-reembolso:hover {
-    background-color: #76520e;
+    background-color: #926c15;
+    color: #fff;
 }
 
 .btn-cancelar {
@@ -633,7 +634,7 @@ p.mensagem-suporte {
     padding: 12px 40px;
     border-radius: 25px;
     cursor: pointer;
-    font-weight: bold;''
+    font-weight: bold;
     margin-top: 20px;
     width: auto;
     transition: all 0.2s;
