@@ -643,7 +643,7 @@ p.mensagem-suporte {
 }
 
 .btn-cancelar {
-    min-width: 160px;
+    min-width: 140px;
     background: transparent;
     border: 1px solid #ccc;
     padding: 12px 40px;
