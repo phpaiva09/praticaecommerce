@@ -179,9 +179,30 @@ header {
     transition: all 0.2s;
 }
 
+.btn-enviado:hover {
+    background-color: #214a96;
+}
+
 .btn-enviado.enviado {
     background: #aaa;
     cursor: not-allowed;
+}
+
+.btn-reembolsar {
+    font-size: 15px;
+    width: 200px;
+    padding: 0.6rem;
+    background-color: #2b69db;
+    color: #fff;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.2s;
+}
+
+.btn-reembolsar:hover {
+    background-color: #214a96;
 }
 
 footer {
