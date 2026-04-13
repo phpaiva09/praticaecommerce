@@ -276,7 +276,11 @@
                     btnReembolsar.style.display = "none";
                     btnRecusar.style.display = "none";
 
-                    if (jaFoiEnviado(pedidoId)) {
+                    if (pedido.info.status === "reembolsado") {
+                        btnEnviado.disabled = true;
+                        btnEnviado.textContent = "Reembolsado";
+                        btnEnviado.style.background = "#aaa";
+                    } else if (jaFoiEnviado(pedidoId)) {
                         btnEnviado.disabled = true;
                         btnEnviado.textContent = "Enviado";
                         btnEnviado.style.background = "#aaa";
