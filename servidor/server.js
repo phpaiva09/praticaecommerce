@@ -428,6 +428,69 @@ app.get('/meus-pedidos/:usuarioId', async (req, res) => {
     }
 });
 
+app.post('/pedido/:id/solicitar-reembolso', async (req, res) => {
+    try {
+        const pedidoId = req.params.id;
+        const { usuarioId, motivo } = req.body;
+
+        if (!usuarioId) {
+            return res.status(401).json({
+                sucesso: false,
+                msg: 'Usuário não autenticado'
+            });
+        }
+
+        const [rows] = await db.promise().query(
+            'SELECT * FROM pedidos WHERE id = ?',
+            [pedidoId]
+        );
+
+        if (!rows.length) {
+            return res.status(404).json({
+                sucesso: false,
+                msg: 'Pedido não encontrado'
+            });
+        }
+
+        const pedido = rows[0];
+
+        if (pedido.usuario_id != usuarioId) {
+            return res.status(403).json({
+                sucesso: false,
+                msg: 'Você não pode solicitar reembolso deste pedido'
+            });
+        }
+
+        if (pedido.status !== 'pago') {
+            return res.status(400).json({
+                sucesso: false,
+                msg: 'Somente pedidos pagos podem solicitar reembolso'
+            });
+        }
+
+        await db.promise().query(
+            `UPDATE pedidos
+             SET status = 'reembolso_solicitado',
+                 refund_motivo = ?,
+                 refund_solicitado_em = NOW()
+             WHERE id = ?`,
+            [motivo || null, pedidoId]
+        );
+
+        res.json({
+            sucesso: true,
+            msg: 'Solicitação de reembolso enviada com sucesso'
+        });
+
+    } catch (err) {
+        console.error('Erro ao solicitar reembolso:', err);
+        res.status(500).json({
+            sucesso: false,
+            msg: 'Erro interno no servidor'
+        });
+    }
+});
+
 app.post('/pedido/:id/cancelar', async (req, res) => {
     try {
         const pedidoId = req.params.id;
@@ -1371,6 +1434,138 @@ app.get("/admin/pedidos", verificarAdmin, async (req, res) => {
     } catch (err) {
         console.error(err);
         res.status(500).json({ sucesso: false });
+    }
+});
+
+app.post('/admin/pedido/:id/reembolsar', verificarAdmin, async (req, res) => {
+    try {
+        const pedidoId = req.params.id;
+
+        const [rows] = await db.promise().query(
+            'SELECT * FROM pedidos WHERE id = ?',
+            [pedidoId]
+        );
+
+        if (!rows.length) {
+            return res.status(404).json({
+                sucesso: false,
+                msg: 'Pedido não encontrado'
+            });
+        }
+
+        const pedido = rows[0];
+
+        if (pedido.status !== 'reembolso_solicitado') {
+            return res.status(400).json({
+                sucesso: false,
+                msg: 'Pedido não está aguardando reembolso'
+            });
+        }
+
+        if (!pedido.payment_id) {
+            return res.status(400).json({
+                sucesso: false,
+                msg: 'payment_id não encontrado'
+            });
+        }
+
+        const resposta = await axios.post(
+            `https://api.mercadopago.com/v1/payments/${pedido.payment_id}/refunds`,
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${process.env.MP_ACCESS_TOKEN}`,
+                    'Content-Type': 'application/json'
+                }
+            }
+        );
+
+        await db.promise().query(
+            `UPDATE pedidos
+             SET status = 'reembolsado',
+                 refund_id = ?,
+                 refund_valor = ?,
+                 refund_data = NOW(),
+                 refund_autorizado_em = NOW()
+             WHERE id = ?`,
+            [
+                String(resposta.data.id || ''),
+                Number(resposta.data.amount || pedido.valor),
+                pedidoId
+            ]
+        );
+
+        try {
+            await resend.emails.send({
+                from: process.env.EMAIL_FROM,
+                to: pedido.email,
+                subject: 'Reembolso aprovado',
+                html: `
+                    <h2>Reembolso aprovado</h2>
+                    <p>O reembolso do seu pedido #${pedidoId} foi autorizado com sucesso.</p>
+                `
+            });
+        } catch (err) {
+            console.error('Erro ao enviar e-mail de reembolso:', err.message);
+        }
+
+        res.json({
+            sucesso: true,
+            msg: 'Reembolso realizado com sucesso'
+        });
+
+    } catch (err) {
+        console.error('Erro ao reembolsar:', err.response?.data || err.message);
+        res.status(500).json({
+            sucesso: false,
+            msg: err.response?.data?.message || 'Erro ao processar reembolso'
+        });
+    }
+});
+
+app.post('/admin/pedido/:id/recusar-reembolso', verificarAdmin, async (req, res) => {
+    try {
+        const pedidoId = req.params.id;
+
+        const [rows] = await db.promise().query(
+            'SELECT * FROM pedidos WHERE id = ?',
+            [pedidoId]
+        );
+
+        if (!rows.length) {
+            return res.status(404).json({
+                sucesso: false,
+                msg: 'Pedido não encontrado'
+            });
+        }
+
+        const pedido = rows[0];
+
+        if (pedido.status !== 'reembolso_solicitado') {
+            return res.status(400).json({
+                sucesso: false,
+                msg: 'Pedido não está aguardando reembolso'
+            });
+        }
+
+        await db.promise().query(
+            `UPDATE pedidos
+             SET status = 'reembolso_recusado'
+             WHERE id = ?`,
+            [pedidoId]
+        );
+
+        res.json({
+            sucesso: true,
+            msg: 'Solicitação de reembolso recusada'
+        });
+
+    } catch (err) {
+        console.error('Erro ao recusar reembolso:', err);
+        res.status(500).json({
+            sucesso: false,
+            msg: 'Erro interno no servidor'
+        });
     }
 });
 

@@ -23,16 +23,24 @@
             <nav>
                 <ul>
                     <li>
-                        <a href="index.html"><h3>Home</h3></a>
+                        <a href="index.html">
+                            <h3>Home</h3>
+                        </a>
                     </li>
                     <li>
-                        <a href='index.html#produtos'><h3>Produtos</h3></a>
+                        <a href='index.html#produtos'>
+                            <h3>Produtos</h3>
+                        </a>
                     </li>
                     <li>
-                        <a href="sobrenos.html"><h3>Sobre</h3></a>
+                        <a href="sobrenos.html">
+                            <h3>Sobre</h3>
+                        </a>
                     </li>
                     <li>
-                        <a href="#contato"><h3>Contato</h3></a>
+                        <a href="#contato">
+                            <h3>Contato</h3>
+                        </a>
                     </li>
                     <li id="user-nav">
                     </li>
@@ -108,30 +116,62 @@
 
             try {
                 const res = await fetch(`https://pratica-api.onrender.com/pedido/${pedidoId}/cancelar`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ usuarioId })
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ usuarioId })
                 });
 
                 const data = await res.json();
 
                 if (!data.sucesso) {
-                alert(data.msg || "Erro ao cancelar pedido");
-                return;
+                    alert(data.msg || "Erro ao cancelar pedido");
+                    return;
                 }
 
                 alert("Pedido cancelado com sucesso!");
-
-                // recarrega lista
                 carregarPedidos();
 
             } catch (err) {
                 console.error(err);
                 alert("Erro ao cancelar pedido");
             }
+        }
+
+        async function solicitarReembolso(pedidoId) {
+            const usuarioId = localStorage.getItem("usuarioId");
+
+            const confirmar = confirm("Deseja solicitar o reembolso deste pedido?");
+            if (!confirmar) return;
+
+            try {
+                const res = await fetch(`https://pratica-api.onrender.com/pedido/${pedidoId}/solicitar-reembolso`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        usuarioId,
+                        motivo: "Solicitado pelo cliente"
+                    })
+                });
+
+                const data = await res.json();
+
+                if (!data.sucesso) {
+                    alert(data.msg || "Erro ao solicitar reembolso");
+                    return;
+                }
+
+                alert("Solicitação de reembolso enviada com sucesso!");
+                carregarPedidos();
+
+            } catch (err) {
+                console.error(err);
+                alert("Erro ao solicitar reembolso");
             }
+        }
     </script>
 
     <script src="js/cart.js"></script>

@@ -121,21 +121,33 @@ async function carregarPedidos() {
 
       const botaoCancelar = pedido.status === "pendente"
         ? `<button class="btn-cancelar" onclick="cancelarPedido(${pedido.id})">
-              Cancelar pedido
-          </button>`
+        Cancelar pedido
+     </button>`
         : "";
 
-      const mensagemSuporte = pedido.status === "pago"
-        ? `<p class="mensagem-suporte">Pedido pago. Para cancelamento, entre em contato com o suporte.</p>`
+      const botaoReembolso = pedido.status === "pago"
+        ? `<button class="btn-reembolso" onclick="solicitarReembolso(${pedido.id})">
+        Solicitar reembolso
+     </button>`
         : "";
 
-      // Adicionamos o pedido.valor como segundo argumento
       const botaoPagamento = pedido.status === "pendente"
         ? `<button class="btn-pagar" onclick="pagarPedido(${pedido.id}, ${pedido.valor})">
         Pagar pedido
-       </button>`
+     </button>`
         : "";
 
+      const mensagemSolicitada = pedido.status === "reembolso_solicitado"
+        ? `<p class="mensagem-suporte">"Sua solicitação de reembolso foi recebida e está aguardando análise do administrador."</p>`
+        : "";
+
+      const mensagemReembolsado = pedido.status === "reembolsado"
+        ? `<p class="mensagem-suporte">Este pedido já foi reembolsado.</p>`
+        : "";
+
+      const mensagemRecusado = pedido.status === "reembolso_recusado"
+        ? `<p class="mensagem-suporte">A solicitação de reembolso foi recusada.</p>`
+        : "";
       const div = document.createElement("div");
       div.classList.add("pedido");
 
@@ -148,7 +160,10 @@ async function carregarPedidos() {
 
         ${botaoPagamento}
         ${botaoCancelar}
-        ${mensagemSuporte}
+        ${botaoReembolso}
+        ${mensagemSolicitada}
+        ${mensagemReembolsado}
+        ${mensagemRecusado}
 
         <details>
                   <summary>Ver itens</summary>
