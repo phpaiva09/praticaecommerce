@@ -536,14 +536,15 @@ strong {
     padding: 4px;
     border: 1.5px solid #926c15;
     border-radius: 20px;
-    background-color: #926c15;
-    color: #fff;
+    background-color: #fff;
+    color: #926c15;
     transition: all 0.2s;
     cursor: pointer;
 }
 
 .btn-pagar:hover {
-    background-color: #76520e;
+    background-color: #926c15;
+    color: #fff;
 }
 
 .btn-reembolso {

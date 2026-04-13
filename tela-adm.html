@@ -242,7 +242,18 @@
                 clone.querySelector(".pedido-valor").textContent =
                     Number(pedido.info.valor).toFixed(2);
 
-                clone.querySelector(".pedido-status").textContent = pedido.info.status;
+                function formatarStatus(status) {
+                    const mapa = {
+                        pendente: "Pendente",
+                        pago: "Pago",
+                        cancelado: "Cancelado",
+                        reembolso_solicitado: "Reembolso solicitado",
+                        reembolsado: "Reembolsado",
+                        reembolso_recusado: "Reembolso recusado"
+                    };
+
+                    return mapa[status] || status;
+                }
 
                 const listaItens = clone.querySelector(".pedido-itens");
 
