@@ -76,7 +76,11 @@
 
                 <h4>Itens:</h4>
                 <ul class="pedido-itens"></ul>
-                <button class="btn-enviado">Pedido Enviado</button>
+                <div class="acoes-pedido">
+                    <button class="btn-enviado">Pedido Enviado</button>
+                    <button class="btn-reembolsar" style="display:none;">Autorizar reembolso</button>
+                    <button class="btn-recusar-reembolso" style="display:none;">Recusar reembolso</button>
+                </div>
             </div>
         </template>
     </div>
@@ -160,6 +164,60 @@
             }
         }
 
+        async function autorizarReembolso(pedidoId) {
+            try {
+                const token = localStorage.getItem("admin_token");
+
+                const resp = await fetch(`https://pratica-api.onrender.com/admin/pedido/${pedidoId}/reembolsar`, {
+                    method: "POST",
+                    headers: {
+                        "Authorization": "Bearer " + token
+                    }
+                });
+
+                const data = await resp.json();
+
+                if (!data.sucesso) {
+                    alert(data.msg || "Erro ao autorizar reembolso");
+                    return;
+                }
+
+                alert("Reembolso autorizado com sucesso!");
+                carregarPedidos();
+
+            } catch (err) {
+                console.error(err);
+                alert("Erro ao autorizar reembolso");
+            }
+        }
+
+        async function recusarReembolso(pedidoId) {
+            try {
+                const token = localStorage.getItem("admin_token");
+
+                const resp = await fetch(`https://pratica-api.onrender.com/admin/pedido/${pedidoId}/recusar-reembolso`, {
+                    method: "POST",
+                    headers: {
+                        "Authorization": "Bearer " + token
+                    }
+                });
+
+                const data = await resp.json();
+
+                if (!data.sucesso) {
+                    alert(data.msg || "Erro ao recusar reembolso");
+                    return;
+                }
+
+                alert("Solicitação de reembolso recusada!");
+                carregarPedidos();
+
+            } catch (err) {
+                console.error(err);
+                alert("Erro ao recusar reembolso");
+            }
+        }
+
         function renderPedidos(pedidos) {
             const container = document.getElementById("lista-pedidos");
             const template = document.getElementById("pedido-template");
@@ -198,23 +256,40 @@
                     listaItens.appendChild(li);
                 });
 
-                // 🔥 BOTÃO COM LOCAL STORAGE
-                const btn = clone.querySelector(".btn-enviado");
+                const btnEnviado = clone.querySelector(".btn-enviado");
+                const btnReembolsar = clone.querySelector(".btn-reembolsar");
+                const btnRecusar = clone.querySelector(".btn-recusar-reembolso");
 
-                // se já foi enviado
-                if (jaFoiEnviado(pedidoId)) {
-                    btn.disabled = true;
-                    btn.textContent = "Enviado";
-                    btn.style.background = "#aaa";
+                if (pedido.info.status === "reembolso_solicitado") {
+                    btnEnviado.style.display = "none";
+                    btnReembolsar.style.display = "inline-block";
+                    btnRecusar.style.display = "inline-block";
+
+                    btnReembolsar.addEventListener("click", () => {
+                        autorizarReembolso(pedidoId);
+                    });
+
+                    btnRecusar.addEventListener("click", () => {
+                        recusarReembolso(pedidoId);
+                    });
+                } else {
+                    btnReembolsar.style.display = "none";
+                    btnRecusar.style.display = "none";
+
+                    if (jaFoiEnviado(pedidoId)) {
+                        btnEnviado.disabled = true;
+                        btnEnviado.textContent = "Enviado";
+                        btnEnviado.style.background = "#aaa";
+                    }
+
+                    btnEnviado.addEventListener("click", () => {
+                        marcarComoEnviado(pedidoId);
+
+                        btnEnviado.disabled = true;
+                        btnEnviado.textContent = "Enviado";
+                        btnEnviado.style.background = "#aaa";
+                    });
                 }
-
-                btn.addEventListener("click", () => {
-                    marcarComoEnviado(pedidoId);
-
-                    btn.disabled = true;
-                    btn.textContent = "Enviado";
-                    btn.style.background = "#aaa";
-                });
 
                 container.appendChild(clone);
             });

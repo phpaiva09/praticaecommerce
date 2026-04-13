@@ -138,7 +138,7 @@ async function carregarPedidos() {
         : "";
 
       const mensagemSolicitada = pedido.status === "reembolso_solicitado"
-        ? `<p class="mensagem-suporte">"Sua solicitação de reembolso foi recebida e está aguardando análise do administrador."</p>`
+        ? `<p class="mensagem-suporte">Sua solicitação de reembolso foi recebida e está aguardando análise do administrador.</p>`
         : "";
 
       const mensagemReembolsado = pedido.status === "reembolsado"
