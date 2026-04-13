@@ -644,6 +644,21 @@ p.mensagem-suporte {
     background: #76520e;
 }
 
+.btn-cancelar {
+    background: transparent;
+    border: 1px solid #ccc;
+    padding: 12px 40px;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-weight: 200;
+    transition: all 0.2s;
+}
+
+.btn-cancelar:hover {
+    background-color: #cfcfcf;
+}
+
 /* Media Query */
 @media (max-width:900px) {
     * {
