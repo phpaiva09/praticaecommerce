@@ -125,6 +125,10 @@ async function carregarPedidos() {
           </button>`
         : "";
 
+      const mensagemSuporte = pedido.status === "pago"
+        ? `<p class="mensagem-suporte">Pedido pago. Para cancelamento, entre em contato com o suporte.</p>`
+        : "";
+
       // Adicionamos o pedido.valor como segundo argumento
       const botaoPagamento = pedido.status === "pendente"
         ? `<button class="btn-pagar" onclick="pagarPedido(${pedido.id}, ${pedido.valor})">
@@ -144,6 +148,7 @@ async function carregarPedidos() {
 
         ${botaoPagamento}
         ${botaoCancelar}
+        ${mensagemSuporte}
 
         <details>
                   <summary>Ver itens</summary>
