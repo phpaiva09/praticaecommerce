@@ -106,9 +106,9 @@ async function pagarPedido(pedidoId, valorDoPedido) {
 
 function formatarStatus(status) {
   const mapa = {
-    pendente: "pendente",
-    pago: "pago",
-    cancelado: "cancelado",
+    pendente: "pagamento pendente",
+    pago: "pedido pago",
+    cancelado: "pedido cancelado",
     reembolso_solicitado: "reembolso solicitado",
     reembolsado: "reembolsado",
     reembolso_recusado: "reembolso recusado"

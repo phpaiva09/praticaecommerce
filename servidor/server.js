@@ -554,16 +554,55 @@ app.post('/pedido/:id/cancelar', async (req, res) => {
             [pedidoId]
         );
 
-        // 5️⃣ (OPCIONAL) enviar email
         try {
             await resend.emails.send({
                 from: process.env.EMAIL_FROM,
                 to: pedido.email,
-                subject: 'Pedido cancelado',
+                subject: `Confirmação de cancelamento do pedido #${pedidoId}`,
                 html: `
-                    <h2>Pedido #${pedidoId} cancelado</h2>
-                    <p>Seu pedido foi cancelado com sucesso.</p>
-                `
+            <div style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: auto; line-height: 1.6;">
+                
+                <h2 style="color: #2c2c2c;">Pedido cancelado com sucesso</h2>
+
+                <p>Olá, <strong>${pedido.nome}</strong>!</p>
+
+                <p>
+                    Confirmamos que o seu pedido <strong>#${pedidoId}</strong> foi cancelado com sucesso,
+                    conforme a solicitação realizada em nosso sistema.
+                </p>
+
+                <p>
+                    Caso o pedido ainda não tenha sido pago, nenhuma cobrança será processada.
+                </p>
+
+                <p>
+                    Se o cancelamento foi realizado por engano ou se você desejar concluir a compra posteriormente,
+                    será possível realizar um novo pedido diretamente em nosso site.
+                </p>
+
+                <hr style="margin: 24px 0; border: none; border-top: 1px solid #ddd;">
+
+                <p>
+                    <strong>Pedido:</strong> #${pedidoId}<br>
+                    <strong>Status atual:</strong> Cancelado
+                </p>
+
+                <p style="margin-top: 20px;">
+                    Em caso de dúvidas, nossa equipe permanece à disposição para ajudar.
+                </p>
+
+                <p style="margin-top: 24px;">
+                    Atenciosamente,<br>
+                    <strong>Equipe Prática Indústria & Comércio</strong>
+                </p>
+
+                <hr style="margin: 30px 0; border: none; border-top: 1px solid #ddd;">
+
+                <small style="color: #777;">
+                    Este é um e-mail automático. Por favor, não responda esta mensagem.
+                </small>
+            </div>
+        `
             });
         } catch (err) {
             console.error('Erro ao enviar email de cancelamento:', err.message);
