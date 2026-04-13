@@ -104,6 +104,18 @@ async function pagarPedido(pedidoId, valorDoPedido) {
   }
 }
 
+function formatarStatus(status) {
+  const mapa = {
+    pendente: "Pendente",
+    pago: "Pago",
+    cancelado: "Cancelado",
+    reembolso_solicitado: "Reembolso solicitado",
+    reembolsado: "Reembolsado",
+    reembolso_recusado: "Reembolso recusado"
+  };
+
+  return mapa[status] || status;
+}
 
 async function carregarPedidos() {
   try {
@@ -154,7 +166,7 @@ async function carregarPedidos() {
       div.innerHTML = `
         <div class="pedido-header">
           <strong>Pedido #${pedido.id}</strong>
-          <span>Status: <strong>${pedido.status}</strong></span>
+          <span>Status: <strong>${formatarStatus(pedido.status)}</strong></span>
           <span>Total: R$ ${pedido.valor}</span>
         </div>
 
