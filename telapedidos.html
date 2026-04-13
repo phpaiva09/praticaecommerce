@@ -100,6 +100,38 @@
             nav.parentElement.classList.toggle("show-menu");
         });
 
+        async function cancelarPedido(pedidoId) {
+            const usuarioId = localStorage.getItem("usuarioId");
+
+            const confirmar = confirm("Tem certeza que deseja cancelar este pedido?");
+            if (!confirmar) return;
+
+            try {
+                const res = await fetch(`https://pratica-api.onrender.com/pedido/${pedidoId}/cancelar`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ usuarioId })
+                });
+
+                const data = await res.json();
+
+                if (!data.sucesso) {
+                alert(data.msg || "Erro ao cancelar pedido");
+                return;
+                }
+
+                alert("Pedido cancelado com sucesso!");
+
+                // recarrega lista
+                carregarPedidos();
+
+            } catch (err) {
+                console.error(err);
+                alert("Erro ao cancelar pedido");
+            }
+            }
     </script>
 
     <script src="js/cart.js"></script>

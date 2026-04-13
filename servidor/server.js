@@ -428,6 +428,98 @@ app.get('/meus-pedidos/:usuarioId', async (req, res) => {
     }
 });
 
+app.post('/pedido/:id/cancelar', async (req, res) => {
+    try {
+        const pedidoId = req.params.id;
+        const { usuarioId } = req.body;
+
+        if (!usuarioId) {
+            return res.status(401).json({
+                sucesso: false,
+                msg: 'Usuário não autenticado'
+            });
+        }
+
+        // 1️⃣ Buscar pedido completo
+        const [rows] = await db.promise().query(
+            'SELECT * FROM pedidos WHERE id = ?',
+            [pedidoId]
+        );
+
+        if (rows.length === 0) {
+            return res.status(404).json({
+                sucesso: false,
+                msg: 'Pedido não encontrado'
+            });
+        }
+
+        const pedido = rows[0];
+
+        // 2️⃣ Segurança (dono do pedido)
+        if (pedido.usuario_id != usuarioId) {
+            return res.status(403).json({
+                sucesso: false,
+                msg: 'Você não pode cancelar este pedido'
+            });
+        }
+
+        // 3️⃣ Regras de negócio
+        if (pedido.status === 'cancelado') {
+            return res.status(400).json({
+                sucesso: false,
+                msg: 'Pedido já está cancelado'
+            });
+        }
+
+        if (pedido.status === 'pago') {
+            return res.status(400).json({
+                sucesso: false,
+                msg: 'Pedido já foi pago. Entre em contato para reembolso.'
+            });
+        }
+
+        if (pedido.status !== 'pendente') {
+            return res.status(400).json({
+                sucesso: false,
+                msg: `Pedido não pode ser cancelado (status: ${pedido.status})`
+            });
+        }
+
+        // 4️⃣ Cancelar
+        await db.promise().query(
+            'UPDATE pedidos SET status = "cancelado" WHERE id = ?',
+            [pedidoId]
+        );
+
+        // 5️⃣ (OPCIONAL) enviar email
+        try {
+            await resend.emails.send({
+                from: process.env.EMAIL_FROM,
+                to: pedido.email,
+                subject: 'Pedido cancelado',
+                html: `
+                    <h2>Pedido #${pedidoId} cancelado</h2>
+                    <p>Seu pedido foi cancelado com sucesso.</p>
+                `
+            });
+        } catch (err) {
+            console.error('Erro ao enviar email de cancelamento:', err.message);
+        }
+
+        res.json({
+            sucesso: true,
+            msg: 'Pedido cancelado com sucesso'
+        });
+
+    } catch (err) {
+        console.error('Erro ao cancelar pedido:', err);
+        res.status(500).json({
+            sucesso: false,
+            msg: 'Erro interno no servidor'
+        });
+    }
+});
+
 // ================== ALTERAR SENHA ==================
 app.post('/alterar-senha', async (req, res) => {
     try {
@@ -800,6 +892,13 @@ app.post('/pedido/:id/cartao', async (req, res) => {
 
         const pedido = rows[0];
 
+        if (pedido.status === 'cancelado') {
+            return res.status(400).json({
+                sucesso: false,
+                msg: 'Pedido cancelado não pode ser pago'
+            });
+        }
+
         if (pedido.status === 'pago') {
             return res.json({
                 sucesso: false,
@@ -894,6 +993,20 @@ app.post('/pedido/:id/pix', async (req, res) => {
 
         // 3️⃣ Agora sim cria o pedido
         const pedido = rows[0];
+
+        if (pedido.status === 'cancelado') {
+            return res.status(400).json({
+                sucesso: false,
+                msg: 'Pedido cancelado não pode ser pago'
+            });
+        }
+
+        if (pedido.status === 'pago') {
+            return res.json({
+                sucesso: false,
+                msg: 'Pedido já foi pago'
+            });
+        }
 
         // 4️⃣ Verifica se já tem PIX
         if (pedido.qr_code_base64) {

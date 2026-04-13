@@ -119,6 +119,12 @@ async function carregarPedidos() {
 
     pedidos.forEach(pedido => {
 
+      const botaoCancelar = pedido.status === "pendente"
+        ? `<button class="btn-cancelar" onclick="cancelarPedido(${pedido.id})">
+              Cancelar pedido
+          </button>`
+        : "";
+
       // Adicionamos o pedido.valor como segundo argumento
       const botaoPagamento = pedido.status === "pendente"
         ? `<button class="btn-pagar" onclick="pagarPedido(${pedido.id}, ${pedido.valor})">
@@ -137,6 +143,7 @@ async function carregarPedidos() {
         </div>
 
         ${botaoPagamento}
+        ${botaoCancelar}
 
         <details>
                   <summary>Ver itens</summary>
