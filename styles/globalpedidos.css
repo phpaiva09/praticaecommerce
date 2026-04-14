@@ -584,9 +584,8 @@ strong {
     padding: 10px 14px;
     max-width: 520px;
     border-left: 3px solid #926c15;
-    background: #faf8f2;
     border-radius: 0 10px 10px 0;
-    color: #5a5242;
+    color: #333;
     font-size: 0.9rem;
     line-height: 1.45;
     font-weight: 400;
