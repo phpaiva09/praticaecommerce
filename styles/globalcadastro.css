@@ -39,11 +39,9 @@ body.loaded {
 ul {
     display: flex;
     list-style-type: none;
-
 }
 
 ul h3 {
-    font-weight: 100;
     color: #fff;
     cursor: pointer;
     margin-right: 1.5rem;
@@ -55,13 +53,38 @@ ul h3 {
     font-weight: 300;
 }
 
+#user-nav {
+    cursor: pointer;
+    margin-right: 1.5rem;
+    font-size: 1.1rem;
+    font-family: "Merriweather", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+    font-weight: 300;
+}
+
+#user-nav a {
+    color: #fff;
+}
+
+#user-nav span {
+    color: #fff;
+}
+
 ul a {
     text-decoration: none;
 
 }
 
-nav ul li:hover {
-    transform: translateY(-5px);
+.hover-sair:hover {
+    transform: translateY(-3px);
+    transition: all 0.2s;
+    display: inline-block;
+}
+
+nav ul li:hover:not(#user-nav) {
+    transform: translateY(-3px);
     transition: all 0.2s;
     font-weight: bold;
 }
@@ -72,7 +95,7 @@ nav ul li:hover {
 }
 
 .nav-icon-container img {
-    width: 80px;
+    width: 75px;
     margin: 0;
     cursor: pointer;
     /* Quando o usuário passar o cursor sobre a imagem ele vira uma mãozinha */
@@ -82,7 +105,7 @@ nav ul li:hover {
     margin-right: 1rem;
 }
 
-.navbar>div {
+.navbar > div {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -100,13 +123,13 @@ nav ul li:hover {
     font-weight: weight;
     font-style: normal;
     font-variation-settings: "wdth" 100;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
 }
 
 .logo-header span {
     color: #fff;
     font-weight: 200;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 .menu-button {
