@@ -376,7 +376,7 @@ details {
 
 .header-pedidos h2 {
     font-size: 2rem;
-    font-weight: 600;
+    font-weight: 500;
     color: #111;
 }
 
@@ -406,12 +406,13 @@ details {
 
 .pedido-header > strong {
     font-size: 1.3rem;
-    color: #1d1d1d;
+    color: #2c2c2c;
 }
 
 .pedido-header > span {
     font-size: 1rem;
-    color: #444;
+    color: #2c2c2c;
+    font-weight: 300;
 }
 
 .pedido-header > span:last-child {
