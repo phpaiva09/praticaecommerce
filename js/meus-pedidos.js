@@ -165,7 +165,7 @@ async function carregarPedidos() {
 
       div.innerHTML = `
         <div class="pedido-header">
-          <strong>Pedido #${pedido.id}</strong>
+          <strong>#${pedido.id}</strong>
           <span>Status: <strong>${formatarStatus(pedido.status)}</strong></span>
           <span>Total: R$ ${pedido.valor}</span>
         </div>
