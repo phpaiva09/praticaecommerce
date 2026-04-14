@@ -630,8 +630,8 @@ html {
         padding: 2rem;
         border: none;
         width: 100%;
-        padding-left: 1rem;
-        padding-right: 1rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
     }
 
     .logo-header {
