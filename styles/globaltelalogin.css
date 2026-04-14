@@ -193,7 +193,7 @@ h2 {
 
 input {
     outline: none;
-    border: 1px solid black;
+    border: 1px solid #333;
     /* borda preta sólida */
     border-radius: 999px;
     line-height: 1.5rem;
