@@ -153,24 +153,14 @@
             modal.style.display = "flex";
         }
 
-        let pedidoCancelamentoPendente = null;
-
-        const modalCancelarPedido = document.getElementById("modal-confirmar-cancelamento");
-        const btnVoltarCancelamento = document.getElementById("modal-voltar-cancelamento");
-        const btnConfirmarCancelamento = document.getElementById("modal-confirmar-cancelamento-btn");
-
-        function abrirModalCancelamento(pedidoId) {
-            pedidoCancelamentoPendente = pedidoId;
-            modalCancelarPedido.style.display = "flex";
-        }
-
-        async function confirmarCancelamentoPedido() {
-            if (!pedidoCancelamentoPendente) return;
-
+        async function cancelarPedido(pedidoId) {
             const usuarioId = localStorage.getItem("usuarioId");
 
+            const confirmar = confirm("Tem certeza que deseja cancelar este pedido?");
+            if (!confirmar) return;
+
             try {
-                const res = await fetch(`https://pratica-api.onrender.com/pedido/${pedidoCancelamentoPendente}/cancelar`, {
+                const res = await fetch(`https://pratica-api.onrender.com/pedido/${pedidoId}/cancelar`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -180,32 +170,24 @@
 
                 const data = await res.json();
 
-                modalCancelarPedido.style.display = "none";
-
                 if (!data.sucesso) {
                     mostrarModal(data.msg || "Erro ao cancelar pedido");
-                    pedidoCancelamentoPendente = null;
                     return;
                 }
 
                 mostrarModal("Pedido cancelado com sucesso!");
-                pedidoCancelamentoPendente = null;
                 carregarPedidos();
 
             } catch (err) {
                 console.error(err);
-                modalCancelarPedido.style.display = "none";
                 mostrarModal("Erro ao cancelar pedido");
-                pedidoCancelamentoPendente = null;
             }
         }
 
-        btnConfirmarCancelamento.addEventListener("click", confirmarCancelamentoPedido);
-
-        btnVoltarCancelamento.addEventListener("click", () => {
-            pedidoCancelamentoPendente = null;
-            modalCancelarPedido.style.display = "none";
-        });
+        async function solicitarReembolso(pedidoId) {
+            pedidoReembolsoPendente = pedidoId;
+            abrirModalReembolso();
+        }
 
         btnOk.addEventListener("click", async () => {
             if (!pedidoReembolsoPendente) return;
