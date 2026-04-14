@@ -131,6 +131,38 @@ async function carregarPedidos() {
 
     pedidos.forEach(pedido => {
 
+      const botaoCancelar = pedido.status === "pendente"
+        ? `<button class="btn-cancelar-pedido" onclick="cancelarPedido(${pedido.id})">
+        Cancelar pedido
+     </button>`
+        : "";
+
+      const botaoReembolso = pedido.status === "pago"
+        ? `<button class="btn-reembolso" onclick="solicitarReembolso(${pedido.id})">
+        Solicitar reembolso
+     </button>`
+        : "";
+
+      const botaoPagamento = pedido.status === "pendente"
+        ? `<button class="btn-pagar" onclick="pagarPedido(${pedido.id}, ${pedido.valor})">
+        Pagar pedido
+     </button>`
+        : "";
+
+      const mensagemSolicitada = pedido.status === "reembolso_solicitado"
+        ? `<p class="mensagem-suporte">Sua solicitação de reembolso foi recebida e está aguardando análise do administrador.</p>`
+        : "";
+
+      const mensagemReembolsado = pedido.status === "reembolsado"
+        ? `<p class="mensagem-suporte">Este pedido já foi reembolsado.</p>`
+        : "";
+
+      const mensagemRecusado = pedido.status === "reembolso_recusado"
+        ? `<p class="mensagem-suporte">A solicitação de reembolso foi recusada. Caso tenho alguma dúvida entre em contato com o suporte.</p>`
+        : "";
+      const div = document.createElement("div");
+      div.classList.add("pedido");
+
       div.innerHTML = `
         <div class="pedido-header">
           <strong>Pedido #${pedido.id}</strong>
@@ -167,38 +199,6 @@ async function carregarPedidos() {
             `;
 
       container.appendChild(div);
-
-      const botaoCancelar = pedido.status === "pendente"
-        ? `<button class="btn-cancelar-pedido" onclick="cancelarPedido(${pedido.id})">
-        Cancelar pedido
-     </button>`
-        : "";
-
-      const botaoReembolso = pedido.status === "pago"
-        ? `<button class="btn-reembolso" onclick="solicitarReembolso(${pedido.id})">
-        Solicitar reembolso
-     </button>`
-        : "";
-
-      const botaoPagamento = pedido.status === "pendente"
-        ? `<button class="btn-pagar" onclick="pagarPedido(${pedido.id}, ${pedido.valor})">
-        Pagar pedido
-     </button>`
-        : "";
-
-      const mensagemSolicitada = pedido.status === "reembolso_solicitado"
-        ? `<p class="mensagem-suporte">Sua solicitação de reembolso foi recebida e está aguardando análise do administrador.</p>`
-        : "";
-
-      const mensagemReembolsado = pedido.status === "reembolsado"
-        ? `<p class="mensagem-suporte">Este pedido já foi reembolsado.</p>`
-        : "";
-
-      const mensagemRecusado = pedido.status === "reembolso_recusado"
-        ? `<p class="mensagem-suporte">A solicitação de reembolso foi recusada. Caso tenho alguma dúvida entre em contato com o suporte.</p>`
-        : "";
-      const div = document.createElement("div");
-      div.classList.add("pedido");
     });
 
   } catch (err) {
