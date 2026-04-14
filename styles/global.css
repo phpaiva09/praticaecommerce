@@ -461,8 +461,7 @@ h3 {
 }
 
 .frete {
-    font-family: "Sekuya", system-ui;
-    font-weight: 400;
+    font-weight: 100;
     font-style: normal;
     color: #08a045;
     font-size: 11px;
