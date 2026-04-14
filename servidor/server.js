@@ -366,7 +366,7 @@ app.post('/pedido', async (req, res) => {
     </p>
 
     <p style="margin-top: 25px;">
-        Qualquer dúvida, estamos à disposição 😊
+        Qualquer dúvida, estamos à disposição
     </p>
 
     <p style="margin-top: 25px;">
@@ -1331,7 +1331,7 @@ app.post('/webhook-mp', async (req, res) => {
         </p>
 
         <p>
-            Caso tenha qualquer dúvida, é só responder este e-mail 😊
+            Caso tenha qualquer dúvida, é só responder este e-mail
         </p>
 
         <p style="margin-top: 24px;">

@@ -540,7 +540,7 @@ html {
 
 .modal-box-sucesso p {
     font-size: 15px;
-    color: #45c92b;
+    color: #47b732;
     margin-bottom: 25px;
     font-family: "Raleway", sans-serif;
     font-optical-sizing: auto;
@@ -549,9 +549,9 @@ html {
 }
 
 button#btn-ir-pedidos {
-    background-color: #45c92b;
+    background-color: #47b732;
     width: 300px;
-    border: 1.5px solid #45c92b;
+    border: 1.5px solid #47b732;
     display: flex;
     flex-direction: column;
     margin: 0 auto;
@@ -568,9 +568,9 @@ button#btn-ir-pedidos {
 button#btn-ir-pedidos:hover,
 button#btn-ir-pedidos:focus {
     background-color: white;
-    color: #45c92b;
+    color: #47b732;
     outline: none;
-    border: 1.5px solid #45c92b;
+    border: 1.5px solid #47b732;
 }
 
 .modal-box {
