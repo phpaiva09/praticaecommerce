@@ -371,64 +371,70 @@ details {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 28px;
+    margin-bottom: 30px;
 }
 
 .header-pedidos h2 {
-    font-size: 2rem;
-    font-weight: 500;
-    color: #111;
+    font-family: "Merriweather", serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #1f1f1f;
+    margin: 0;
 }
 
 .pedido {
-    background: #fff;
-    border: 1px solid #e7e7e7;
-    border-radius: 18px;
-    padding: 22px 24px;
-    margin-bottom: 18px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+    background: #ffffff;
+    border: 1px solid #e9e9e9;
+    border-radius: 20px;
+    padding: 24px 26px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.05);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     line-height: normal;
 }
 
 .pedido:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
 }
 
 .pedido-header {
     display: grid;
-    grid-template-columns: 1fr auto auto;
+    grid-template-columns: minmax(140px, 1fr) auto auto;
     align-items: center;
     gap: 18px;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
 }
 
 .pedido-header > strong {
-    font-size: 1.3rem;
-    color: #2c2c2c;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #1e1e1e;
 }
 
 .pedido-header > span {
     font-size: 1rem;
-    color: #2c2c2c;
-    font-weight: 300;
+    color: #4b4b4b;
 }
 
 .pedido-header > span:last-child {
-    font-size: 1.2rem;
-    color: #111;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #1d1d1d;
 }
 
 .pedido-header > span strong {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     margin-left: 8px;
-    padding: 6px 12px;
+    padding: 7px 14px;
     border-radius: 999px;
-    background: #f4f4f4;
+    background: #f3f3f3;
     color: #333;
-    font-size: 0.88rem;
+    font-size: 0.9rem;
     font-weight: 600;
+    min-width: 165px;
 }
 
 .pedido-topo {
