@@ -131,6 +131,43 @@ async function carregarPedidos() {
 
     pedidos.forEach(pedido => {
 
+      div.innerHTML = `
+        <div class="pedido-header">
+          <strong>Pedido #${pedido.id}</strong>
+          <span>Status: <strong>${formatarStatus(pedido.status)}</strong></span>
+          <span>Total: R$ ${pedido.valor}</span>
+        </div>
+
+        ${botaoPagamento}
+        ${botaoCancelar}
+        ${botaoReembolso}
+        ${mensagemSolicitada}
+        ${mensagemReembolsado}
+        ${mensagemRecusado}
+
+        <details>
+                  <summary>Ver itens</summary>
+                  ${pedido.itens.map(item => {
+
+        const imagemCorreta = buscarImagemDinamica(item.produto_nome, item.cor);
+
+        return `
+                      <div class="item-pedido">
+                        <div class="pedido-img">
+                          <img src="${imagemCorreta}" alt="${item.produto_nome}">
+                        </div>
+
+                        <div class="item-info">
+                          <span>${item.produto_nome || 'Produto'} | ${item.cor} | ${item.quantidade}x</span>
+                        </div>
+                      </div>
+                    `;
+      }).join("")}
+                </details>
+            `;
+
+      container.appendChild(div);
+
       const botaoCancelar = pedido.status === "pendente"
         ? `<button class="btn-cancelar-pedido" onclick="cancelarPedido(${pedido.id})">
         Cancelar pedido
@@ -162,43 +199,6 @@ async function carregarPedidos() {
         : "";
       const div = document.createElement("div");
       div.classList.add("pedido");
-
-      div.innerHTML = `
-        <div class="pedido-header">
-          <strong>Pedido #${pedido.id}</strong>
-          <span>Status: <strong>${formatarStatus(pedido.status)}</strong></span>
-          <span>Total: R$ ${pedido.valor}</span>
-        </div>
-
-        ${botaoPagamento}
-        ${botaoCancelar}
-        ${botaoReembolso}
-        ${mensagemSolicitada}
-        ${mensagemReembolsado}
-        ${mensagemRecusado}
-
-        <details>
-                  <summary>Ver itens</summary>
-                  ${pedido.itens.map(item => {
-        // 🔥 ESSA LINHA É A CHAVE: Criamos a variável antes de usar no HTML
-        const imagemCorreta = buscarImagemDinamica(item.produto_nome, item.cor);
-
-        return `
-                      <div class="item-pedido">
-                        <div class="pedido-img">
-                          <img src="${imagemCorreta}" alt="${item.produto_nome}">
-                        </div>
-
-                        <div class="item-info">
-                          <span>${item.produto_nome || 'Produto'} | ${item.cor} | ${item.quantidade}x</span>
-                        </div>
-                      </div>
-                    `;
-      }).join("")}
-                </details>
-            `;
-
-      container.appendChild(div);
     });
 
   } catch (err) {
