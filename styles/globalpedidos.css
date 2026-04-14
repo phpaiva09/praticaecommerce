@@ -371,35 +371,65 @@ details {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 25px;
+    margin-bottom: 28px;
 }
 
 .header-pedidos h2 {
-    font-size: 22px;
-    font-weight: 500;
+    font-size: 2rem;
+    font-weight: 600;
     color: #111;
 }
 
 .pedido {
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    padding: 15px;
-    margin-bottom: 15px;
-    line-height: 2.5rem;
+    background: #fff;
+    border: 1px solid #e7e7e7;
+    border-radius: 18px;
+    padding: 22px 24px;
+    margin-bottom: 18px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    line-height: normal;
 }
 
-.pedido-card {
-    background: #fff;
-    border-radius: 10px;
-    padding: 18px 20px;
-    margin-bottom: 15px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+.pedido:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
 }
 
 .pedido-header {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 18px;
+}
+
+.pedido-header > strong {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #1d1d1d;
+}
+
+.pedido-header > span {
+    font-size: 1rem;
+    color: #444;
+}
+
+.pedido-header > span:last-child {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #111;
+}
+
+.pedido-header > span strong {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: #f4f4f4;
+    color: #333;
+    font-size: 0.88rem;
+    font-weight: 600;
 }
 
 .pedido-topo {
