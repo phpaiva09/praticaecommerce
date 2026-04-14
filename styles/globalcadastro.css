@@ -386,7 +386,7 @@ input {
     max-width: 90%; 
     text-align: center;
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    animation: fadeIn 0.5s ease;
+    animation: fadeIn 0.3s ease;
 }
 
 .modal-box h2 {
