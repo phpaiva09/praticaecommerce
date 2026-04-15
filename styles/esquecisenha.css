@@ -11,6 +11,7 @@ body {
     opacity: 0;
     transition: opacity 0.6s ease;
     min-height: 100vh;
+    background-color: #f5f5f5;
 }
 
 body.loaded {
@@ -154,7 +155,6 @@ header {
     line-height: 3.5rem;
     max-width: 400px;
     margin: 4rem auto 5rem;
-    border: 2px solid #2c2c2c;
     border-radius: 10px;
     padding: 2rem;
 }
@@ -162,15 +162,17 @@ header {
 h2 {
     margin-bottom: 1rem;
     font-weight: 300;
+    color: #333;
 }
 
 .voltar-login {
     margin-top: -10px;
+    color: #333;
 }
 
 .voltar-login a {
     text-decoration: none;
-    color: black;
+    color: #333;
 }
 
 button#btn-enviar {
@@ -197,8 +199,7 @@ button:hover {
 
 input {
     outline: none;
-    border: 1px solid black;
-    /* borda preta sólida */
+    border: 1px solid #333;
     border-radius: 999px;
     line-height: 1.5rem;
     margin-top: 15px;
