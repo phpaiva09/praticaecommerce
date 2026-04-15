@@ -386,7 +386,6 @@ span {
     background-color: #fff;
     color: #000;
     cursor: pointer;
-    transition: all 0.2s;
     font-size: 0.9rem;
 }
 
@@ -395,7 +394,7 @@ span {
 }
 
 .botao-cor.selecionado {
-    border: 2px solid #926c15;
+    outline: 2px solid #926c15;
     color: #926c15;
     font-weight: 500;
 }
