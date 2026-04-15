@@ -227,7 +227,7 @@ button {
     min-height: 380px;
     /* mantém todos os cards iguais */
     width: 260px;
-    line-height: 1.25rem;
+    line-height: 1.4rem;
 }
 
 .product a {
@@ -286,6 +286,7 @@ footer {
     min-height: 220px;
     margin-top: auto;
     text-align: center;
+    margin-top: 3.5rem;
 }
 
 footer p {
