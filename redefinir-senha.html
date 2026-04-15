@@ -70,26 +70,28 @@
         </div>
     </div>
 
-    <main class="esqueci-container">
-        <div class="esqueci-box">
-            <h2>Criar Nova Senha</h2>
-            <p>Digite sua nova senha abaixo para recuperar o acesso à sua conta.</p>
+    <main>
+        <div class="esqueci-container">
+            <div class="esqueci-box">
+                <h2>Criar Nova Senha</h2>
+                <p>Digite sua nova senha abaixo para recuperar o acesso à sua conta.</p>
 
-            <form id="form-redefinir">
-                <input type="hidden" id="token-input">
+                <form id="form-redefinir">
+                    <input type="hidden" id="token-input">
 
-                <div class="input-group">
-                    <div class="input1">
-                        <p class="nova-senha">Nova Senha</p>
-                        <input type="password" id="nova-senha" placeholder="Mínimo 8 caracteres">
+                    <div class="input-group">
+                        <div class="input1">
+                            <p class="nova-senha">Nova Senha</p>
+                            <input type="password" id="nova-senha" placeholder="Mínimo 8 caracteres">
+                        </div>
+                        <p class="confirmar-senha">Confirmar Nova Senha</p>
+                        <input type="password" id="confirmar-senha" placeholder="Repita a senha">
                     </div>
-                    <p class="confirmar-senha">Confirmar Nova Senha</p>
-                    <input type="password" id="confirmar-senha" placeholder="Repita a senha">
-                </div>
 
-                <button type="submit" id="btn-redefinir">Atualizar Senha</button>
-                <div id="mensagem-retorno"></div>
-            </form>
+                    <button type="submit" id="btn-redefinir">Atualizar Senha</button>
+                    <div id="mensagem-retorno"></div>
+                </form>
+            </div>
         </div>
     </main>
 
@@ -111,7 +113,7 @@
 
     <div id="modal-alteracao" class="modal-overlay" style="display:none;">
         <div class="modal-box">
-            <h2>Atenção</h2> 
+            <h2>Atenção</h2>
             <p id="mensagem-modal"></p>
             <button id="modal-ok" class="btn-ok">OK</button>
         </div>
@@ -166,7 +168,7 @@
 
             if (!senhaForte(novaSenha)) {
                 mostrarModal("Senha muito fraca! A senha deve ter no mínimo 8 caracteres, incluir letras maiúsculas, minúsculas e números.");
-                return; 
+                return;
             }
 
             // Validação básica de confirmação

@@ -149,12 +149,19 @@ header {
     /* centraliza verticalmente o conteúdo */
 }
 
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .esqueci-container {
     background-color: #fff;
     text-align: center;
     line-height: 3.5rem;
     max-width: 400px;
-    margin: 4rem auto 5rem;
+    margin: 5rem auto 5rem;
     border-radius: 10px;
     padding: 2rem;
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
@@ -214,7 +221,9 @@ input {
     color: #333;
 }
 
+/* Footer */
 footer {
+    background-color: #2c2c2c;
     background-color: #2c2c2c;
     min-height: 220px;
     margin-top: auto;
@@ -230,6 +239,10 @@ footer p {
 footer a {
     color: #fff;
     text-decoration: none;
+}
+
+.redes-sociais {
+    text-align: center;
 }
 
 .redes-sociais {
