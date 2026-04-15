@@ -296,7 +296,7 @@ main h3 {
     background-color: #fff;
     padding: 40px;
     border-radius: 14px;
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
     line-height: 1.8;
     color: #333;
 }

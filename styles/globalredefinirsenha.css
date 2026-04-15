@@ -157,11 +157,16 @@ header {
     margin: 4rem auto 5rem;
     border-radius: 10px;
     padding: 2rem;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
 }
 
 h2 {
     margin-bottom: 1rem;
     font-weight: 300;
+    color: #333;
+}
+
+.esqueci-box p {
     color: #333;
 }
 

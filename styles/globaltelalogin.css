@@ -150,7 +150,7 @@ main {
     padding: 2rem;
     flex: 1;
     color: #333;
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
 }
 
 .conteiner-principal a {
