@@ -599,6 +599,10 @@ h3 {
         /* segurança extra */
     }
 
+    footer {
+        margin-top: 0.5rem;
+    }
+
     @keyframes slideDown {
         from {
             opacity: 0;
