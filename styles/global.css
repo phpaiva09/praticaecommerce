@@ -232,6 +232,11 @@ button {
 
 .product-name {
     margin-top: 0.4rem;
+    color: black;
+}
+
+.product-name p {
+    list-style-type: none;
 }
 
 .product img {
