@@ -230,6 +230,11 @@ button {
     line-height: 1.25rem;
 }
 
+.product a {
+    text-decoration: none;
+    color: black;
+}
+
 .product-name {
     margin-top: 0.4rem;
     color: black;
