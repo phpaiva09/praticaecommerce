@@ -235,10 +235,6 @@ button {
     color: black;
 }
 
-.product a {
-    list-style-type: none;
-}
-
 .product img {
     width: 100%;
     height: 250px;
