@@ -629,7 +629,7 @@ html {
         text-align: center;
         line-height: 2.5rem;
         max-width: 400px;
-        margin: 2rem auto 1rem;
+        margin: 2rem auto 2rem;
         border-radius: 10px;
         padding: 2rem;
         border: none;
@@ -670,6 +670,7 @@ html {
 
     .container-login h3 {
         font-weight: 400;
+        font-size: 1.5rem;
     }
 
     footer {

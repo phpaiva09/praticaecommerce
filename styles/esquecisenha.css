@@ -689,7 +689,7 @@ h3 {
         text-align: center;
         line-height: 3rem;
         max-width: 400px;
-        margin: 10rem auto 7rem;
+        margin: 7rem auto 2rem;
         border-radius: 10px;
         padding: 2rem;
         border: none;
@@ -708,12 +708,6 @@ h3 {
         padding: 0;
     }
 
-    .container-principal {
-        width: 100%;
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-
     .cart-container {
         width: 300px;
     }
@@ -730,5 +724,6 @@ h3 {
         padding: 10px 10px;
         height: auto;
         min-height: unset;
+        margin-top: 0;
     }
 }
