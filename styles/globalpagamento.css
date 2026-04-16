@@ -778,7 +778,7 @@ button#btn-ir-pedidos:focus {
     nav {
         display: none;
         position: fixed;
-        top: 84px;
+        top: 81px;
         left: 0;
         width: 100%; /* ✅ em vez de right: 0 */
         max-width: 100%; /* 🔥 segurança extra */
