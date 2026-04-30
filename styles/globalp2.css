@@ -226,10 +226,12 @@ html {
 
 .descricao h3 {
     margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .descricao p {
     line-height: 2rem;
+    margin-top: 1rem;
 }
 
 main {
