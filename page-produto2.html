@@ -104,13 +104,35 @@
                 <h2>Carrinho Móvel Para Gerador De Ozônio</h2>
                 <p class="rate"><span>4.4</span> &#9733; &#9733; &#9733; &#9733; &#9734;</p>
                 <p class="preco">R$ 474,90</p>
-                <div class="opcoes-cor">
-                    <p>Cor: <span id="corSelecionada">branco</span></p>
-                    <div class="botoes-cor">
-                        <button class="botao-cor" data-cor="branco">branco</button>
-                        <button class="botao-cor" data-cor="preto">preto</button>
+                <div class="opcoes-produto">
+
+                    <div class="opcoes-cor">
+                        <p>Cilindro: <span id="cilindroSelecionado">selecione</span></p>
+                        <div class="botoes-cilindro">
+                            <button class="botao-cilindro" data-cilindro="3L">3L</button>
+                            <button class="botao-cilindro" data-cilindro="5L">5L</button>
+                            <button class="botao-cilindro" data-cilindro="7L">7L</button>
+                        </div>
                     </div>
+
+                    <div class="opcoes-cor">
+                        <p>Cor: <span id="corSelecionada">selecione</span></p>
+                        <div class="botoes-cor">
+                            <button class="botao-cor" data-cor="branco">branco</button>
+                            <button class="botao-cor" data-cor="preto">preto</button>
+                        </div>
+                    </div>
+
+                    <div class="opcoes-cor">
+                        <p>Bandeja: <span id="bandejaSelecionada">selecione</span></p>
+                        <div class="botoes-bandeja">
+                            <button class="botao-bandeja" data-bandeja="29 x 32 cm">29 x 32 cm</button>
+                            <button class="botao-bandeja" data-bandeja="20 x 32 cm">20 x 32 cm</button>
+                        </div>
+                    </div>
+
                     <button class="add-to-cart" data-produto-id="2">Adicionar ao Carrinho</button>
+
                 </div>
             </div>
         </div>
@@ -201,12 +223,42 @@
         }
 
         const botoesCor = document.querySelectorAll('.botao-cor');
+        const botoesCilindro = document.querySelectorAll('.botao-cilindro');
+        const botoesBandeja = document.querySelectorAll('.botao-bandeja');
+
         const textoCor = document.getElementById('corSelecionada');
+        const textoCilindro = document.getElementById('cilindroSelecionado');
+        const textoBandeja = document.getElementById('bandejaSelecionada');
+
         const addBtn = document.querySelector('.add-to-cart');
         const miniaturas = document.querySelectorAll('.miniatura');
 
-        // Começa com botão desativado
+        let corSelecionada = null;
+        let cilindroSelecionado = null;
+        let bandejaSelecionada = null;
+
         addBtn.disabled = true;
+
+        function verificarSelecoes() {
+            if (corSelecionada && cilindroSelecionado && bandejaSelecionada) {
+                addBtn.disabled = false;
+            } else {
+                addBtn.disabled = true;
+            }
+        }
+
+        // Seleção de cilindro
+        botoesCilindro.forEach(botao => {
+            botao.addEventListener('click', () => {
+                botoesCilindro.forEach(b => b.classList.remove('selecionado'));
+                botao.classList.add('selecionado');
+
+                cilindroSelecionado = botao.getAttribute('data-cilindro');
+                textoCilindro.textContent = cilindroSelecionado;
+
+                verificarSelecoes();
+            });
+        });
 
         // Seleção de cor
         botoesCor.forEach(botao => {
@@ -214,16 +266,29 @@
                 botoesCor.forEach(b => b.classList.remove('selecionado'));
                 botao.classList.add('selecionado');
 
-                const cor = botao.getAttribute('data-cor');
-                textoCor.textContent = cor;
+                corSelecionada = botao.getAttribute('data-cor');
+                textoCor.textContent = corSelecionada;
 
-                if (cor === 'preto' && miniaturas.length > 1) {
+                if (corSelecionada === 'preto' && miniaturas.length > 1) {
                     trocarImagem(miniaturas[1]);
-                } else if (cor === 'branco' && miniaturas.length > 0) {
+                } else if (corSelecionada === 'branco' && miniaturas.length > 0) {
                     trocarImagem(miniaturas[0]);
                 }
 
-                addBtn.disabled = false; // ativa o botão
+                verificarSelecoes();
+            });
+        });
+
+        // Seleção de bandeja
+        botoesBandeja.forEach(botao => {
+            botao.addEventListener('click', () => {
+                botoesBandeja.forEach(b => b.classList.remove('selecionado'));
+                botao.classList.add('selecionado');
+
+                bandejaSelecionada = botao.getAttribute('data-bandeja');
+                textoBandeja.textContent = bandejaSelecionada;
+
+                verificarSelecoes();
             });
         });
 

@@ -292,16 +292,25 @@ app.post('/pedido', async (req, res) => {
 
             valorTotal += subtotal;
 
+            if (Number(item.produto_id) === 2 && (!item.cilindro || !item.bandeja)) {
+                return res.status(400).json({
+                    sucesso: false,
+                    msg: 'Selecione o cilindro e a bandeja para este produto'
+                });
+            }
+
             await db.promise().query(
                 `
-        INSERT INTO pedido_itens
-        (pedido_id, produto_id, cor, quantidade, preco_unitario, subtotal, imagem)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
-        `,
+    INSERT INTO pedido_itens
+    (pedido_id, produto_id, cor, cilindro, bandeja, quantidade, preco_unitario, subtotal, imagem)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `,
                 [
                     pedidoId,
                     item.produto_id,
-                    item.cor,
+                    item.cor || null,
+                    item.cilindro || null,
+                    item.bandeja || null,
                     quantidade,
                     precoUnitario,
                     subtotal,
@@ -1458,6 +1467,8 @@ app.get("/admin/pedidos", verificarAdmin, async (req, res) => {
                 i.preco_unitario,
                 i.subtotal,
                 i.cor,
+                i.cilindro,
+                i.bandeja,
                 i.imagem,
 
                 pr.nome AS produto_nome

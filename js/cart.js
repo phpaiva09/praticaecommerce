@@ -66,7 +66,9 @@ function updateCart() {
       <img src="${item.image}" alt="${item.name}" width="60">
       <div class="item-info">
         <p>${item.name}</p>
-        <p>Cor: ${item.cor}</p>
+        ${item.cor ? `<p>Cor: ${item.cor}</p>` : ''}
+        ${item.cilindro ? `<p>Cilindro: ${item.cilindro}</p>` : ''}
+        ${item.bandeja ? `<p>Bandeja: ${item.bandeja}</p>` : ''}
         <p>R$ ${item.preco.toFixed(2)}</p>
       </div>
       <div class="item-actions">
@@ -132,58 +134,77 @@ function addCartEventListeners() {
 if (addToCartBtn) {
   addToCartBtn.addEventListener('click', () => {
 
-  let isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    let isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
 
-  if (!isLoggedIn) {
-    mostrarAvisoLogin();
-    window.location.href = "telalogin.html";
-    return;
-  }
+    if (!isLoggedIn) {
+      mostrarAvisoLogin();
+      window.location.href = "telalogin.html";
+      return;
+    }
 
-  const produtoId = parseInt(
-    document.querySelector('.add-to-cart').dataset.produtoId
-  );
+    const produtoId = parseInt(
+      document.querySelector('.add-to-cart').dataset.produtoId
+    );
 
-  const cor = document.getElementById('corSelecionada')?.textContent || '';
+    const cor = document.getElementById('corSelecionada')?.textContent || '';
+    const cilindro = document.getElementById('cilindroSelecionado')?.textContent || '';
+    const bandeja = document.getElementById('bandejaSelecionada')?.textContent || '';
 
-  if (!cor) {
-    alert('Selecione uma cor');
-    return;
-  }
+    if (!cor || cor === 'selecione') {
+      alert('Selecione uma cor');
+      return;
+    }
 
-  // 🔥 AQUI entra o preço
-  const precoTexto = document.querySelector('.preco').textContent;
-  const preco = parseFloat(
-    precoTexto.replace('R$', '').replace('.', '').replace(',', '.')
-  );
+    if (produtoId === 2) {
+      if (!cilindro || cilindro === 'selecione') {
+        alert('Selecione o cilindro');
+        return;
+      }
 
-  const nomeProduto = document.querySelector('h2').textContent;
+      if (!bandeja || bandeja === 'selecione') {
+        alert('Selecione a bandeja');
+        return;
+      }
+    }
 
-  const imagem = document.getElementById('imagemPrincipal')?.src || '';
+    // 🔥 AQUI entra o preço
+    const precoTexto = document.querySelector('.preco').textContent;
+    const preco = parseFloat(
+      precoTexto.replace('R$', '').replace('.', '').replace(',', '.')
+    );
 
-  const produtoExistente = cart.find(
-    item => item.produto_id === produtoId && item.cor === cor
-  );
+    const nomeProduto = document.querySelector('h2').textContent;
 
-  if (produtoExistente) {
-    produtoExistente.quantidade++;
-  } else {
-    cart.push({
-      produto_id: produtoId,
-      quantidade: 1,
-      cor: cor,
-      preco: preco,
-      name: nomeProduto,
-      image: imagem
-    });
-  }
+    const imagem = document.getElementById('imagemPrincipal')?.src || '';
 
-  updateCart();
+    const produtoExistente = cart.find(item =>
+      item.produto_id === produtoId &&
+      item.cor === cor &&
+      item.cilindro === (produtoId === 2 ? cilindro : null) &&
+      item.bandeja === (produtoId === 2 ? bandeja : null)
+    );
 
-  cartContainer.classList.add('active');
-  cartOpen = true;
-  localStorage.setItem('cartOpen', 'true');
-});
+    if (produtoExistente) {
+      produtoExistente.quantidade++;
+    } else {
+      cart.push({
+        produto_id: produtoId,
+        quantidade: 1,
+        cor: cor,
+        cilindro: produtoId === 2 ? cilindro : null,
+        bandeja: produtoId === 2 ? bandeja : null,
+        preco: preco,
+        name: nomeProduto,
+        image: imagem
+      });
+    }
+
+    updateCart();
+
+    cartContainer.classList.add('active');
+    cartOpen = true;
+    localStorage.setItem('cartOpen', 'true');
+  });
 }
 
 // === Finalizar Compra ===
