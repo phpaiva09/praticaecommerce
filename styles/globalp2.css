@@ -424,7 +424,7 @@ span {
 }
 
 .botao-cor.selecionado {
-    outline: 2px solid #926c15;
+    outline: 1px solid #926c15;
     color: #926c15;
     font-weight: 500;
 }
@@ -446,7 +446,7 @@ span {
 }
 
 .botao-cilindro.selecionado {
-    outline: 2px solid #926c15;
+    outline: 1px solid #926c15;
     color: #926c15;
     font-weight: 500;
 }
@@ -468,7 +468,7 @@ span {
 }
 
 .botao-bandeja.selecionado {
-    outline: 2px solid #926c15;
+    outline: 1px solid #926c15;
     color: #926c15;
     font-weight: 500;
 }
