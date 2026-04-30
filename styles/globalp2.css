@@ -429,6 +429,50 @@ span {
     font-weight: 500;
 }
 
+.botao-cilindro {
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    padding: 0.4rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fff;
+    color: #000;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.botao-cilindro:hover {
+    border-color: #926c15;
+}
+
+.botao-cilindro.selecionado {
+    outline: 2px solid #926c15;
+    color: #926c15;
+    font-weight: 500;
+}
+
+.botao-bandeja {
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    padding: 0.4rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fff;
+    color: #000;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.botao-bandeja:hover {
+    border-color: #926c15;
+}
+
+.botao-bandeja.selecionado {
+    outline: 2px solid #926c15;
+    color: #926c15;
+    font-weight: 500;
+}
+
 
 /* === Estilo do Carrinho === */
 .cart-container {
