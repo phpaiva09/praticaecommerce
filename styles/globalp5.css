@@ -225,10 +225,20 @@ html {
 
 .descricao h3 {
     margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .descricao p {
-    line-height: 2rem;
+    line-height: 1.5rem;
+    margin-top: 1rem;
+}
+
+.descricao li {
+    list-style-type: none;
+    line-height: 1rem;
+    margin-left: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 main {
