@@ -234,6 +234,14 @@ html {
     margin-top: 1rem;
 }
 
+.descricao li {
+    list-style-type: none;
+    line-height: 1rem;
+    margin-left: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
 main {
     display: flex;
     justify-content: center;
