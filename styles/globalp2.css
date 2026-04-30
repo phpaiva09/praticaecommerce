@@ -473,6 +473,9 @@ span {
     font-weight: 500;
 }
 
+.opcoes-produto {
+    line-height: 1rem;
+}
 
 /* === Estilo do Carrinho === */
 .cart-container {
