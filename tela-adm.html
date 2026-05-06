@@ -262,11 +262,14 @@
                 pedido.itens.forEach(item => {
                     const li = document.createElement("li");
 
-                    li.textContent = `${item.produto_nome} (${item.cor}) 
-                    ${item.cilindro ? `| Cilindro: ${item.cilindro}` : ''}
-                    ${item.bandeja ? `| Bandeja: ${item.bandeja}` : ''}
-                | ${item.quantidade}x 
-                | R$ ${Number(item.preco_unitario).toFixed(2)}`;
+                    li.innerHTML = `
+                        <strong>${item.produto_nome}</strong><br>
+                        ${item.cor ? `Cor: ${item.cor}<br>` : ''}
+                        ${item.cilindro ? `Cilindro: ${item.cilindro}<br>` : ''}
+                        ${item.bandeja ? `Bandeja: ${item.bandeja}<br>` : ''}
+                        Quantidade: ${item.quantidade}x<br>
+                        Valor unitário: R$ ${Number(item.preco_unitario).toFixed(2)}
+                    `;
 
                     listaItens.appendChild(li);
                 });
