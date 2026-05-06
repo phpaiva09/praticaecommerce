@@ -263,10 +263,10 @@
                     const li = document.createElement("li");
 
                     li.textContent = `${item.produto_nome} (${item.cor}) 
-                    ${item.cilindro ? `- Cilindro: ${item.cilindro}` : ''}
-                    ${item.bandeja ? `- Bandeja: ${item.bandeja}` : ''}
-                - ${item.quantidade}x 
-                - R$ ${Number(item.preco_unitario).toFixed(2)}`;
+                    ${item.cilindro ? `| Cilindro: ${item.cilindro}` : ''}
+                    ${item.bandeja ? `| Bandeja: ${item.bandeja}` : ''}
+                | ${item.quantidade}x 
+                | R$ ${Number(item.preco_unitario).toFixed(2)}`;
 
                     listaItens.appendChild(li);
                 });
