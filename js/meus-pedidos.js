@@ -190,7 +190,13 @@ async function carregarPedidos() {
                         </div>
 
                         <div class="item-info">
-                          <span>${item.produto_nome || 'Produto'} | ${item.cor} | ${item.quantidade}x</span>
+                          <span>
+                            ${item.produto_nome || 'Produto'} 
+                            ${item.cor ? `| ${item.cor}` : ''}
+                            ${item.cilindro ? `| Cilindro: ${item.cilindro}` : ''}
+                            ${item.bandeja ? `| Bandeja: ${item.bandeja}` : ''}
+                            | ${item.quantidade}x
+                          </span>
                         </div>
                       </div>
                     `;
