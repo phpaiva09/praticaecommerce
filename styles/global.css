@@ -620,19 +620,18 @@ h3 {
         width: 100%;
     }
 
-    #user-nav a, 
-    #user-nav span {
-        width: auto !important;   /* Impede que ele tente ocupar a tela toda */
-        display: inline-block !important; 
-        padding: 0 5px !important; /* Remove aquele padding gigante de 2rem */
-        margin: 0;
-    }
-
     #user-nav {
-        gap: 0; /* Ajuste o espaço entre o Olá e o Sair aqui se precisar */
         display: flex;
         justify-content: center;
+        align-items: center;
+        gap: 6px;
+    }
+
+    #user-nav a,
+    #user-nav span {
         margin: 0;
+        padding: 0;
+        line-height: 1;
     }
 
     nav ul li {

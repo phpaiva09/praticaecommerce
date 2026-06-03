@@ -233,9 +233,10 @@ window.addEventListener("load", () => {
   if (isLoggedIn && usuarioLogin) {
     // Mostra "Olá, Usuário | Sair"
     userNav.innerHTML = `
-            <span>Olá, <a href="telausuario.html">${usuarioLogin}</a> |</span>
-            <a href="javascript:void(0);" class="hover-sair" onclick="logout()"> Sair</a>
-        `;
+        <a href="telausuario.html">Olá, ${usuarioLogin}</a>
+        <span>|</span>
+        <a href="javascript:void(0);" class="hover-sair" onclick="logout()">Sair</a>
+    `;
   } else {
     // Caso não esteja logado
     userNav.innerHTML = `<a href="telalogin.html"><h3>Conta</h3></a>`;
