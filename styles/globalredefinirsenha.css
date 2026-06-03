@@ -422,16 +422,6 @@ h3 {
     font-weight: 450;
 }
 
-/* Overlay escuro */
-.modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.6);
-    display: none; /* JS controla */
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-}
 
 /* Overlay escuro */
 .modal-overlay {
