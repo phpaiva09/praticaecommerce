@@ -53,20 +53,22 @@ ul h3 {
 }
 
 #user-nav {
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    cursor: pointer;
     margin-right: 1.5rem;
-    white-space: nowrap;
+    font-size: 1.1rem;
+    font-family: "Merriweather", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+    font-weight: 300;
 }
 
-#user-nav a,
+#user-nav a {
+    color: #fff;
+}
+
 #user-nav span {
     color: #fff;
-    text-decoration: none;
-    margin: 0;
-    padding: 0;
-    line-height: 1;
 }
 
 ul a {
@@ -618,27 +620,20 @@ h3 {
         width: 100%;
     }
 
+    #user-nav a, 
+    #user-nav span {
+        width: auto !important;   /* Impede que ele tente ocupar a tela toda */
+        display: inline-block !important; 
+        padding: 0 5px !important; /* Remove aquele padding gigante de 2rem */
+        margin: 0;
+    }
+
     #user-nav {
-        width: 100%;
+        gap: 0; /* Ajuste o espaço entre o Olá e o Sair aqui se precisar */
         display: flex;
         justify-content: center;
-        align-items: center;
-        gap: 14px;
         margin: 0;
-        padding: 1.2rem 2rem;
-    }
-
-    #user-nav a,
-    #user-nav span,
-    #user-nav h3 {
-        margin: 0;
-        padding: 0 !important;
-        line-height: 1;
-        width: auto !important;
-    }
-
-    #user-nav h3 {
-        margin-left: -3px;
+        padding-bottom: 1rem;
     }
 
     nav ul li {
