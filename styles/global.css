@@ -639,6 +639,10 @@ h3 {
         width: auto !important;
     }
 
+    #user-nav h3 {
+        margin-left: -3px;
+    }
+
     nav ul li {
         width: 100%;
     }
