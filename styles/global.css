@@ -629,11 +629,19 @@ h3 {
     }
 
     #user-nav {
-        gap: 0; /* Ajuste o espaço entre o Olá e o Sair aqui se precisar */
+        gap: 0.4rem;
         display: flex;
         justify-content: center;
+        align-items: center;
         margin: 0;
-        padding-bottom: 1rem;
+        padding: 1.2rem 2rem;
+    }
+
+    #user-nav a,
+    #user-nav span {
+        margin: 0;
+        padding: 0 !important;
+        line-height: normal;
     }
 
     nav ul li {
