@@ -233,7 +233,7 @@ window.addEventListener("load", () => {
   if (isLoggedIn && usuarioLogin) {
     // Mostra "Olá, Usuário | Sair"
     userNav.innerHTML = `
-        <a href="telausuario.html"><h3>Olá, ${usuarioLogin}</h3></a>
+        <a href="telausuario.html"><h3>Olá, ${usuarioLogin}</h3> | </a>
         <a href="javascript:void(0);" class="hover-sair" onclick="logout()"><h3>Sair</h3></a>
     `;
   } else {
