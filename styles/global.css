@@ -621,17 +621,22 @@ h3 {
     }
 
     #user-nav {
+        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 6px;
+        gap: 14px;
+        margin: 0;
+        padding: 1.2rem 2rem;
     }
 
     #user-nav a,
-    #user-nav span {
+    #user-nav span,
+    #user-nav h3 {
         margin: 0;
-        padding: 0;
+        padding: 0 !important;
         line-height: 1;
+        width: auto !important;
     }
 
     nav ul li {
