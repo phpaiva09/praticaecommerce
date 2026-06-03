@@ -401,75 +401,76 @@ input {
 .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.6);
-    display: none; /* JS controla */
+    background: rgba(0, 0, 0, 0.62);
+    display: none;
     align-items: center;
     justify-content: center;
     z-index: 9999;
+    padding: 1rem;
 }
 
-/* Caixa do modal */
 .modal-box {
     background: #fff;
-    padding: 30px; 
-    border-radius: 12px;
-    width: 380px; 
-    max-width: 90%; 
+    width: 100%;
+    max-width: 420px;
+    padding: 32px 28px;
+    border-radius: 14px;
     text-align: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    animation: fadeIn 0.3s ease;
+    font-family: "Montserrat", Arial, sans-serif;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+    animation: fadeIn 0.25s ease;
 }
 
 .modal-box h2 {
-    font-weight: 500;
-    margin-bottom: 10px;
     color: #926c15;
-    /* dourado elegante */
+    font-size: 1.45rem;
+    font-weight: 500;
+    margin-bottom: 12px;
 }
 
 .modal-box p {
-    font-size: 15px;
     color: #555;
-    margin-bottom: 25px;
+    font-size: 0.95rem;
+    line-height: 1.45rem;
+    margin-bottom: 26px;
 }
 
-/* Botões */
 .modal-buttons {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.btn-ok,
+.btn-cancelar {
+    min-width: 120px;
+    border-radius: 999px;
+    padding: 11px 28px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s ease;
 }
 
 .btn-ok {
     background: #926c15;
     color: #fff;
-    border: none;
-    padding: 12px 40px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-weight: bold;
-    margin-top: 20px;
-    width: auto;
-    transition: all 0.2s;
+    border: 1px solid #926c15;
+}
+
+.btn-cancelar {
+    background: #fff;
+    color: #333;
+    border: 1px solid #d0d0d0;
 }
 
 .btn-ok:hover {
     background: #76520e;
 }
 
-.btn-cancelar {
-    background: transparent;
-    border: 1px solid #ccc;
-    padding: 12px 40px;
-    border-radius: 25px;
-    cursor: pointer;
-    margin-top: 20px;
-    font-weight: 200;
-    transition: all 0.2s;
-}
-
 .btn-cancelar:hover {
-    background-color: #cfcfcf;
+    background: #f1f1f1;
 }
 
 /* Animação */
