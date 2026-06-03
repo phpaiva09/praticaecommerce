@@ -53,22 +53,20 @@ ul h3 {
 }
 
 #user-nav {
-    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
     margin-right: 1.5rem;
-    font-size: 1.1rem;
-    font-family: "Merriweather", serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-    font-variation-settings: "wdth" 100;
-    font-weight: 300;
+    white-space: nowrap;
 }
 
-#user-nav a {
-    color: #fff;
-}
-
+#user-nav a,
 #user-nav span {
     color: #fff;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
 }
 
 ul a {
