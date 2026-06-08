@@ -670,7 +670,10 @@ h3 {
         padding-right: 1rem;
     }
 
-    
+
+    .cart-container {
+        width: 300px;
+    }
 
     .cart-container.active {
         right: 0;
