@@ -937,6 +937,31 @@ h3 {
         width: 300px;
     }
 
+    .cart-container.active {
+        right: 0;
+    }
+
+    .cart-item {
+        gap: 8px;
+    }
+
+    .cart-item img {
+        width: 55px;
+        height: 55px;
+    }
+
+    .item-info p {
+        font-size: 13px;
+    }
+
+    .item-actions {
+        gap: 3px;
+    }
+
+    .item-actions .remove img {
+        height: 28px;
+    }
+
     .nav-icon-container img {
         width: 70px;
     }
