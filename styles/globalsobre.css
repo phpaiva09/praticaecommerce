@@ -342,7 +342,7 @@ html {
     right: -400px;
     /* Começa fora da tela */
     width: 400px;
-    height: 100vh;
+    height: 100dvh;
     background: #fff;
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
     transition: right 0.4s ease;

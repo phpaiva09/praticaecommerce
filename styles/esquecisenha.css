@@ -261,7 +261,7 @@ html {
     right: -400px;
     /* Começa fora da tela */
     width: 400px;
-    height: 100vh;
+    height: 100dvh;
     background: #fff;
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
     transition: right 0.4s ease;
@@ -699,6 +699,31 @@ h3 {
 
     .cart-container {
         width: 300px;
+    }
+
+    .cart-container.active {
+        right: 0;
+    }
+
+    .cart-item {
+        gap: 8px;
+    }
+
+    .cart-item img {
+        width: 55px;
+        height: 55px;
+    }
+
+    .item-info p {
+        font-size: 13px;
+    }
+
+    .item-actions {
+        gap: 3px;
+    }
+
+    .item-actions .remove img {
+        height: 28px;
     }
 
     .nav-icon-container img {
