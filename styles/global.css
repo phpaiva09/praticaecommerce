@@ -670,8 +670,35 @@ h3 {
         padding-right: 1rem;
     }
 
+
     .cart-container {
-        width: 300px;
+        width: 100vw;
+        right: -100vw;
+    }
+
+    .cart-container.active {
+        right: 0;
+    }
+
+    .cart-item {
+        gap: 8px;
+    }
+
+    .cart-item img {
+        width: 55px;
+        height: 55px;
+    }
+
+    .item-info p {
+        font-size: 13px;
+    }
+
+    .item-actions {
+        gap: 3px;
+    }
+
+    .item-actions .remove img {
+        height: 28px;
     }
 
     .nav-icon-container img {
