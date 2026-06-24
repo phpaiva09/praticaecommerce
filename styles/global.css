@@ -98,7 +98,7 @@ nav ul li:hover:not(#user-nav) {
     margin: 0;
     cursor: pointer;
     transition: transform .3s ease;
-    margin-right: 1.5rem;
+    margin-right: 1rem;
 }
 
 .nav-icon-container img:hover {
