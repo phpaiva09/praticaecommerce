@@ -35,40 +35,6 @@ body.loaded {
     z-index: 99;
 }
 
-nav ul li {
-    position: relative;
-}
-
-nav ul li a {
-    position: relative;
-    display: inline-block;
-}
-
-nav ul li a::after {
-    content: "";
-    position: absolute;
-
-    left: 50%;
-    bottom: -6px;
-
-    width: 0;
-    height: 3px;
-
-    background: #926c15;
-    border-radius: 999px;
-
-    transform: translateX(-50%);
-    transition: width .3s ease;
-}
-
-nav ul li a:hover::after {
-    width: 28px;
-}
-
-nav ul li:hover h3 {
-    color: #926c15;
-}
-
 ul {
     display: flex;
     list-style-type: none;
@@ -132,7 +98,6 @@ nav ul li:hover:not(#user-nav) {
     margin: 0;
     cursor: pointer;
     transition: transform .3s ease;
-    margin-right: 1.5rem;
 }
 
 .nav-icon-container img:hover {
