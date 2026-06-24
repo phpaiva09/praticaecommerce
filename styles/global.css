@@ -50,6 +50,34 @@ ul h3 {
     font-style: normal;
     font-variation-settings: "wdth" 100;
     font-weight: 300;
+
+    position: relative;
+    transition: color .3s ease;
+}
+
+ul h3::after {
+    content: "";
+    position: absolute;
+
+    left: 50%;
+    bottom: -8px;
+
+    width: 0;
+    height: 2px;
+
+    background: #926c15;
+    border-radius: 999px;
+
+    transform: translateX(-50%);
+    transition: width .3s ease;
+}
+
+ul h3:hover {
+    color: #926c15;
+}
+
+ul h3:hover::after {
+    width: 28px;
 }
 
 #user-nav {
@@ -80,12 +108,6 @@ ul a {
     transform: translateY(-3px);
     transition: all 0.2s;
     display: inline-block;
-}
-
-nav ul li:hover:not(#user-nav) {
-    transform: translateY(-3px);
-    transition: all 0.2s;
-    font-weight: bold;
 }
 
 .nav-icon-container {
