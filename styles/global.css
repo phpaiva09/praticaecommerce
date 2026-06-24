@@ -39,7 +39,12 @@ nav ul li {
     position: relative;
 }
 
-nav ul li::after {
+nav ul li a {
+    position: relative;
+    display: inline-block;
+}
+
+nav ul li a::after {
     content: "";
     position: absolute;
 
@@ -56,8 +61,8 @@ nav ul li::after {
     transition: width .3s ease;
 }
 
-nav ul li:hover::after {
-    width: 35px;
+nav ul li a:hover::after {
+    width: 28px;
 }
 
 nav ul li:hover h3 {
