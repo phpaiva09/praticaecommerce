@@ -97,11 +97,11 @@ nav ul li:hover:not(#user-nav) {
     width: 75px;
     margin: 0;
     cursor: pointer;
-    /* Quando o usuário passar o cursor sobre a imagem ele vira uma mãozinha */
+    transition: transform .3s ease;
 }
 
-.nav-icon-container img:first-child {
-    margin-right: 1rem;
+.nav-icon-container img:hover {
+    transform: scale(1.12);
 }
 
 .navbar > div {
