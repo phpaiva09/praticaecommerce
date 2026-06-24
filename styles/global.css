@@ -102,6 +102,7 @@ nav ul li:hover:not(#user-nav) {
 
 .nav-icon-container img:hover {
     transform: scale(1.12);
+    margin-right: 1.5rem;
 }
 
 .navbar > div {
