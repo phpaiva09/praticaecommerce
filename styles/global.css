@@ -142,6 +142,7 @@ ul a {
     font-variation-settings: "wdth" 100;
     letter-spacing: 1px;
     transition: all .3s ease;
+    cursor: pointer;
 }
 
 .logo-header h1 {
