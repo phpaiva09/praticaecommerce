@@ -38,37 +38,46 @@ body.loaded {
 ul {
     display: flex;
     list-style-type: none;
-
 }
 
 ul h3 {
-    font-weight: 100;
     color: #fff;
     cursor: pointer;
     margin-right: 1.5rem;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-family: "Merriweather", serif;
     font-optical-sizing: auto;
     font-style: normal;
     font-variation-settings: "wdth" 100;
     font-weight: 300;
+
+    position: relative;
+    transition: color .3s ease;
 }
 
-ul a {
-    text-decoration: none;
+ul h3::after {
+    content: "";
+    position: absolute;
 
+    left: 50%;
+    bottom: -8px;
+
+    width: 0;
+    height: 2px;
+
+    background: #926c15;
+    border-radius: 999px;
+
+    transform: translateX(-50%);
+    transition: width .3s ease;
 }
 
-.hover-sair:hover {
-    transform: translateY(-3px);
-    transition: all 0.2s;
-    display: inline-block;
+ul h3:hover {
+    color: #b68a25;
 }
 
-nav ul li:hover:not(#user-nav) {
-    transform: translateY(-3px);
-    transition: all 0.2s;
-    font-weight: bold;
+ul h3:hover::after {
+    width: 28px;
 }
 
 #user-nav {
@@ -90,23 +99,35 @@ nav ul li:hover:not(#user-nav) {
     color: #fff;
 }
 
+ul a {
+    text-decoration: none;
+
+}
+
+.hover-sair:hover {
+    transform: translateY(-3px);
+    transition: all 0.2s;
+    display: inline-block;
+}
+
 .nav-icon-container {
     display: flex;
     align-items: center;
 }
 
 .nav-icon-container img {
-    width: 75px;
+    width: 70px;
     margin: 0;
     cursor: pointer;
-    /* Quando o usuário passar o cursor sobre a imagem ele vira uma mãozinha */
-}
-
-.nav-icon-container img:first-child {
+    transition: transform .3s ease;
     margin-right: 1rem;
 }
 
-.navbar>div {
+.nav-icon-container img:hover {
+    transform: scale(1.12);
+}
+
+.navbar > div {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -114,32 +135,58 @@ nav ul li:hover:not(#user-nav) {
 }
 
 .logo-header {
-    line-height: 1.5rem;
-    color: #926c15;
-    font-weight: 450;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
     padding-left: 1.5rem;
     font-family: "Merriweather", serif;
     font-optical-sizing: auto;
-    font-weight: weight;
     font-style: normal;
     font-variation-settings: "wdth" 100;
-    font-size: 1.6rem;
+    letter-spacing: 1px;
+    transition: all .3s ease;
+    cursor: pointer;
 }
 
-.logo-header span {
-    color: #fff;
-    font-weight: 200;
-    font-size: 1.1rem;
+.logo-header h1 {
+    font-size: 1.4rem;
+    color: #a17817;
+    text-align: center;
+    font-weight: 600;
+}
+
+.logo-header h3 {
+    display: block;
+    color: #d9d9d9;
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.logo-header:hover {
+    transform: translateY(-2px);
+    text-shadow: 0 0 12px rgba(182, 138, 37, .4);
+}
+
+.menu-button {
+    display: none;
+}
+
+header {
+    background-image: radial-gradient(#fff, #c7c7c7);
+    min-height: 80vh;
+    height: auto;
+    /* ocupa a tela toda */
+    display: flex;
+    justify-content: center;
+    /* centraliza horizontalmente o conteúdo */
+    align-items: center;
+    /* centraliza verticalmente o conteúdo */
 }
 
 .menu-button {
     display: none;
 
-}
-
-header {
-    background-image: radial-gradient(#fff, #c7c7c7);
 }
 
 .header-bottom-side {
