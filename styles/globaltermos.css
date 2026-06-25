@@ -190,7 +190,7 @@ header {
 
 .pagina-politica {
     background-color: #f5f5f5;
-    padding: 80px 20px 60px;
+    padding: 60px 20px 60px;
     min-height: 100vh;
 }
 
@@ -634,7 +634,7 @@ h3 {
     }
 
     main {
-        margin-top: 3rem;
+        margin-top: 5rem;
     }
 
     .politica-container {
