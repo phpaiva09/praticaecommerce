@@ -620,6 +620,10 @@ h3 {
         padding-bottom: 60px;
     }
 
+    .nav-icon-container img {
+        margin-right: 0;
+    }
+
     @keyframes slideDown {
         from {
             opacity: 0;
