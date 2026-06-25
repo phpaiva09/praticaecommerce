@@ -639,40 +639,34 @@ h3 {
     }
 
     nav {
-        display: none;
+        display: block;
         position: fixed;
-        top: 81px;
-        left: 0;
-        width: 100%; /* ✅ em vez de right: 0 */
-        max-width: 100%; /* 🔥 segurança extra */
+
+        top: 0;
+        right: -280px;
+
+        width: 280px;
+        height: 100vh;
+
         background: #2c2c2c;
+
+        transition: right .3s ease;
         z-index: 9999;
-        overflow-x: hidden;
+
+        padding-top: 90px;
+
+        border-radius: 0;
+        overflow: hidden;
+    }
+
+    .show-menu nav {
+        right: 0;
     }
 
     nav ul {
         display: flex;
         flex-direction: column;
-        align-items: center; /* 🔥 centraliza todos os itens */
-        width: 100%;
-    }
-
-    #user-nav a,
-    #user-nav span {
-        width: auto !important;
-        display: inline-flex !important;
-        align-items: center;
-        padding: 0 !important;
-        margin: 0;
-    }
-
-    #user-nav {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 5px;
-        margin: 0;
-        padding: 1rem 0;
+        align-items: stretch;
     }
 
     nav ul li {
@@ -681,12 +675,14 @@ h3 {
 
     nav ul li a {
         display: block;
-        width: 100%;
+        padding: 1rem 1.5rem;
+        text-align: left;
+        border-bottom: 1px solid rgba(255,255,255,.08);
     }
 
     nav ul li a h3 {
         margin: 0;
-        padding: 1.2rem 2rem;
+        font-size: 1rem;
     }
 
     .logo-header {
