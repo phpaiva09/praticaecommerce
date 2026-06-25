@@ -550,8 +550,8 @@ h3 {
     }
 
     .politica-container {
-        padding: 3rem;
-        margin-top: 5rem;
+        margin: 2rem;
+        margin-top: 4rem;
     }
 
     @keyframes slideDown {
