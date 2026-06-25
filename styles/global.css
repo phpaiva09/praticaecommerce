@@ -549,7 +549,7 @@ h3 {
 
         position: fixed;
         top: 0;
-        left: 280px;
+        left: -280px;
 
         width: 280px;
         height: 100vh;
@@ -645,7 +645,7 @@ h3 {
     nav {
         position: fixed;
         top: 0;
-        left: 240px;
+        left: -240px;
 
         width: 240px;
         height: 100vh;
@@ -661,7 +661,7 @@ h3 {
     }
 
     .show-menu nav {
-        right: 0;
+        left: 0;
     }
 
     nav ul {
