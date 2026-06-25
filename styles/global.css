@@ -45,7 +45,7 @@ ul h3 {
     cursor: pointer;
     margin-right: 1.5rem;
     font-size: 1.05rem;
-    font-family: "Poppins", sans-serif;
+    font-family: "Merriweather", serif;
     font-optical-sizing: auto;
     font-style: normal;
     font-variation-settings: "wdth" 100;
@@ -139,7 +139,7 @@ ul a {
     flex-direction: column;
     gap: 4px;
     padding-left: 1.5rem;
-    font-family: "Poppins", sans-serif;
+    font-family: "Merriweather", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
     font-variation-settings: "wdth" 100;
