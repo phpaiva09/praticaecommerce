@@ -690,11 +690,11 @@ h3 {
     }
 
     .logo-header h1 {
-        font-size: 1rem;
+        font-size: 1.05rem;
     }
 
     .logo-header h3 {
-        font-size: 0.5rem;
+        font-size: 0.6rem;
     }
 
     .header-inner-content {
@@ -739,6 +739,7 @@ h3 {
 
     .nav-icon-container img {
         width: 70px;
+        margin-right: 0;
     }
 
     .nav-icon-container img:first-child {
