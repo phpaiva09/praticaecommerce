@@ -917,7 +917,8 @@ button#btn-ir-pedidos:focus {
     }
 
     .nav-icon-container img {
-        width: 70px;
+        width: 60px;
+        margin: 0;
     }
 
     .nav-icon-container img:first-child {

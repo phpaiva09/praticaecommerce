@@ -967,7 +967,7 @@ h3 {
         margin-left: auto;
         margin-right: auto;
     }
-    
+
     .header-inner-content {
         padding: 0;
     }
@@ -1008,7 +1008,8 @@ h3 {
     }
 
     .nav-icon-container img {
-        width: 70px;
+        width: 60px;
+        margin: 0;
     }
 
     .nav-icon-container img:first-child {

@@ -1124,7 +1124,8 @@ input#senhaConfirmacao {
     }
 
     .nav-icon-container img {
-        width: 70px;
+        width: 60px;
+        margin: 0;
     }
 
     button#btnExcluirConta {
