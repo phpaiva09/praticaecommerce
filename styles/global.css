@@ -639,24 +639,21 @@ h3 {
     }
 
     nav {
-        display: block;
         position: fixed;
-
         top: 0;
-        right: -280px;
+        right: -240px;
 
-        width: 280px;
+        width: 240px;
         height: 100vh;
 
-        background: #2c2c2c;
+        background: #252525;
 
         transition: right .3s ease;
         z-index: 9999;
 
-        padding-top: 90px;
+        padding-top: 70px;
 
-        border-radius: 0;
-        overflow: hidden;
+        box-shadow: -10px 0 25px rgba(0,0,0,.25);
     }
 
     .show-menu nav {
@@ -666,7 +663,7 @@ h3 {
     nav ul {
         display: flex;
         flex-direction: column;
-        align-items: stretch;
+        width: 100%;
     }
 
     nav ul li {
@@ -674,15 +671,27 @@ h3 {
     }
 
     nav ul li a {
-        display: block;
-        padding: 1rem 1.5rem;
-        text-align: left;
-        border-bottom: 1px solid rgba(255,255,255,.08);
+        display: flex;
+        align-items: center;
+
+        height: 60px;
+        padding-left: 24px;
+
+        text-decoration: none;
+
+        border-bottom: 1px solid rgba(255,255,255,.05);
+
+        transition: .2s;
+    }
+
+    nav ul li a:hover {
+        background: rgba(146,108,21,.15);
     }
 
     nav ul li a h3 {
         margin: 0;
         font-size: 1rem;
+        color: #fff;
     }
 
     .logo-header {
