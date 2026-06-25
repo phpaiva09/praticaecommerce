@@ -556,7 +556,7 @@ h3 {
 
         background: #2c2c2c;
 
-        transition: right .35s ease;
+        transition: left .35s ease;
         z-index: 9999;
 
         padding-top: 80px;
@@ -652,7 +652,7 @@ h3 {
 
         background: #252525;
 
-        transition: right .3s ease;
+        transition: left .3s ease;
         z-index: 9999;
 
         padding-top: 70px;
