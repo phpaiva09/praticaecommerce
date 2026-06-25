@@ -637,6 +637,7 @@ h3 {
     }
 }
 
+
 @media (max-width:600px) {
     .navbar {
         position: fixed;
