@@ -135,28 +135,25 @@ ul a {
 }
 
 .logo-header {
-    color: #b68a25;
+    line-height: 1.5rem;
+    color: #926c15;
+    font-weight: 450;
+    text-align: center;
+    padding-left: 1.5rem;
     font-family: "Merriweather", serif;
-    font-size: 1.4rem;
+    font-optical-sizing: auto;
     font-weight: 700;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+    font-size: 1.4rem;
     letter-spacing: 1px;
-    line-height: 1.2;
-    padding-left: 0.8rem;
     transition: all .3s ease;
 }
 
 .logo-header span {
-    display: block;
-    color: #d9d9d9;
-    font-size: 0.75rem;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    margin-top: 2px;
-}
-
-.logo-header:hover {
-    transform: translateY(-2px);
-    text-shadow: 0 0 12px rgba(182, 138, 37, .4);
+    color: #fff;
+    font-weight: 200;
+    font-size: 1.1rem;
 }
 
 .menu-button {
