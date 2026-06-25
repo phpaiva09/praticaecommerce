@@ -651,7 +651,8 @@ h3 {
         top: 0;
         left: -240px;
 
-        width: 240px;
+        width: 85%;
+        max-width: 320px;
         height: 100vh;
 
         background: #252525;
@@ -679,21 +680,15 @@ h3 {
     }
 
     nav ul li a {
-        display: flex;
-        align-items: center;
-
-        height: 60px;
-        padding-left: 24px;
-
-        text-decoration: none;
-
-        border-bottom: 1px solid rgba(255,255,255,.05);
-
-        transition: .2s;
+        height: 65px;
+        padding-left: 28px;
+        font-weight: 500;
+        border-left: 3px solid transparent;
     }
 
-    nav ul li a:hover {
-        background: rgba(146,108,21,.15);
+    nav ul li a:hover{
+        background:#343434;
+        border-left-color:#b68a25;
     }
 
     nav ul li a h3 {
