@@ -649,7 +649,7 @@ h3 {
     nav {
         position: fixed;
         top: 0;
-        left: -240px;
+        left: -320px;
 
         width: 85%;
         max-width: 320px;
