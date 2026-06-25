@@ -150,7 +150,7 @@ ul a {
 
 .logo-header h1 {
     font-size: 1.4rem;
-    color: #a17817;
+    color: #926c15;
     text-align: center;
     font-weight: 600;
 }
@@ -545,27 +545,19 @@ h3 {
     }
 
     nav {
-        display: block;
-
+        display: none;
         position: fixed;
-        top: 0;
-        left: -280px;
-
-        width: 280px;
-        height: 100vh;
-
-        background: #2c2c2c;
-
-        transition: left .35s ease;
-        z-index: 9999;
-
-        padding-top: 80px;
-
-        box-shadow: -10px 0 30px rgba(0,0,0,.35);
-    }
-
-    .show-menu nav {
+        text-align: center;
+        top: 81px;
         left: 0;
+        right: 0;
+        width: 100%;
+        /* ✅ nunca use 100vw */
+        background: #2c2c2c;
+        z-index: 9999;
+        animation: slideDown .3s ease;
+        overflow-x: hidden;
+        border-radius: 9px;
     }
 
     nav ul {
@@ -647,32 +639,40 @@ h3 {
     }
 
     nav {
+        display: none;
         position: fixed;
-        top: 0;
-        left: -320px;
-
-        width: 85%;
-        max-width: 320px;
-        height: 100vh;
-
-        background: #252525;
-
-        transition: left .3s ease;
-        z-index: 9999;
-
-        padding-top: 70px;
-
-        box-shadow: -10px 0 25px rgba(0,0,0,.25);
-    }
-
-    .show-menu nav {
+        top: 81px;
         left: 0;
+        width: 100%; /* ✅ em vez de right: 0 */
+        max-width: 100%; /* 🔥 segurança extra */
+        background: #2c2c2c;
+        z-index: 9999;
+        overflow-x: hidden;
     }
 
     nav ul {
         display: flex;
         flex-direction: column;
+        align-items: center; /* 🔥 centraliza todos os itens */
         width: 100%;
+    }
+
+    #user-nav a,
+    #user-nav span {
+        width: auto !important;
+        display: inline-flex !important;
+        align-items: center;
+        padding: 0 !important;
+        margin: 0;
+    }
+
+    #user-nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        margin: 0;
+        padding: 1rem 0;
     }
 
     nav ul li {
@@ -680,21 +680,13 @@ h3 {
     }
 
     nav ul li a {
-        height: 65px;
-        padding-left: 28px;
-        font-weight: 500;
-        border-left: 3px solid transparent;
-    }
-
-    nav ul li a:hover{
-        background:#343434;
-        border-left-color:#b68a25;
+        display: block;
+        width: 100%;
     }
 
     nav ul li a h3 {
         margin: 0;
-        font-size: 1rem;
-        color: #fff;
+        padding: 1.2rem 2rem;
     }
 
     .logo-header {
