@@ -831,20 +831,22 @@ button#btn-ir-pedidos:focus {
         width: 100%;
     }
 
-    #user-nav a, 
+    #user-nav a,
     #user-nav span {
-        width: auto !important;   /* Impede que ele tente ocupar a tela toda */
-        display: inline-block !important; 
-        padding: 0 5px !important; /* Remove aquele padding gigante de 2rem */
+        width: auto !important;
+        display: inline-flex !important;
+        align-items: center;
+        padding: 0 !important;
         margin: 0;
     }
 
     #user-nav {
-        gap: 0; /* Ajuste o espaço entre o Olá e o Sair aqui se precisar */
         display: flex;
         justify-content: center;
+        align-items: center;
+        gap: 5px;
         margin: 0;
-        padding-bottom: 1rem;
+        padding: 1rem 0;
     }
 
     nav ul li {
@@ -861,18 +863,18 @@ button#btn-ir-pedidos:focus {
         padding: 1.2rem 2rem;
     }
 
+    .logo-header h1 {
+        font-size: 1.05rem;
+    }
+
+    .logo-header h3 {
+        font-size: 0.6rem;
+    }
+
     .container-copy-qrcode {
         display: flex;
         flex-direction: column;
         padding-top: 0rem;
-    }
-
-    .logo-header {
-        font-size: 1.3rem;
-    }
-
-    .logo-header span {
-        font-size: 0.9rem;
     }
 
     .header-inner-content {
