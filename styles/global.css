@@ -545,19 +545,23 @@ h3 {
     }
 
     nav {
-        display: none;
+        display: block;
+
         position: fixed;
-        text-align: center;
-        top: 81px;
-        left: 0;
-        right: 0;
-        width: 100%;
-        /* ✅ nunca use 100vw */
+        top: 0;
+        right: -280px;
+
+        width: 280px;
+        height: 100vh;
+
         background: #2c2c2c;
+
+        transition: right .35s ease;
         z-index: 9999;
-        animation: slideDown .3s ease;
-        overflow-x: hidden;
-        border-radius: 9px;
+
+        padding-top: 80px;
+
+        box-shadow: -10px 0 30px rgba(0,0,0,.35);
     }
 
     nav ul {
