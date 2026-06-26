@@ -509,7 +509,7 @@ h3 {
 
 .menu-overlay {
     position: fixed;
-    top: 75px;      /* altura da navbar */
+    inset:0;
     left: 0;
     right: 0;
     bottom: 0;
@@ -517,7 +517,7 @@ h3 {
     opacity: 0;
     visibility: hidden;
     transition: .3s;
-    z-index: 998;
+    z-index: 999;
 }
 
 .show-menu + .menu-overlay {
@@ -545,7 +545,7 @@ nav{
     0 2px 8px rgba(0,0,0,.08);
     overflow:hidden;
     animation:menu .25s ease;
-    z-index:999;
+    z-index:1001;
 }
 
 .show-menu nav{
@@ -593,8 +593,12 @@ nav li:hover h3{
 
 
 @media (max-width:600px) {
-    .navbar {
+    .navbar{
         position: fixed;
+        top:0;
+        left:0;
+        width:100%;
+        z-index:1000;
     }
 
     .logo-header h1 {
