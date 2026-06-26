@@ -183,20 +183,19 @@ header {
 
 /* Container principal do formulário */
 .container-principal {
-  max-width: 500px;
-  margin: 4rem auto;
-  padding: 2rem;
-  border-radius: 10px;
-  border: 1px solid #2c2c2c;
-  background-color: #fff;
-  text-align: center;
-  color: #333;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    margin: 4rem auto;
+    padding: 2rem;
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+    color: rgb(51, 51, 51);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 18px;
+    border-radius: 10px;
 }
 
 .container-principal h2 {
-  font-weight: 300;
-  margin-bottom: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
 }
 
 /* Inputs */
