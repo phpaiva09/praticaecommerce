@@ -676,7 +676,8 @@ nav li:hover h3{
 
     footer p {
         font-size: 0.7rem;
-        padding-top: 0.9rem;
+        padding-top: 0.4rem;
+        padding-bottom: 0.4rem;
         color: #fff;
     }
 }
