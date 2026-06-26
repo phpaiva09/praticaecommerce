@@ -532,7 +532,7 @@ h3 {
 }
 
 nav{
-    position:absolute;
+    position:fixed;
     top:75px;
     right:10px;
     left:auto;
