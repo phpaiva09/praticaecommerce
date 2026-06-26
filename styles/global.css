@@ -526,68 +526,75 @@ h3 {
 }
 
 @media (max-width:900px){
+    .menu-button{
+        display:block;
+    }
 
-.menu-button{
-    display:block;
-}
+    .navbar{
+        position: fixed;
+        top:0;
+        left:0;
+        width:100%;
+        z-index:1000;
+    }
 
-nav{
-    position:fixed;
-    top:75px;
-    right:10px;
-    left:auto;
-    width:220px;
-    display:none;
-    background:#fff;
-    border-radius:16px;
-    box-shadow:
-    0 10px 30px rgba(0,0,0,.12),
-    0 2px 8px rgba(0,0,0,.08);
-    overflow:hidden;
-    animation:menu .25s ease;
-    z-index:1001;
-}
+    nav{
+        position:fixed;
+        top:75px;
+        right:10px;
+        left:auto;
+        width:220px;
+        display:none;
+        background:#fff;
+        border-radius:16px;
+        box-shadow:
+        0 10px 30px rgba(0,0,0,.12),
+        0 2px 8px rgba(0,0,0,.08);
+        overflow:hidden;
+        animation:menu .25s ease;
+        z-index:1001;
+    }
 
-.show-menu nav{
-    display:block;
-}
+    .show-menu nav{
+        display:block;
+    }
 
-nav ul{
-    display:flex;
-    flex-direction:column;
-}
+    nav ul{
+        display:flex;
+        flex-direction:column;
+    }
 
-nav li{
-    width:100%;
-}
+    nav li{
+        width:100%;
+    }
 
-nav a{
-    display:block;
-    color:#2c2c2c;
-    text-decoration:none;
-}
+    nav a{
+        display:block;
+        color:#2c2c2c;
+        text-decoration:none;
+    }
 
-nav h3{
-    color:#2c2c2c;
-    font-size:17px;
-    font-weight:300;
-    font-family:"Merriweather", serif;
-    font-weight:400;
-    margin:0;
-    padding:15px 20px;
-}
+    nav h3{
+        color:#2c2c2c;
+        font-size:15px;
+        font-weight:300;
+        font-family:"Merriweather", serif;
+        font-weight:400;
+        margin:0;
+        padding:15px 20px;
+    }
 
-nav li:not(:last-child){
-    border-bottom:1px solid #ececec;
-}
+    nav li:not(:last-child){
+        border-bottom:1px solid #ececec;
+    }
 
-nav li:hover{
-    background:#faf7ef;
-}
+    nav li:hover{
+        background:#faf7ef;
+    }
 
-nav li:hover h3{
-    color:#926c15;
-}
+    nav li:hover h3{
+        color:#926c15;
+    }
 
 }
 
