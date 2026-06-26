@@ -24,44 +24,47 @@
 
 <body>
   <div class="navbar">
-        <div class="header-inner-content">
-            <div class="logo-header">
-                <h1>PRÁTICA</h1>
-                <h3>Indústria & Comércio</h3>
-            </div>
-            <nav>
-                <ul>
-                    <li>
-                        <a href="index.html">
-                            <h3>Home</h3>
-                        </a>
-                    </li>
-                    <li>
-                        <a href='index.html#produtos'>
-                            <h3>Produtos</h3>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="sobrenos.html">
-                            <h3>Sobre</h3>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#contato">
-                            <h3>Contato</h3>
-                        </a>
-                    </li>
-                    </li>
-                    <li id="user-nav">
-                    </li>
-                </ul>
-            </nav>
-            <div class="nav-icon-container">
-                <img src="./img/bolsa.png" class="shop" id="cart-btn">
-                <img src="./img/menu.png" class="menu-button">
-            </div>
-        </div>
+    <div class="header-inner-content">
+      <div class="logo-header">
+        <h1>PRÁTICA</h1>
+        <h3>Indústria & Comércio</h3>
+      </div>
+      <nav>
+        <ul>
+          <li>
+            <a href="index.html">
+              <h3>Home</h3>
+            </a>
+          </li>
+          <li>
+            <a href='index.html#produtos'>
+              <h3>Produtos</h3>
+            </a>
+          </li>
+          <li>
+            <a href="sobrenos.html">
+              <h3>Sobre</h3>
+            </a>
+          </li>
+          <li>
+            <a href="#contato">
+              <h3>Contato</h3>
+            </a>
+          </li>
+          </li>
+          <li id="user-nav">
+          </li>
+        </ul>
+      </nav>
+      <div class="nav-icon-container">
+        <img src="./img/bolsa.png" class="shop" id="cart-btn">
+        <img src="./img/menu.png" class="menu-button">
+      </div>
     </div>
+  </div>
+
+  <div class="menu-overlay"></div>
+
   <div class="container-principal">
     <h2>Endereço de Entrega</h2>
     <form id="formEndereco">
@@ -104,20 +107,20 @@
 
   <!-- Carrinho -->
   <div class="cart-container">
-        <div class="cart-header">
-            <h3>Seu Carrinho</h3>
-            <span class="close-cart">&times;</span>
-        </div>
-        <div class="cart-items">
-            <!-- Os produtos serão adicionados aqui via JS -->
-        </div>
-        <div class="cart-footer">
-            <p>Total: R$ <span id="cart-total">0.00</span></p>
-            <button id="checkout-btn">Finalizar Compra</button>
-        </div>
+    <div class="cart-header">
+      <h3>Seu Carrinho</h3>
+      <span class="close-cart">&times;</span>
+    </div>
+    <div class="cart-items">
+      <!-- Os produtos serão adicionados aqui via JS -->
+    </div>
+    <div class="cart-footer">
+      <p>Total: R$ <span id="cart-total">0.00</span></p>
+      <button id="checkout-btn">Finalizar Compra</button>
+    </div>
   </div>
 
-  
+
 
 
   <script src="js/cart.js"></script>

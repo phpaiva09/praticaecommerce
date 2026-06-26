@@ -644,6 +644,10 @@ input {
         top: 76.5px;
     }
 
+    .logo-header {
+        padding: 10px;
+    }
+
     .logo-header h1 {
         font-size: 1.05rem;
     }
