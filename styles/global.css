@@ -540,7 +540,7 @@ h3 {
 
     nav {
         position: fixed;
-        top: 75px;       /* 1. Ajuste esse valor para a altura exata da sua navbar */
+        top: 86.5px;       /* 1. Ajuste esse valor para a altura exata da sua navbar */
         right: 0;        /* 2. Fixa o menu totalmente no canto direito */
         left: auto;      /* Mantém o lado esquerdo livre */
         width: 220px;
