@@ -591,22 +591,10 @@ nav li:hover h3{
 
 }
 
+
 @media (max-width:600px) {
     .navbar {
         position: fixed;
-    }
-
-    .container-principal{
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        justify-content:center;
-
-        text-align:center;
-
-        gap:30px;
-
-        padding:110px 20px 50px;
     }
 
     .logo-header h1 {
