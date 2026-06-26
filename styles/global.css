@@ -595,6 +595,10 @@ h3 {
         visibility: visible;
     }
 
+    nav h3::after {
+        display: none;
+    }
+
 }
 
 
@@ -711,5 +715,9 @@ h3 {
     .show-menu + .menu-overlay {
         opacity: 1;
         visibility: visible;
+    }
+
+    nav h3::after {
+        display: none;
     }
 }
