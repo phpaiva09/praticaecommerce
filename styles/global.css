@@ -163,10 +163,6 @@ ul a {
     text-transform: uppercase;
 }
 
-.logo-header:hover {
-    transform: translateY(-1px);
-}
-
 .menu-button {
     display: none;
 }
