@@ -507,6 +507,24 @@ h3 {
     font-size: 11px;
 }
 
+.menu-overlay {
+    position: fixed;
+    top: 75px;      /* altura da navbar */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.35);
+    opacity: 0;
+    visibility: hidden;
+    transition: .3s;
+    z-index: 998;
+}
+
+.show-menu + .menu-overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
 @media (max-width:900px){
 
 .menu-button{
@@ -516,23 +534,17 @@ h3 {
 nav{
     position:absolute;
     top:75px;
-    right:15px;
+    right:10px;
     left:auto;
-
-    width:260px;
-
+    width:220px;
     display:none;
-
     background:#fff;
     border-radius:16px;
-
     box-shadow:
-    0 15px 35px rgba(0,0,0,.18);
-
+    0 10px 30px rgba(0,0,0,.12),
+    0 2px 8px rgba(0,0,0,.08);
     overflow:hidden;
-
     animation:menu .25s ease;
-
     z-index:999;
 }
 
@@ -557,10 +569,12 @@ nav a{
 
 nav h3{
     color:#2c2c2c;
-    font-size:18px;
+    font-size:17px;
+    font-weight:300;
+    font-family:"Merriweather", serif;
     font-weight:400;
     margin:0;
-    padding:18px 24px;
+    padding:15px 20px;
 }
 
 nav li:not(:last-child){
@@ -575,21 +589,6 @@ nav li:hover h3{
     color:#926c15;
 }
 
-}
-
-.menu-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,.35);
-    opacity: 0;
-    visibility: hidden;
-    transition: .3s;
-    z-index: 998;
-}
-
-.show-menu + .menu-overlay {
-    opacity: 1;
-    visibility: visible;
 }
 
 @media (max-width:600px) {
