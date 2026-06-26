@@ -538,19 +538,20 @@ h3 {
         z-index:1000;
     }
 
-    nav{
-        position:fixed;
-        top:75px;
-        left:auto;
-        width:220px;
-        display:none;
-        background:#fff;
+    nav {
+        position: fixed;
+        top: 70px;       /* 1. Ajuste esse valor para a altura exata da sua navbar */
+        right: 0;        /* 2. Fixa o menu totalmente no canto direito */
+        left: auto;      /* Mantém o lado esquerdo livre */
+        width: 220px;
+        display: none;
+        background: #fff;
         box-shadow:
         0 10px 30px rgba(0,0,0,.12),
         0 2px 8px rgba(0,0,0,.08);
-        overflow:hidden;
-        animation:menu .25s ease;
-        z-index:1001;
+        overflow: hidden;
+        animation: menu .25s ease;
+        z-index: 1001;
     }
 
     .show-menu nav{
