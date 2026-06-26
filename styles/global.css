@@ -601,6 +601,10 @@ nav li:hover h3{
         z-index:1000;
     }
 
+    .logo-header {
+        padding: 10px;
+    }
+
     .logo-header h1 {
         font-size: 1.05rem;
     }
