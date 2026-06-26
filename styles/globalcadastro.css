@@ -164,11 +164,6 @@ ul a {
     text-transform: uppercase;
 }
 
-.logo-header:hover {
-    transform: translateY(-2px);
-    text-shadow: 0 0 12px rgba(182, 138, 37, .4);
-}
-
 .menu-button {
     display: none;
 }
