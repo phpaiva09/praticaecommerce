@@ -607,6 +607,10 @@ h3 {
         z-index:1000;
     }
 
+    nav {
+        top: 76.5px;
+    }
+
     .logo-header {
         padding: 10px;
     }
