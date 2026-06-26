@@ -614,11 +614,16 @@ nav li:hover h3{
     }
 
     .container-principal {
+        display: flex;
+        flex-direction: column;
         width: 100%;
         padding-left: 1rem;
         padding-right: 1rem;
     }
 
+    .container-left {
+        text-align: center;
+    }
 
     .cart-container {
         width: 300px;
