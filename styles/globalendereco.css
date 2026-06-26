@@ -185,11 +185,13 @@ header {
 .container-principal {
   max-width: 500px;
   margin: 4rem auto;
-  background: #fff;
   padding: 2rem;
   border-radius: 10px;
   border: 1px solid #2c2c2c;
+  background-color: #fff;
   text-align: center;
+  color: #333;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
 }
 
 .container-principal h2 {
