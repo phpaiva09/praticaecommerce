@@ -164,8 +164,7 @@ ul a {
 }
 
 .logo-header:hover {
-    transform: translateY(-2px);
-    text-shadow: 0 0 12px rgba(182, 138, 37, .4);
+    transform: translateY(-1px);
 }
 
 .menu-button {
