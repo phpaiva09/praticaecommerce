@@ -616,6 +616,7 @@ nav li:hover h3{
     .container-principal {
         display: flex;
         flex-direction: column;
+        margin-top: 150px;
         width: 100%;
         padding-left: 1rem;
         padding-right: 1rem;
