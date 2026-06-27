@@ -100,7 +100,9 @@ ul h3:hover::after {
 
 ul a {
     text-decoration: none;
+
 }
+
 
 .nav-icon-container {
     display: flex;
@@ -153,6 +155,7 @@ ul a {
     font-size: 0.75rem;
     letter-spacing: 1.5px;
     text-transform: uppercase;
+     font-family: "Merriweather", serif;
 }
 
 .menu-button {
@@ -680,7 +683,7 @@ button#btn-ir-pedidos:focus {
         0 10px 30px rgba(0,0,0,.12),
         0 2px 8px rgba(0,0,0,.08);
         overflow: hidden;
-        animation:  slideDown .25s ease;
+        animation: slideDown .25s ease;
         z-index: 1001;
     }
 
@@ -767,6 +770,16 @@ button#btn-ir-pedidos:focus {
         color: #2c2c2c;
         text-decoration: none;
     }
+
+    .container {
+        margin-top: 10rem;
+    }
+
+    .container-copy-qrcode {
+        display: flex;
+        flex-direction: column;
+        padding: 0rem 4rem 0rem 4rem;
+    }
 }
 
 
@@ -795,20 +808,9 @@ button#btn-ir-pedidos:focus {
         font-size: 0.6rem;
     }
 
-    .container-copy-qrcode {
-        display: flex;
-        flex-direction: column;
-        padding-top: 0rem;
-    }
 
     .header-inner-content {
         padding: 0;
-    }
-
-    .container-principal {
-        width: 100%;
-        padding-left: 1rem;
-        padding-right: 1rem;
     }
 
     .cart-container {
@@ -849,34 +851,58 @@ button#btn-ir-pedidos:focus {
         margin-right: 0rem;
     }
 
-    textarea {
-        width: 300px;
-    }
-
-    .container-copy button {
-        width: 300px;
-    }
-
-    form#form-cartao button {
-        width: 300px;
+     .container {
+        width: 100%;
+        max-width: 100%;
+        margin-top: 140px;      /* espaço para a navbar fixa */
+        padding: 0 1.5rem;
     }
 
     .container-title {
+        padding: 0;
+        margin-top: 1.5rem;
+        text-align: center;
+    }
+
+    .container-copy-qrcode {
         display: flex;
         flex-direction: column;
-        align-items: center;   /* 🔥 centraliza horizontal */
-        justify-content: center; /* opcional */
-        padding-left: 0;       /* 🔥 remove o deslocamento */
+        gap: 2rem;
+        align-items: center;
+        padding: 0;
     }
 
-    .container-cartao{
-        padding: 1rem;
+    .container-qrcode img {
+        max-width: 220px;
+        width: 100%;
+        height: auto;
     }
 
-    h2 {
-        color: black;
-        font-family: 'arial';
-        font-weight: 400;
+    .container-copy {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    textarea {
+        width: 100%;
+    }
+
+    .container-copy button,
+    #form-cartao button {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .container-cartao {
+        width: 100%;
+        padding: 0;
+    }
+
+    form#form-cartao input,
+    #cardNumber,
+    #expirationDate,
+    #securityCode {
+        width: 100%;
     }
 
     footer {
