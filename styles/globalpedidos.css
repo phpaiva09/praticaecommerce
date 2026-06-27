@@ -846,10 +846,6 @@ strong {
 }
 
 @media (max-width:600px) {
-    body {
-        font-weight: 300;
-    }
-
     .navbar{
         position: fixed;
         top:0;
@@ -882,6 +878,11 @@ strong {
         width: 100%;
         padding-left: 1rem;
         padding-right: 1rem;
+    }
+
+    .header-pedidos h2 {
+        font-weight: 400;
+        color: #333;
     }
 
     .cart-container {
