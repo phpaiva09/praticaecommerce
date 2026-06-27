@@ -1022,6 +1022,14 @@ input#senhaConfirmacao {
         display: flex;
         flex-direction: column;
     }
+
+    .container-principal h2 {
+        font-weight: 300;
+        padding-bottom: 1rem;
+        font-size: 2rem;
+        color: #333;
+    }
+
     
     .container-subtitle {
         display: flex;
