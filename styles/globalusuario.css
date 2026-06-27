@@ -159,6 +159,7 @@ ul a {
     font-size: 0.75rem;
     letter-spacing: 1.5px;
     text-transform: uppercase;
+    font-weight: 450;
 }
 
 .menu-button {
@@ -363,10 +364,6 @@ html {
     padding-top: 0.1rem;
 }
 
-h3 {
-    font-weight: 450;
-}
-
 main {
     flex: 1; 
 }
@@ -376,7 +373,7 @@ main {
 }
 
 .container-principal h2 {
-    font-weight: 600;
+    font-weight: 400;
     padding-bottom: 1rem;
     font-size: 2rem;
 }
@@ -414,6 +411,7 @@ main {
 
 .card-acesso h3 {
     padding-left: 1rem;
+    font-weight: 300;
 }
 
 .info {
@@ -490,6 +488,7 @@ main {
 
 .card-dados-pessoais h3 {
     padding-left: 1rem;
+    font-weight: 300;
 }
 
 .card-cpf {
@@ -781,19 +780,6 @@ input#senhaConfirmacao {
     width:300px;
 }
 
-/* Animação */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
 .container-subtitle {
     position: relative;
     padding-right: 120px;
@@ -825,89 +811,120 @@ input#senhaConfirmacao {
 }
 
 @media (max-width:900px) {
-    * {
-        box-sizing: border-box;
+    .menu-button{
+        display:block;
     }
 
-    .header-inner-content {
-        max-width: 100%;
-        padding: 0 1rem;
+    .show-menu nav{
+        display:block;
     }
 
-    .menu-button {
-        display: block;
-    }
-
-    .show-menu nav {
-        display: block;
-    }
-
-    header {
-        height: auto;
-    }
-
-    .logo-header {
-        padding-left: 0.5rem;
-    }
-
-    .navbar {
+    .navbar{
         position: fixed;
-        width: 100%;
+        top:0;
+        left:0;
+        width:100%;
+        z-index:1000;
     }
 
     nav {
-        display: none;
         position: fixed;
-        text-align: center;
-        top: 84px;
+        top: 86.5px;       /* 1. Ajuste esse valor para a altura exata da sua navbar */
+        right: 0;        /* 2. Fixa o menu totalmente no canto direito */
+        left: auto;      /* Mantém o lado esquerdo livre */
+        width: 220px;
+        display: none;
+        background: #fff;
+        box-shadow:
+        0 10px 30px rgba(0,0,0,.12),
+        0 2px 8px rgba(0,0,0,.08);
+        overflow: hidden;
+        animation:  slideDown .25s ease;
+        z-index: 1001;
+    }
+
+    nav ul{
+        display:flex;
+        flex-direction:column;
+    }
+
+    nav li{
+        width:100%;
+    }
+
+    nav a{
+        display:block;
+        color:#2c2c2c;
+        text-decoration:none;
+    }
+
+    nav h3{
+        color:#2c2c2c;
+        font-size:15px;
+        font-weight:300;
+        font-family:"Merriweather", serif;
+        font-weight:400;
+        margin:0;
+        padding:15px 20px;
+    }
+
+    nav li:not(:last-child){
+        border-bottom:1px solid #ececec;
+    }
+
+    nav li:hover{
+        background:#faf7ef;
+    }
+
+    nav li:hover h3{
+        color:#926c15;
+    }
+
+    .menu-overlay {
+        position: fixed;
+        inset:0;
         left: 0;
         right: 0;
-        width: 100%;
-        /* ✅ nunca use 100vw */
-        background: #2c2c2c;
-        z-index: 9999;
-        animation: slideDown .3s ease;
-        overflow-x: hidden;
-        border-radius: 9px;
+        bottom: 0;
+        background: rgba(0,0,0,.35);
+        opacity: 0;
+        visibility: hidden;
+        transition: .3s;
+        z-index: 999;
     }
 
-    nav ul {
-        width: 100%;
-        /* ✅ largura correta */
-        margin: 0;
-        /* ✅ remove default */
-        padding: 0;
-        list-style: none;
+    .show-menu + .menu-overlay {
+        opacity: 1;
+        visibility: visible;
     }
 
-    nav ul li {
-        width: 100%;
-        text-align: center;
+    nav h3::after {
+        display: none;
     }
 
-    nav ul li a {
-        display: block;
-        width: 100%;
+    #user-nav a {
+        color:#2c2c2c;
+        font-size: 15px;
+        font-weight: 500;
     }
 
-    nav ul li a h3 {
-        margin: 0;
-        padding: 1.2rem 2rem;
+    #user-nav span {
+        color:#2c2c2c;
+        font-size: 15px;
+        font-weight: 500;
     }
 
-    #user-nav {
+    .user-links {
         display: flex;
         align-items: center;
-        gap: 0.4rem;
-        white-space: nowrap;
+        gap: 6px;
+        padding: 15px 20px;
     }
 
-    #user-nav p,
-    #user-nav span,
-    #user-nav a {
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
+    .user-links a,
+    .user-links span {
+        color: #2c2c2c;
+        text-decoration: none;
     }
 
     .container-principal {
@@ -940,18 +957,6 @@ input#senhaConfirmacao {
         /* segurança extra */
     }
 
-    @keyframes slideDown {
-        from {
-            opacity: 0;
-            transform: translateY(-10px);
-        }
-
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
     .card-acesso {
         min-width: 500px;
         margin: 2rem auto;
@@ -970,59 +975,20 @@ input#senhaConfirmacao {
 }
 
 @media (max-width:600px) {
-    .navbar {
+    .navbar{
         position: fixed;
+        top:0;
+        left:0;
+        width:100%;
+        z-index:1000;
     }
 
     nav {
-        display: none;
-        position: fixed;
-        top: 81px;
-        left: 0;
-        width: 100%; /* ✅ em vez de right: 0 */
-        max-width: 100%; /* 🔥 segurança extra */
-        background: #2c2c2c;
-        z-index: 9999;
-        overflow-x: hidden;
+        top: 76.5px;
     }
 
-    nav ul {
-        display: flex;
-        flex-direction: column;
-        align-items: center; /* 🔥 centraliza todos os itens */
-        width: 100%;
-    }
-
-    #user-nav a,
-    #user-nav span {
-        width: auto !important;
-        display: inline-flex !important;
-        align-items: center;
-        padding: 0 !important;
-        margin: 0;
-    }
-
-    #user-nav {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 5px;
-        margin: 0;
-        padding: 1rem 0;
-    }
-
-    nav ul li {
-        width: 100%;
-    }
-
-    nav ul li a {
-        display: block;
-        width: 100%;
-    }
-
-    nav ul li a h3 {
-        margin: 0;
-        padding: 1.2rem 2rem;
+    .logo-header {
+        padding: 10px;
     }
 
     .logo-header h1 {
@@ -1031,10 +997,6 @@ input#senhaConfirmacao {
 
     .logo-header h3 {
         font-size: 0.6rem;
-    }
-
-    .header-inner-content {
-        padding: 0;
     }
 
     .card-acesso,
@@ -1135,5 +1097,30 @@ input#senhaConfirmacao {
         padding: 10px 10px;
         height: auto;
         min-height: unset;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
     }
 }

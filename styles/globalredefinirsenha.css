@@ -522,93 +522,120 @@ h3 {
 
 
 @media (max-width:900px) {
-    * {
-        box-sizing: border-box;
+    .menu-button{
+        display:block;
     }
 
-    .header-inner-content {
-        max-width: 100%;
-        padding: 0 1rem;
+    .show-menu nav{
+        display:block;
     }
 
-    .menu-button {
-        display: block;
-    }
-
-    .show-menu nav {
-        display: block;
-    }
-
-    .logo-header {
-        padding-left: 0.5rem;
-    }
-
-
-    header {
-        min-height: auto;
-    }
-
-
-    
-    
-    .navbar {
+    .navbar{
         position: fixed;
-        width: 100%;
+        top:0;
+        left:0;
+        width:100%;
+        z-index:1000;
     }
 
     nav {
-        display: none;
         position: fixed;
-        text-align: center;
-        top: 84px;
+        top: 86.5px;       /* 1. Ajuste esse valor para a altura exata da sua navbar */
+        right: 0;        /* 2. Fixa o menu totalmente no canto direito */
+        left: auto;      /* Mantém o lado esquerdo livre */
+        width: 220px;
+        display: none;
+        background: #fff;
+        box-shadow:
+        0 10px 30px rgba(0,0,0,.12),
+        0 2px 8px rgba(0,0,0,.08);
+        overflow: hidden;
+        animation:  slideDown .25s ease;
+        z-index: 1001;
+    }
+
+    nav ul{
+        display:flex;
+        flex-direction:column;
+    }
+
+    nav li{
+        width:100%;
+    }
+
+    nav a{
+        display:block;
+        color:#2c2c2c;
+        text-decoration:none;
+    }
+
+    nav h3{
+        color:#2c2c2c;
+        font-size:15px;
+        font-weight:300;
+        font-family:"Merriweather", serif;
+        font-weight:400;
+        margin:0;
+        padding:15px 20px;
+    }
+
+    nav li:not(:last-child){
+        border-bottom:1px solid #ececec;
+    }
+
+    nav li:hover{
+        background:#faf7ef;
+    }
+
+    nav li:hover h3{
+        color:#926c15;
+    }
+
+    .menu-overlay {
+        position: fixed;
+        inset:0;
         left: 0;
         right: 0;
-        width: 100%;
-        /* ✅ nunca use 100vw */
-        background: #2c2c2c;
-        z-index: 9999;
-        animation: slideDown .3s ease;
-        overflow-x: hidden;
-        border-radius: 9px;
+        bottom: 0;
+        background: rgba(0,0,0,.35);
+        opacity: 0;
+        visibility: hidden;
+        transition: .3s;
+        z-index: 999;
     }
 
-    nav ul {
-        display: flex;
-        list-style-type: none;
-        align-items: center; /* Alinha verticalmente os textos */
-        margin: 0;
-        padding: 0;
+    .show-menu + .menu-overlay {
+        opacity: 1;
+        visibility: visible;
     }
 
-    nav ul li {
-        width: 100%;
-        text-align: center;
+    nav h3::after {
+        display: none;
     }
 
-
-    nav ul li a {
-        display: block;
-        width: 100%;
-    }
-
-    nav ul li a h3 {
-        margin: 0;
-        padding: 1.2rem 2rem;
-    }
-
-    #user-nav {
-        display: flex;
-        align-items: center;
-        gap: 0.4rem;
-        white-space: nowrap;
-    }
-
-    #user-nav p,
-    #user-nav span,
     #user-nav a {
-        display: inline-flex;
+        color:#2c2c2c;
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+    #user-nav span {
+        color:#2c2c2c;
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+    .user-links {
+        display: flex;
         align-items: center;
-        gap: 5px;
+        gap: 6px;
+        padding: 15px 20px;
+    }
+
+    .user-links a,
+    .user-links span {
+        color: #2c2c2c;
+        text-decoration: none;
     }
 
     .cols-4 {
@@ -634,31 +661,6 @@ h3 {
 
     footer {
         margin-top: 2.5rem;
-    }
-
-    @keyframes slideDown {
-        from {
-            opacity: 0;
-            transform: translateY(-10px);
-        }
-
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-}
-
-/* Animação */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
     }
 }
 
@@ -795,5 +797,29 @@ h3 {
 
     #mensagem-retorno {
         margin-top: 0;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
     }
 }

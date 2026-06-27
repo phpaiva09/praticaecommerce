@@ -482,16 +482,11 @@ h3 {
 
 
 @media (max-width:900px) {
-    * {
-        box-sizing: border-box;
-    }
-
-    .header-inner-content {
-        max-width: 100%;
-        padding: 0 1rem;
-    }
-
     .menu-button{
+        display:block;
+    }
+
+    .show-menu nav{
         display:block;
     }
 
@@ -515,12 +510,8 @@ h3 {
         0 10px 30px rgba(0,0,0,.12),
         0 2px 8px rgba(0,0,0,.08);
         overflow: hidden;
-        animation: menu .25s ease;
+        animation:  slideDown .25s ease;
         z-index: 1001;
-    }
-
-    .show-menu nav{
-        display:block;
     }
 
     nav ul{
@@ -582,8 +573,29 @@ h3 {
         display: none;
     }
 
-    header {
-        height: auto;
+    #user-nav a {
+        color:#2c2c2c;
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+    #user-nav span {
+        color:#2c2c2c;
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+    .user-links {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 15px 20px;
+    }
+
+    .user-links a,
+    .user-links span {
+        color: #2c2c2c;
+        text-decoration: none;
     }
 
     .cols-4 {
