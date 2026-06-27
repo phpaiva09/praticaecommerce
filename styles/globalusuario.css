@@ -1042,7 +1042,7 @@ input#senhaConfirmacao {
     .container-subtitle a {
         margin-top: 1rem;
         margin-bottom: 1rem;
-        font-weight: 300;
+        font-weight: 400;
     }
 
     .container-subtitle p {
@@ -1056,7 +1056,7 @@ input#senhaConfirmacao {
         position: static; /* 🔥 tira o absolute só no mobile */
         width: 100%; /* opcional: deixa tipo botão grande */
         text-align: center;
-        border: 1px solid #2c2c2c;
+        border: 1.3px solid #2c2c2c;
     }
 
     .logo-header {
