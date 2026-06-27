@@ -799,7 +799,7 @@ input#senhaConfirmacao {
     position: absolute;
     top: 0;
     right: 0;
-    font-size: 0.5rem;
+    font-size: 1rem;
     color: #2c2c2c;
     text-decoration: none;
     font-weight: 100;
@@ -1095,7 +1095,8 @@ input#senhaConfirmacao {
     }
 
     button#btnExcluirConta {
-        font-weight: 400;
+        font-weight: 100;
+        border: 1px solid #ce2020;
     }
 
     .nav-icon-container img:first-child {
