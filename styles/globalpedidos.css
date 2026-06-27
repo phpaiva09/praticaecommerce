@@ -729,7 +729,7 @@ strong {
         0 10px 30px rgba(0,0,0,.12),
         0 2px 8px rgba(0,0,0,.08);
         overflow: hidden;
-        animation: menu .25s ease;
+        animation: slideDown .25s ease;
         z-index: 1001;
     }
 
