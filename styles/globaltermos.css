@@ -692,8 +692,31 @@ h3 {
     }
 
     footer p {
-        font-size: 0.9rem;
-        padding-top: 0.9rem;
+        font-size: 0.7rem;
+        padding-top: 0.4rem;
+        padding-bottom: 0.4rem;
         color: #fff;
+    }
+
+    .menu-overlay {
+        position: fixed;
+        inset:0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,.35);
+        opacity: 0;
+        visibility: hidden;
+        transition: .3s;
+        z-index: 999;
+    }
+
+    .show-menu + .menu-overlay {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    nav h3::after {
+        display: none;
     }
 }
