@@ -1106,6 +1106,15 @@ input#senhaConfirmacao {
         font-weight: 300;
     }
 
+    .card-dados-pessoais {
+        font-weight: 300;
+    }
+
+    .meus-pedidos-link {
+        font-weight: 100;
+        border: 1px solid #2c2c2c;
+    }
+
     footer {
         padding: 10px 10px;
         height: auto;
