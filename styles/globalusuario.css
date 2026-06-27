@@ -1093,6 +1093,11 @@ input#senhaConfirmacao {
         margin-right: 0rem;
     }
 
+    .card-acesso h3 {
+        padding-left: 1rem;
+        font-weight: 500;
+    }
+
     footer {
         padding: 10px 10px;
         height: auto;
