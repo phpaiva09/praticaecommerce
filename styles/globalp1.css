@@ -734,21 +734,6 @@ h3 {
     background: #f1f1f1;
 }
 
-/* Animação */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-
-
 /* Header Queries*/
 @media (max-width:900px) {
     .menu-button{
@@ -855,84 +840,23 @@ h3 {
         text-align: center;
         align-items: center;
     }
-
-    .cols-4 {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    html, body {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        overflow-x: hidden;
-    }
-
-    main, 
-    .container-principal {
-        flex: 1;
-    }
-
-    footer {
-        background-color: #2c2c2c;
-        min-height: 220px;
-        text-align: center;
-    }
 }
 
 @media (max-width:600px) {
-    .navbar {
+    .navbar{
         position: fixed;
+        top:0;
+        left:0;
+        width:100%;
+        z-index:1000;
     }
 
     nav {
-        display: none;
-        position: fixed;
-        top: 81px;
-        left: 0;
-        width: 100%; /* ✅ em vez de right: 0 */
-        max-width: 100%; /* 🔥 segurança extra */
-        background: #2c2c2c;
-        z-index: 9999;
-        overflow-x: hidden;
+        top: 76.5px;
     }
 
-    nav ul {
-        display: flex;
-        flex-direction: column;
-        align-items: center; /* 🔥 centraliza todos os itens */
-        width: 100%;
-    }
-
-    #user-nav a,
-    #user-nav span {
-        width: auto !important;
-        display: inline-flex !important;
-        align-items: center;
-        padding: 0 !important;
-        margin: 0;
-    }
-
-    #user-nav {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 5px;
-        margin: 0;
-        padding: 1rem 0;
-    }
-
-    nav ul li {
-        width: 100%;
-    }
-
-    nav ul li a {
-        display: block;
-        width: 100%;
-    }
-
-    nav ul li a h3 {
-        margin: 0;
-        padding: 1.2rem 2rem;
+    .logo-header {
+        padding: 10px;
     }
 
     .logo-header h1 {
@@ -1049,5 +973,17 @@ h3 {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
     }
 }
