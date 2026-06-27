@@ -1021,6 +1021,7 @@ input#senhaConfirmacao {
     .container-principal {
         display: flex;
         flex-direction: column;
+        margin-top: -3rem;
     }
 
     .container-principal h2 {
@@ -1054,6 +1055,7 @@ input#senhaConfirmacao {
         position: static; /* 🔥 tira o absolute só no mobile */
         width: 100%; /* opcional: deixa tipo botão grande */
         text-align: center;
+        border: 1px solid #2c2c2c;
     }
 
     .logo-header {
