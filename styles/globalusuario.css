@@ -1024,10 +1024,8 @@ input#senhaConfirmacao {
         padding-right: 0;
     }
 
-    .container-subtitle a {
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-        font-weight: 400;
+    .container-subtitle p {
+        margin-bottom: 1.5rem;
     }
 
     .meus-pedidos-link {
@@ -1108,7 +1106,6 @@ input#senhaConfirmacao {
     .meus-pedidos-link {
         font-weight: 300;
         border: 1px solid #2c2c2c;
-        margin-bottom: 1.5rem;
     }
 
     footer {
