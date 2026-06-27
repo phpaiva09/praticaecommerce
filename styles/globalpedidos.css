@@ -880,6 +880,11 @@ strong {
         padding-right: 1rem;
     }
 
+    .header-pedidos {
+        font-weight: 300;
+        color: #333;
+    }
+
     .cart-container {
         width: 300px;
     }
