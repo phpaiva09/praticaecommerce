@@ -1041,7 +1041,13 @@ input#senhaConfirmacao {
     .container-subtitle a {
         margin-top: 1rem;
         margin-bottom: 1rem;
-        font-weight: 400;
+        font-weight: 300;
+    }
+
+    .container-subtitle p {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        font-weight: 300;
     }
 
     .meus-pedidos-link {
