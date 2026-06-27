@@ -1102,6 +1102,16 @@ input#senhaConfirmacao {
         margin-right: 0rem;
     }
 
+    .card-acesso h3 {
+        padding-left: 1rem;
+        font-weight: 400;
+    }
+
+    .card-dados-pessoais {
+        padding-left: 1rem;
+        font-weight: 400;
+    }
+
     footer {
         padding: 10px 10px;
         height: auto;
