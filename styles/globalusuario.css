@@ -102,6 +102,7 @@ ul a {
 
 }
 
+
 .nav-icon-container {
     display: flex;
     align-items: center;
@@ -1024,8 +1025,10 @@ input#senhaConfirmacao {
         padding-right: 0;
     }
 
-    .container-subtitle p {
-        margin-bottom: 1.5rem;
+    .container-subtitle a {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        font-weight: 400;
     }
 
     .meus-pedidos-link {
