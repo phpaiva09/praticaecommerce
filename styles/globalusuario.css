@@ -1095,7 +1095,7 @@ input#senhaConfirmacao {
     }
 
     button#btnExcluirConta {
-        font-weight: 100;
+        font-weight: 300;
         border: 1px solid #ce2020;
     }
 
@@ -1112,7 +1112,7 @@ input#senhaConfirmacao {
     }
 
     .meus-pedidos-link {
-        font-weight: 100;
+        font-weight: 300;
         border: 1px solid #2c2c2c;
     }
 
