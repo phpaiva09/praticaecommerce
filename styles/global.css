@@ -512,6 +512,10 @@ h3 {
         display:block;
     }
 
+    .show-menu nav{
+        display:block;
+    }
+
     .navbar{
         position: fixed;
         top:0;
@@ -534,10 +538,6 @@ h3 {
         overflow: hidden;
         animation: menu .25s ease;
         z-index: 1001;
-    }
-
-    .show-menu nav{
-        display:block;
     }
 
     nav ul{

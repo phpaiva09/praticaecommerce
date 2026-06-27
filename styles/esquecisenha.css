@@ -509,93 +509,95 @@ h3 {
 
 
 @media (max-width:900px) {
-    * {
-        box-sizing: border-box;
+    .menu-button{
+        display:block;
     }
 
-    .header-inner-content {
-        max-width: 100%;
-        padding: 0 1rem;
+    .show-menu nav{
+        display:block;
     }
 
-    .menu-button {
-        display: block;
-    }
-
-    .show-menu nav {
-        display: block;
-    }
-
-    .logo-header {
-        padding-left: 0.5rem;
-    }
-
-
-    header {
-        min-height: auto;
-    }
-
-
-    
-    
-    .navbar {
+    .navbar{
         position: fixed;
-        width: 100%;
+        top:0;
+        left:0;
+        width:100%;
+        z-index:1000;
     }
 
     nav {
-        display: none;
         position: fixed;
-        text-align: center;
-        top: 84px;
+        top: 86.5px;       /* 1. Ajuste esse valor para a altura exata da sua navbar */
+        right: 0;        /* 2. Fixa o menu totalmente no canto direito */
+        left: auto;      /* Mantém o lado esquerdo livre */
+        width: 220px;
+        display: none;
+        background: #fff;
+        box-shadow:
+        0 10px 30px rgba(0,0,0,.12),
+        0 2px 8px rgba(0,0,0,.08);
+        overflow: hidden;
+        animation: menu .25s ease;
+        z-index: 1001;
+    }
+
+    nav ul{
+        display:flex;
+        flex-direction:column;
+    }
+
+    nav li{
+        width:100%;
+    }
+
+    nav a{
+        display:block;
+        color:#2c2c2c;
+        text-decoration:none;
+    }
+
+    nav h3{
+        color:#2c2c2c;
+        font-size:15px;
+        font-weight:300;
+        font-family:"Merriweather", serif;
+        font-weight:400;
+        margin:0;
+        padding:15px 20px;
+    }
+
+    nav li:not(:last-child){
+        border-bottom:1px solid #ececec;
+    }
+
+    nav li:hover{
+        background:#faf7ef;
+    }
+
+    nav li:hover h3{
+        color:#926c15;
+    }
+
+    .menu-overlay {
+        position: fixed;
+        inset:0;
         left: 0;
         right: 0;
-        width: 100%;
-        /* ✅ nunca use 100vw */
-        background: #2c2c2c;
-        z-index: 9999;
-        animation: slideDown .3s ease;
-        overflow-x: hidden;
-        border-radius: 9px;
+        bottom: 0;
+        background: rgba(0,0,0,.35);
+        opacity: 0;
+        visibility: hidden;
+        transition: .3s;
+        z-index: 999;
     }
 
-    nav ul {
-        display: flex;
-        list-style-type: none;
-        align-items: center; /* Alinha verticalmente os textos */
-        margin: 0;
-        padding: 0;
+    .show-menu + .menu-overlay {
+        opacity: 1;
+        visibility: visible;
     }
 
-    nav ul li {
-        width: 100%;
-        text-align: center;
-    }
-
-
-    nav ul li a {
-        display: block;
-        width: 100%;
-    }
-
-    nav ul li a h3 {
-        margin: 0;
-        padding: 1.2rem 2rem;
-    }
-
-    #user-nav {
-        display: flex;
-        align-items: center;
-        gap: 0.4rem;
-        white-space: nowrap;
-    }
-
-    #user-nav p,
-    #user-nav span,
-    #user-nav a {
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
+    nav h3::after {
+        display: none;
     }
 
     .cols-4 {
@@ -636,74 +638,21 @@ h3 {
     }
 }
 
-/* Animação */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-
 @media (max-width:600px) {
-    .navbar {
+    .navbar{
         position: fixed;
+        top:0;
+        left:0;
+        width:100%;
+        z-index:1000;
     }
 
     nav {
-        display: none;
-        position: fixed;
-        top: 81px;
-        left: 0;
-        width: 100%; /* ✅ em vez de right: 0 */
-        max-width: 100%; /* 🔥 segurança extra */
-        background: #2c2c2c;
-        z-index: 9999;
-        overflow-x: hidden;
+        top: 76.5px;
     }
 
-    nav ul {
-        display: flex;
-        flex-direction: column;
-        align-items: center; /* 🔥 centraliza todos os itens */
-        width: 100%;
-    }
-
-    #user-nav a,
-    #user-nav span {
-        width: auto !important;
-        display: inline-flex !important;
-        align-items: center;
-        padding: 0 !important;
-        margin: 0;
-    }
-
-    #user-nav {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 5px;
-        margin: 0;
-        padding: 1rem 0;
-    }
-
-    nav ul li {
-        width: 100%;
-    }
-
-    nav ul li a {
-        display: block;
-        width: 100%;
-    }
-
-    nav ul li a h3 {
-        margin: 0;
-        padding: 1.2rem 2rem;
+    .logo-header {
+        padding: 10px;
     }
 
     .logo-header h1 {
@@ -772,6 +721,47 @@ h3 {
         padding: 10px 10px;
         height: auto;
         min-height: unset;
-        margin-top: 0;
+    }
+
+    footer p {
+        font-size: 0.7rem;
+        padding-top: 0.4rem;
+        padding-bottom: 0.4rem;
+        color: #fff;
+    }
+
+    .menu-overlay {
+        position: fixed;
+        inset:0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,.35);
+        opacity: 0;
+        visibility: hidden;
+        transition: .3s;
+        z-index: 999;
+    }
+
+    .show-menu + .menu-overlay {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    nav h3::after {
+        display: none;
+    }
+}
+
+/* Animação */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
     }
 }
