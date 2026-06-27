@@ -1108,6 +1108,7 @@ input#senhaConfirmacao {
     .meus-pedidos-link {
         font-weight: 300;
         border: 1px solid #2c2c2c;
+        margin-bottom: 1.5rem;
     }
 
     footer {
