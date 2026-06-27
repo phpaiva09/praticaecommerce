@@ -847,7 +847,7 @@ strong {
 
 @media (max-width:600px) {
     body {
-        
+        font-weight: 300;
     }
 
     .navbar{
