@@ -104,12 +104,6 @@ ul a {
 
 }
 
-.hover-sair:hover {
-    transform: translateY(-3px);
-    transition: all 0.2s;
-    display: inline-block;
-}
-
 .nav-icon-container {
     display: flex;
     align-items: center;

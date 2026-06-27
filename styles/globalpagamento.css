@@ -100,13 +100,6 @@ ul h3:hover::after {
 
 ul a {
     text-decoration: none;
-
-}
-
-.hover-sair:hover {
-    transform: translateY(-3px);
-    transition: all 0.2s;
-    display: inline-block;
 }
 
 .nav-icon-container {
