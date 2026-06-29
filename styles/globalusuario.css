@@ -1177,18 +1177,18 @@ input#senhaConfirmacao {
 
     .modal-conteudo p {
         margin: 2rem;
-        font-weight: 300;
+        font-weight: 400;
     }
 
     button#salvarNome,
     button#salvarTelefone,
     button#salvarEmail,
     button#salvarSenha {
-        font-weight: 300;
+        font-weight: 400;
     }
 
     button#cancelarNome, button#cancelarTelefone, button#cancelarEmail, button#cancelarSenha, button#cancelarExcluir {
-        font-weight: 300;
+        font-weight: 400;
     }
 }
 
