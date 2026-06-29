@@ -861,6 +861,7 @@ button#btn-ir-pedidos:focus {
 
     .container h2 {
         margin-bottom: 1.5rem;
+        font-weight: 300;
     }
 
     .container-title {
