@@ -860,6 +860,7 @@ button#btn-ir-pedidos:focus {
 
     h2 {
         font-weight: 300;
+        margin-bottom: 1.5rem;
     }
 
     p {
