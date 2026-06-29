@@ -856,19 +856,11 @@ button#btn-ir-pedidos:focus {
         max-width: 100%;
         margin-top: 140px;      /* espaço para a navbar fixa */
         padding: 0 1.5rem;
+        font-weight: 400;
     }
 
     .container h2 {
-        font-weight: 300;
         margin-bottom: 1.5rem;
-    }
-
-    .container p {
-        font-weight: 300;
-    }
-
-    .container h3 {
-        font-weight: 400;
     }
 
     .container-title {
