@@ -250,7 +250,6 @@ footer {
     min-height: 220px;
     margin-top: auto;
     text-align: center;
-    margin-top: 3.5rem;
 }
 
 footer p {
@@ -742,8 +741,8 @@ h3 {
 
     footer p {
         font-size: 0.7rem;
-        padding-top: 0.4rem;
-        padding-bottom: 0.4rem;
+        padding-top: 0.2rem;
+        padding-bottom: 0;
         color: #fff;
     }
 
