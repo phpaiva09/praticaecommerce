@@ -858,9 +858,15 @@ button#btn-ir-pedidos:focus {
         padding: 0 1.5rem;
     }
 
-    h2, p, h3 {
+    h2 {
         font-weight: 300;
     }
+
+    p {
+        font-weight: 400;
+    }
+
+    
 
     .container-title {
         padding: 0;
