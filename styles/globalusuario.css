@@ -573,6 +573,7 @@ main {
 .modal-conteudo h3 {
     margin-bottom: 1rem;
     color: #2c2c2c;
+    font-weight: 300;
 }
 
 .modal-conteudo p {
@@ -1161,6 +1162,10 @@ input#senhaConfirmacao {
 
     nav h3::after {
         display: none;
+    }
+
+    .modal-conteudo {
+        margin: 2rem;
     }
 }
 
