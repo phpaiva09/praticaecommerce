@@ -11,13 +11,11 @@ body {
     opacity: 0;
     transition: opacity 0.6s ease;
     min-height: 100vh;
-    background-color: #f5f5f5;
 }
 
 body.loaded {
     opacity: 1;
 }
-
 
 /* Header */
 .container-inner {
@@ -175,14 +173,6 @@ header {
     /* centraliza verticalmente o conteúdo */
 }
 
-
-main {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .esqueci-container {
     background-color: #fff;
     text-align: center;
@@ -256,6 +246,7 @@ footer {
     min-height: 220px;
     margin-top: auto;
     text-align: center;
+    margin-top: 3.5rem;
 }
 
 footer p {
@@ -633,10 +624,6 @@ h3 {
         text-decoration: none;
     }
 
-    .cols-4 {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
     .container-principal img {
         padding-top: 3rem;
         max-width: 100%;
@@ -648,67 +635,23 @@ h3 {
         margin-top: 180px;
         margin-bottom: 60px;
     }
-
-    body {
-        overflow-x: hidden;
-        /* segurança extra */
-    }
 }
 
 @media (max-width:600px) {
-    .navbar {
+    .navbar{
         position: fixed;
+        top:0;
+        left:0;
+        width:100%;
+        z-index:1000;
     }
 
     nav {
-        display: none;
-        position: fixed;
-        top: 81px;
-        left: 0;
-        width: 100%; /* ✅ em vez de right: 0 */
-        max-width: 100%; /* 🔥 segurança extra */
-        background: #2c2c2c;
-        z-index: 9999;
-        overflow-x: hidden;
+        top: 76.5px;
     }
 
-    nav ul {
-        display: flex;
-        flex-direction: column;
-        align-items: center; /* 🔥 centraliza todos os itens */
-        width: 100%;
-    }
-
-    #user-nav a,
-    #user-nav span {
-        width: auto !important;
-        display: inline-flex !important;
-        align-items: center;
-        padding: 0 !important;
-        margin: 0;
-    }
-
-    #user-nav {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 5px;
-        margin: 0;
-        padding: 1rem 0;
-    }
-
-    nav ul li {
-        width: 100%;
-    }
-
-    nav ul li a {
-        display: block;
-        width: 100%;
-    }
-
-    nav ul li a h3 {
-        margin: 0;
-        padding: 1.2rem 2rem;
+    .logo-header {
+        padding: 10px;
     }
 
     .logo-header h1 {
@@ -717,6 +660,10 @@ h3 {
 
     .logo-header h3 {
         font-size: 0.6rem;
+    }
+
+    .header-inner-content {
+        padding: 0;
     }
 
     .esqueci-container {
