@@ -858,16 +858,16 @@ button#btn-ir-pedidos:focus {
         padding: 0 1.5rem;
     }
 
-    h2 {
+    .container h2 {
         font-weight: 300;
         margin-bottom: 1.5rem;
     }
 
-    p {
+    .container p {
         font-weight: 300;
     }
 
-    h3 {
+    .container h3 {
         font-weight: 400;
     }
 
