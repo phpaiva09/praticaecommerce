@@ -1128,6 +1128,13 @@ input#senhaConfirmacao {
         font-weight: 400;
     }
 
+    .card-acesso h3 {
+        font-weight: 400;
+    }
+
+    .card-dados-pessoais h3 {
+        font-weight: 400;
+    }
 
     footer {
         padding: 10px 10px;
