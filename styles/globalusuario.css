@@ -1168,8 +1168,12 @@ input#senhaConfirmacao {
         margin: 2rem;
     }
 
+    .modal-conteudo p {
+        margin: 2rem;
+    }
+
     button#cancelarNome, button#cancelarTelefone, button#cancelarEmail, button#cancelarSenha, button#cancelarExcluir {
-        font-weight: 300;
+        font-weight: 400;
     }
 }
 
