@@ -1172,8 +1172,15 @@ input#senhaConfirmacao {
         margin: 2rem;
     }
 
+    button#salvarNome,
+    button#salvarTelefone,
+    button#salvarEmail,
+    button#salvarSenha {
+        font-weight: 300;
+    }
+
     button#cancelarNome, button#cancelarTelefone, button#cancelarEmail, button#cancelarSenha, button#cancelarExcluir {
-        font-weight: 400;
+        font-weight: 300;
     }
 }
 
