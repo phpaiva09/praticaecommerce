@@ -1173,11 +1173,11 @@ input#senhaConfirmacao {
 
     .modal-conteudo {
         margin: 2rem;
+        font-weight: 400;
     }
 
     .modal-conteudo p {
         margin: 2rem;
-        font-weight: 400;
     }
 
     button#salvarNome,
